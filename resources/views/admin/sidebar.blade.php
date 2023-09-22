@@ -129,7 +129,7 @@
         <li class="nav-item">
             <a class="nav-link @yield('dashboard') @yield('master-data') @yield('akademik') @yield('keuangan') @yield('transaksi-pembayaran') @yield('profile')"
                 data-bs-target="#ujian-nav" data-bs-toggle="collapse" href="#">
-                <i class="bi bi-card-list"></i><span>Exam</span><i class="bi bi-chevron-down ms-auto"></i>
+                <i class="bi bi-book"></i><span>Exam</span><i class="bi bi-chevron-down ms-auto"></i>
             </a>
             <ul id="ujian-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
                 <li>
@@ -145,6 +145,30 @@
                 <li>
                     <a href="#">
                         <i class="bi bi-circle"></i><span>Hasil Exam</span>
+                    </a>
+                </li>
+            </ul>
+        </li>
+
+        <li class="nav-item">
+            <a class="nav-link @yield('dashboard') @yield('master-data') @yield('akademik') @yield('keuangan') @yield('transaksi-pembayaran') @yield('profile')"
+                data-bs-target="#nilai-nav" data-bs-toggle="collapse" href="#">
+                <i class="bi bi-card-list"></i><span>Nilai Siswa</span><i class="bi bi-chevron-down ms-auto"></i>
+            </a>
+            <ul id="nilai-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
+                <li>
+                    <a href="#">
+                        <i class="bi bi-circle"></i><span>Nilai UTS</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="#">
+                        <i class="bi bi-circle"></i><span>Nilai UAS</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="#">
+                        <i class="bi bi-circle"></i><span>Nilai Raport</span>
                     </a>
                 </li>
             </ul>

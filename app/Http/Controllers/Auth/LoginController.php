@@ -15,7 +15,7 @@ public function index(){
         if($user->level == '1'){
             return redirect()->intended('home');
         } elseif($user->level == '2'){
-            return redirect()->intended('admin');
+            return redirect()->intended('home');
     }
     // return redirect()->intended('home');
 }
@@ -40,7 +40,7 @@ if(Auth::attempt($kredensial)){
     if($user->level== '1'){
         return redirect()->intended('home');
     } elseif($user->level == '2'){
-        return redirect()->intended('admin');
+        return redirect()->intended('home');
     }
 
     // if($user){
