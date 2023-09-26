@@ -228,11 +228,6 @@
             </a>
             <ul id="forms-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
                 <li>
-                    <a href="/sekolah">
-                        <i class="bi bi-circle"></i><span>Sekolah</span>
-                    </a>
-                </li>
-                <li>
                     <a href="/guru">
                         <i class="bi bi-circle"></i><span>Guru</span>
                     </a>
