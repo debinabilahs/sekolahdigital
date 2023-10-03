@@ -2,121 +2,88 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Admin;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\DB;
 
 class AdminController extends Controller
 {
-    public function index()
+    public function admin()
     {
-        return view('admin/login');
+        $data = Admin::orderBy('id', 'ASC')->paginate(10);
+        return view('admin/akademik/admin', compact('data'));
     }
-    public function cekAdmin(Request $request)
+    public function prosesadmin(Request $request)
     {
+        $request->validate([
+            'nik' => 'required',
+            'nama_admin' => 'required',
+            'alamat' => 'required',
+            'no_telp' => 'required',
+            'email' => 'required',
+            'username' => 'required',
+            'password' => 'required',
+            'foto' => 'required|image|mimes:jpeg,png,jpg,gif,svg,webp',
+            'aktif_admin' => 'required',
 
-        if (isset($request->login)) {
-            $cekLogin = DB::table('users')->where('username', $request->username)->get();
-            $ada = $cekLogin->count();
+        ]);
 
-            if ($ada > 0) {
-                return redirect('jurusan');
-            } else {
-                return redirect('jurusan');
-            }
-        }
-        return redirect('jurusan');
-    }
-    //opsi
-    public function opsi()
-    {
-        $data = DB::select('select * From rs_opsi');
-        return view('admin/mod_master/opsi')->with('data', $data);
-    }
-    public function prosesopsi(Request $request)
-    {
-        if (isset($request->simpan)) {
-            DB::table('rs_opsi')->insert([
-                'pil_A' => $request->pil_A,
-                'pil_B' => $request->pil_B,
-                'pil_C' => $request->pil_C,
-                'pil_D' => $request->pil_D,
-                'pil_E' => $request->pil_E,
+        $imageName = time() . '_' . $request->file('foto')->getClientOriginalName();
 
-            ]);
-            return redirect('opsi')->with('success', 'Opsi Berhasil Di Tambahkan');
-        } else {
-            $id = $request->id;
-            DB::table('rs_opsi')
-                ->where('id_opsi', $id)
-                ->update([
-                    'pil_A' => $request->pil_A,
-                    'pil_B' => $request->pil_B,
-                    'pil_C' => $request->pil_C,
-                    'pil_D' => $request->pil_D,
-                    'pil_E' => $request->pil_E,
-                ]);
-            return redirect('opsi')->with('success', 'Opsi Berhasil Di Edit');
+        $request->foto->move(public_path('foto/'), $imageName);
+
+        $admin = Admin::create([
+
+            'nik' => $request->nik,
+            'nama_admin' => $request->nama_admin,
+            'alamat' => $request->alamat,
+            'no_telp' => $request->no_telp,
+            'email' => $request->email,
+            'username' => $request->username,
+            'password' => $request->password,
+            'foto' => $imageName,
+            'aktif_admin' => $request->aktif_admin,
+
+        ]);
+
+        if ($admin) {
+            return redirect('admin')->with('success', 'admin Berhasil Di Buat');
         }
     }
-    public function hapusopsi($id)
-    {
-        $deleted = DB::table('rs_opsi')->where('id_opsi', $id)->delete();
-        return redirect('opsi')->with('success', 'Opsi Berhasil Di Hapus');
-    }
 
-    //soal
-    public function soal()
+    public function updateadmin(Request $request)
     {
-        $data = DB::select('select * From rs_soal a, rs_exam b,rs_opsi');
-        return view('admin/mod_master/soal')->with('data', $data);
-    }
-    public function rekapsoal()
-    {
-        $data = DB::select('select * From rs_soal order by id_exam id_opsi');
-        return view('admin/mod_master/rekapsoal')->with('data', $data);
-    }
-    public function prosessoal(Request $request)
-    {
-        if (isset($request->simpan)) {
-            DB::table('rs_soal')->insert([
 
-                'id_exam' => $request->id_exam,
-                'id_mapel' => $request->id_mapel,
-                'id_guru' => $request->id_guru,
-                'desk_soal' => $request->desk_soal,
-                'jawaban' => $request->jawaban,
-                'id_opsi' => $request->id_opsi,
-                'pil_A' => $request->pil_A,
-                'pil_B' => $request->pil_B,
-                'pil_C' => $request->pil_C,
-                'pil_D' => $request->pil_D,
-                'pil_E' => $request->pil_E,
+        $imageName = $request->gambarLama;
 
-            ]);
-            return redirect('soal')->with('success', 'Soal Berhasil Di Tambahkan');
-        } else {
-            $id = $request->id;
-            DB::table('rs_soal')
-                ->where('id_soal', $id)
-                ->update([
-                    'id_exam' => $request->id_exam,
-                    'id_mapel' => $request->id_mapel,
-                    'id_guru' => $request->id_guru,
-                    'desk_soal' => $request->desk_soal,
-                    'jawaban' => $request->jawaban,
-                    'id_opsi' => $request->id_opsi,
-                    'pil_A' => $request->pil_A,
-                    'pil_B' => $request->pil_B,
-                    'pil_C' => $request->pil_C,
-                    'pil_D' => $request->pil_D,
-                    'pil_E' => $request->pil_E,
-                ]);
-            return redirect('soal')->with('success', 'Soal Berhasil Di Edit');
+        if ($request->hasFile('foto')) {
+            $image = $request->file('foto');
+            $imageName = time() . '_' . $request->file('foto')->getClientOriginalName();
+            $image->move(public_path('foto/'), $imageName);
+        }
+        $admin = Admin::where('id', $request->id)->update([
+
+
+            'nik' => $request->nik,
+            'nama_admin' => $request->nama_admin,
+            'alamat' => $request->alamat,
+            'no_telp' => $request->no_telp,
+            'email' => $request->email,
+            'username' => $request->username,
+            'password' => $request->password,
+            'foto' => $imageName,
+            'aktif_admin' => $request->aktif_admin,
+        ]);
+
+        if ($admin) {
+            return redirect('admin')->with('success', 'Admin Berhasil Di Update');
         }
     }
-    public function hapussoal($id)
+    public function hapusadmin(Request $request)
     {
-        $deleted = DB::table('rs_soal')->where('id_soal', $id)->delete();
-        return redirect('soal')->with('success', 'Soal Berhasil Di Hapus');
+        $del = Admin::where('id', $request->id)->delete();
+
+        if ($del) {
+            return redirect('admin')->with('success', 'Admin Berhasil Dihapus.');
+        }
     }
 }

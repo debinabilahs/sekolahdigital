@@ -10,6 +10,7 @@
             </a>
         </li><!-- End Dashboard Nav -->
 
+        // Hak Akses Menu 
         @if(Auth::user()->level == 1)
         <li class="nav-item">
             <a class="nav-link @yield('dashboard') @yield('master-data') @yield('exam') @yield('keuangan') @yield('transaksi-pembayaran') @yield('profile')"
@@ -42,7 +43,7 @@
             </a>
             <ul id="forms-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
                 <li>
-                    <a href="#">
+                    <a href="/admin">
                         <i class="bi bi-circle"></i><span>Administrator</span>
                     </a>
                 </li>
