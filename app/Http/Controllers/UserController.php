@@ -10,7 +10,7 @@ class UserController extends Controller
     public function user()
     {
         $data = User::orderBy('id', 'ASC')->paginate(10);
-        return view('admin/mod_master/user', compact('data'));
+        return view('admin/user/user', compact('data'));
     }
     public function prosesuser(Request $request)
     {

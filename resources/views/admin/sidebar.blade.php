@@ -10,7 +10,7 @@
             </a>
         </li><!-- End Dashboard Nav -->
 
-        // Hak Akses Menu 
+        {{-- Hak Akses Menu  --}}
         @if(Auth::user()->level == 1)
         <li class="nav-item">
             <a class="nav-link @yield('dashboard') @yield('master-data') @yield('exam') @yield('keuangan') @yield('transaksi-pembayaran') @yield('profile')"
@@ -31,35 +31,6 @@
                 <li>
                     <a href="/notifikasi">
                         <i class="bi bi-circle"></i><span>Notifikasi</span>
-                    </a>
-                </li>
-            </ul>
-        </li><!-- End Forms Nav -->
-
-        <li class="nav-item">
-            <a class="nav-link @yield('dashboard') @yield('master-data') @yield('exam') @yield('keuangan') @yield('transaksi-pembayaran') @yield('profile')"
-                data-bs-target="#forms-nav" data-bs-toggle="collapse" href="#">
-                <i class="bi bi-person-circle"></i><span>Data Pengguna</span><i class="bi bi-chevron-down ms-auto"></i>
-            </a>
-            <ul id="forms-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
-                <li>
-                    <a href="/admin">
-                        <i class="bi bi-circle"></i><span>Administrator</span>
-                    </a>
-                </li>
-                <li>
-                    <a href="/sekolah">
-                        <i class="bi bi-circle"></i><span>Sekolah</span>
-                    </a>
-                </li>
-                <li>
-                    <a href="/guru">
-                        <i class="bi bi-circle"></i><span>Guru</span>
-                    </a>
-                </li>
-                <li>
-                    <a href="/siswa">
-                        <i class="bi bi-circle"></i><span>Siswa</span>
                     </a>
                 </li>
             </ul>
@@ -98,6 +69,35 @@
                 </li>
             </ul>
         </li><!-- End Components Nav -->
+
+        <li class="nav-item">
+            <a class="nav-link @yield('dashboard') @yield('master-data') @yield('exam') @yield('keuangan') @yield('transaksi-pembayaran') @yield('profile')"
+                data-bs-target="#forms-nav" data-bs-toggle="collapse" href="#">
+                <i class="bi bi-person-circle"></i><span>Data Pengguna</span><i class="bi bi-chevron-down ms-auto"></i>
+            </a>
+            <ul id="forms-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
+                <li>
+                    <a href="/admin">
+                        <i class="bi bi-circle"></i><span>Administrator</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="/sekolah">
+                        <i class="bi bi-circle"></i><span>Sekolah</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="/guru">
+                        <i class="bi bi-circle"></i><span>Guru</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="/siswa">
+                        <i class="bi bi-circle"></i><span>Siswa</span>
+                    </a>
+                </li>
+            </ul>
+        </li><!-- End Forms Nav -->
 
         <li class="nav-item">
             <a class="nav-link @yield('dashboard') @yield('master-data') @yield('exam') @yield('keuangan') @yield('transaksi-pembayaran') @yield('profile')"
@@ -223,25 +223,6 @@
 
         @elseif(Auth::user()->level == 2)
         <li class="nav-item">
-            <a class="nav-link @yield('dashboard') @yield('master-data') @yield('exam') @yield('keuangan') @yield('transaksi-pembayaran') @yield('profile')"
-                data-bs-target="#forms-nav" data-bs-toggle="collapse" href="#">
-                <i class="bi bi-person-circle"></i><span>Data Pengguna</span><i class="bi bi-chevron-down ms-auto"></i>
-            </a>
-            <ul id="forms-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
-                <li>
-                    <a href="/guru">
-                        <i class="bi bi-circle"></i><span>Guru</span>
-                    </a>
-                </li>
-                <li>
-                    <a href="/siswa">
-                        <i class="bi bi-circle"></i><span>Siswa</span>
-                    </a>
-                </li>
-            </ul>
-        </li><!-- End Forms Nav -->
-
-        <li class="nav-item">
             <a class="nav-link @yield('dashboard') @yield('akademik') @yield('exam') @yield('keuangan') @yield('transaksi-pembayaran') @yield('profile')"
                 data-bs-target="#components-nav" data-bs-toggle="collapse" href="#">
                 <i class="bi bi-menu-button-wide"></i><span>Master Data</span><i class="bi bi-chevron-down ms-auto"></i>
@@ -274,6 +255,25 @@
                 </li>
             </ul>
         </li><!-- End Components Nav -->
+
+        <li class="nav-item">
+            <a class="nav-link @yield('dashboard') @yield('master-data') @yield('exam') @yield('keuangan') @yield('transaksi-pembayaran') @yield('profile')"
+                data-bs-target="#forms-nav" data-bs-toggle="collapse" href="#">
+                <i class="bi bi-person-circle"></i><span>Data Pengguna</span><i class="bi bi-chevron-down ms-auto"></i>
+            </a>
+            <ul id="forms-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
+                {{-- <li>
+                    <a href="/guru">
+                        <i class="bi bi-circle"></i><span>Guru</span>
+                    </a>
+                </li> --}}
+                <li>
+                    <a href="/siswa">
+                        <i class="bi bi-circle"></i><span>Siswa</span>
+                    </a>
+                </li>
+            </ul>
+        </li><!-- End Forms Nav -->
 
         <li class="nav-item">
             <a class="nav-link @yield('dashboard') @yield('master-data') @yield('exam') @yield('keuangan') @yield('transaksi-pembayaran') @yield('profile')"

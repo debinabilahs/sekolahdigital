@@ -10,7 +10,7 @@ class LevelController extends Controller
     public function level()
     {
         $data = Level::orderBy('id', 'ASC')->paginate(10);
-        return view('admin/mod_master/level', compact('data'));
+        return view('admin/user/level', compact('data'));
     }
     public function proseslevel(Request $request)
     {

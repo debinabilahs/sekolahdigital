@@ -10,7 +10,7 @@ class SekolahController extends Controller
     public function sekolah()
     {
         $data = Sekolah::orderBy('id', 'ASC')->paginate(10);
-        return view('admin/akademik/sekolah', compact('data'));
+        return view('admin/data_pengguna/sekolah', compact('data'));
     }
     public function prosessekolah(Request $request)
     {

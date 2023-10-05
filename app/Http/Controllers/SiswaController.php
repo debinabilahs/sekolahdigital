@@ -25,7 +25,7 @@ class SiswaController extends Controller
         $agama = Agama::all();
         $tp = Tp::all();
 
-        return view('admin/akademik/siswa', compact('data', 'level', 'kelas', 'jurusan', 'ruang', 'agama', 'tp'));
+        return view('admin/data_pengguna/siswa', compact('data', 'level', 'kelas', 'jurusan', 'ruang', 'agama', 'tp'));
     }
     public function prosesSiswa(Request $request)
     {

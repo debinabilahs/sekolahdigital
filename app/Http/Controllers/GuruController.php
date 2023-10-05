@@ -10,7 +10,7 @@ class GuruController extends Controller
     public function guru()
     {
         $data = Guru::orderBy('id', 'ASC')->paginate(10);
-        return view('admin/akademik/guru', compact('data'));
+        return view('admin/data_pengguna/guru', compact('data'));
     }
     public function prosesguru(Request $request)
     {
