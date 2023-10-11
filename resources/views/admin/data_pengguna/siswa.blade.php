@@ -14,7 +14,7 @@
                     <div class="card-body">
                         <div class="d-flex justify-content-between align-items-center">
                             <div>
-                                <h5 class="card-title inline-block">Data siswa</h5>
+                                <h5 class="card-title inline-block">Data Siswa</h5>
                             </div>
                             <div>
                                 <button class="btn btn-danger rounded-pill px-4" style="font-size: 0.75rem"

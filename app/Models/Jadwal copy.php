@@ -5,12 +5,12 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Tugas extends Model
+class Jadwal extends Model
 {
     use HasFactory;
     public $timestamps = false;
 
-    protected $table = 'rs_tugas';
+    protected $table = 'rs_jadualmengajar';
     protected $guarded = [];
 
     public function mapel()
@@ -21,5 +21,9 @@ class Tugas extends Model
     public function kelas()
     {
         return $this->belongsTo(Kelas::class, 'id_kelas');
+    }
+    public function Guru()
+    {
+        return $this->belongsTo(Guru::class, 'id_guru');
     }
 }

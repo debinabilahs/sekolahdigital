@@ -17,6 +17,8 @@ use App\Http\Controllers\MapelController;
 use App\Http\Controllers\RuangController;
 use App\Http\Controllers\SiswaController;
 use App\Http\Controllers\JadwalController;
+use App\Http\Controllers\BahanController;
+use App\Http\Controllers\TugasController;
 use App\Http\Controllers\JurusanController;
 use App\Http\Controllers\SekolahController;
 use App\Http\Controllers\KeuanganController;
@@ -50,6 +52,72 @@ Route::post('/register', [RegisterController::class, 'register']);
 
 Route::middleware(['auth'])->group(function () {
 
+    //siswa
+    Route::get('/siswa', [SiswaController::class, 'siswa']);
+    Route::post('/prosesSiswa', [SiswaController::class, 'prosesSiswa']);
+    Route::post('/updateSiswa', [SiswaController::class, 'updateSiswa']);
+    Route::get('/hapusSiswa/{id}', [SiswaController::class, 'hapusSiswa']);
+    Route::post('/importexcel', [SiswaController::class, 'importexcel']);
+
+    //exam
+    Route::get('/exam', [ExamController::class, 'exam']);
+    Route::post('/prosesexam', [ExamController::class, 'prosesexam']);
+    Route::post('/updateexam', [ExamController::class, 'updateexam']);
+    Route::get('/hapusexam/{id}', [ExamController::class, 'hapusexam']);
+
+    //Opsi
+    Route::get('/opsi', [AdminController::class, 'opsi']);
+    Route::post('/prosesopsi', [AdminController::class, 'prosesopsi']);
+    Route::get('/hapusopsi/{id}', [AdminController::class, 'hapusopsi']);
+
+    //soal
+    Route::get('/soal', [AdminController::class, 'soal']);
+    Route::get('/rekapdsoal', [AdminController::class, 'rekapsoal']);
+    Route::post('/prosessoal', [AdminController::class, 'prosessoal']);
+    Route::get('/hapussoal/{id}', [AdminController::class, 'hapussoal']);
+
+    //jadual
+    Route::get('/jadwal', [JadwalController::class, 'jadwal']);
+    Route::post('/prosesjadwal', [JadwalController::class, 'prosesjadwal']);
+    Route::post('/updatejadwal', [JadwalController::class, 'updatejadwal']);
+    Route::get('/hapusjadwal/{id}', [JadwalController::class, 'hapusjadwal']);
+
+    //bahan materi
+    Route::get('/bahan', [BahanController::class, 'bahan']);
+    Route::post('/prosesbahan', [BahanController::class, 'prosesbahan']);
+    Route::post('/updatebahan', [BahanController::class, 'updatebahan']);
+    Route::get('/lihatbahan/{id}', [BahanController::class, 'lihatbahan']);
+    Route::get('/hapusbahan/{id}', [BahanController::class, 'hapusbahan']);
+    
+    //tugas materi
+    Route::get('/tugas', [TugasController::class, 'tugas']);
+    Route::post('/prosestugas', [TugasController::class, 'prosestugas']);
+    Route::post('/updatetugas', [TugasController::class, 'updatetugas']);
+    Route::get('/lihattugas/{id}', [TugasController::class, 'lihattugas']);
+    Route::get('/hapustugas/{id}', [TugasController::class, 'hapustugas']);
+
+
+    // Grup rute untuk pengguna (Admin) yang telah login
+    Route::group(['middleware' => ['cekUserLogin:1']], function() {
+    
+    //level
+    Route::get('/level', [LevelController::class, 'level']);
+    Route::post('/prosesLevel', [LevelController::class, 'proseslevel']);
+    Route::post('/updatelevel', [LevelController::class, 'updatelevel']);
+    Route::get('/hapusLevel/{id}', [LevelController::class, 'hapusLevel']);
+
+    //notifikasi
+    Route::get('/notifikasi', [NotifikasiController::class, 'notifikasi']);
+    Route::post('/prosesnotifikasi', [NotifikasiController::class, 'prosesnotifikasi']);
+    Route::post('/updatenotifikasi', [NotifikasiController::class, 'updatenotifikasi']);
+    Route::get('/hapusnotifikasi/{id}', [NotifikasiController::class, 'hapusnotifikasi']);
+
+    //User
+    Route::get('/user', [UserController::class, 'user']);
+    Route::post('/prosesuser', [UserController::class, 'prosesuser']);
+    Route::post('/updateuser', [UserController::class, 'updateuser']);
+    Route::get('/hapususer/{id}', [UserController::class, 'hapususer']);
+
     //jurusan
     Route::get('/jurusan', [JurusanController::class, 'jurusan']);
     Route::post('/prosesJurusan', [JurusanController::class, 'prosesJurusan']);
@@ -57,18 +125,18 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/search', [JurusanController::class, 'search']);
     Route::get('/hapusJurusan/{id}', [JurusanController::class, 'hapusJurusan']);
 
+    //Kelas
+    Route::get('/kelas', [kelasController::class, 'kelas']);
+    Route::post('/proseskelas', [KelasController::class, 'proseskelas']);
+    Route::post('/updatekelas', [KelasController::class, 'updatekelas']);
+    Route::get('/hapuskelas/{id}', [KelasController::class, 'hapuskelas']);
+    
     //agama
     Route::get('/agama', [AgamaController::class, 'agama']);
     Route::post('/prosesAgama', [AgamaController::class, 'prosesAgama']);
     Route::post('/updateAgama', [AgamaController::class, 'updateAgama']);
     Route::post('/importagama', [AgamaController::class, 'importAgama']);
     Route::get('/hapusAgama/{id}', [AgamaController::class, 'hapusAgama']);
-
-    // //level
-    // Route::get('/level', [LevelController::class, 'level']);
-    // Route::post('/prosesLevel', [LevelController::class, 'proseslevel']);
-    // Route::post('/updatelevel', [LevelController::class, 'updatelevel']);
-    // Route::get('/hapusLevel/{id}', [LevelController::class, 'hapusLevel']);
 
     //mapel
     Route::get('/mapel', [MapelController::class, 'mapel']);
@@ -87,19 +155,18 @@ Route::middleware(['auth'])->group(function () {
     Route::post('/prosesSekolah', [SekolahController::class, 'prosesSekolah']);
     Route::post('/updateSekolah', [SekolahController::class, 'updateSekolah']);
     Route::get('/hapusSekolah/{id}', [SekolahController::class, 'hapussekolah']);
-    
+
     //guru
     Route::get('/guru', [GuruController::class, 'guru']);
     Route::post('/prosesGuru', [GuruController::class, 'prosesGuru']);
     Route::post('/updateGuru', [GuruController::class, 'updateGuru']);
     Route::get('/hapusGuru/{id}', [GuruController::class, 'hapusGuru']);
 
-    //siswa
-    Route::get('/siswa', [SiswaController::class, 'siswa']);
-    Route::post('/prosesSiswa', [SiswaController::class, 'prosesSiswa']);
-    Route::post('/updateSiswa', [SiswaController::class, 'updateSiswa']);
-    Route::get('/hapusSiswa/{id}', [SiswaController::class, 'hapusSiswa']);
-    Route::post('/importexcel', [SiswaController::class, 'importexcel']);
+    //Administrator
+    Route::get('/admin', [AdminController::class, 'admin']);
+    Route::post('/prosesAdmin', [AdminController::class, 'prosesAdmin']);
+    Route::post('/updateAdmin', [AdminController::class, 'updateAdmin']);
+    Route::get('/hapusAdmin/{id}', [AdminController::class, 'hapusAdmin']);
 
     //tp
     Route::get('/tp', [TpController::class, 'tp']);
@@ -125,85 +192,17 @@ Route::middleware(['auth'])->group(function () {
     Route::post('/updatebayarsiswa', [BayarsiswaController::class, 'updatebayarsiswa']);
     Route::get('/hapus/{id}', [BayarsiswaController::class, 'hapus']);
 
-    //exam
-    Route::get('/exam', [ExamController::class, 'exam']);
-    Route::post('/prosesexam', [ExamController::class, 'prosesexam']);
-    Route::post('/updateexam', [ExamController::class, 'updateexam']);
-    Route::get('/hapusexam/{id}', [ExamController::class, 'hapusexam']);
-
-    //Opsi
-    Route::get('/opsi', [AdminController::class, 'opsi']);
-    Route::post('/prosesopsi', [AdminController::class, 'prosesopsi']);
-    Route::get('/hapusopsi/{id}', [AdminController::class, 'hapusopsi']);
-
-    //soal
-    Route::get('/soal', [AdminController::class, 'soal']);
-    Route::get('/rekapdsoal', [AdminController::class, 'rekapsoal']);
-    Route::post('/prosessoal', [AdminController::class, 'prosessoal']);
-    Route::get('/hapussoal/{id}', [AdminController::class, 'hapussoal']);
-
-    //Kelas
-    Route::get('/kelas', [kelasController::class, 'kelas']);
-    Route::post('/proseskelas', [KelasController::class, 'proseskelas']);
-    Route::post('/updatekelas', [KelasController::class, 'updatekelas']);
-    Route::get('/hapuskelas/{id}', [KelasController::class, 'hapuskelas']);
-
-    // //notifikasi
-    // Route::get('/notifikasi', [NotifikasiController::class, 'notifikasi']);
-    // Route::post('/prosesnotifikasi', [NotifikasiController::class, 'prosesnotifikasi']);
-    // Route::post('/updatenotifikasi', [NotifikasiController::class, 'updatenotifikasi']);
-    // Route::get('/hapusnotifikasi/{id}', [NotifikasiController::class, 'hapusnotifikasi']);
-
-    //jadual
-    Route::get('/jadwal', [JadwalController::class, 'jadwal']);
-    Route::post('/prosesjadwal', [JadwalController::class, 'prosesjadwal']);
-    Route::post('/updatejadwal', [JadwalController::class, 'updatejadwal']);
-    Route::get('/hapusjadwal/{id}', [JadwalController::class, 'hapusjadwal']);
-
-    //Bayar
+     //Bayar
     Route::get('/bayar', [BayarController::class, 'bayar']);
     Route::post('/prosesbayar', [BayarController::class, 'prosesbayar']);
     Route::post('/updatebayar', [BayarController::class, 'updatebayar']);
     Route::get('/hapusbayar/{id}', [BayarController::class, 'hapusbayar']);
-
-    // //User
-    // Route::get('/user', [UserController::class, 'user']);
-    // Route::post('/prosesuser', [UserController::class, 'prosesuser']);
-    // Route::post('/updateuser', [UserController::class, 'updateuser']);
-    // Route::get('/hapususer/{id}', [UserController::class, 'hapususer']);
 
     //Pembayaran
     Route::get('/pembayaran', [PembayaranController::class, 'pembayaran']);
     Route::post('/prosespembayaran', [PembayaranController::class, 'prosespembayaran']);
     Route::post('/updatepembayaran', [PembayaranController::class, 'updatepembayaran']);
     Route::get('/hapuspembayaran/{id}', [PembayaranController::class, 'hapuspembayaran']);
-
-    // Grup rute untuk pengguna (Admin) yang telah login
-    Route::group(['middleware' => ['cekUserLogin:1']], function() {
-    
-    //level
-    Route::get('/level', [LevelController::class, 'level']);
-    Route::post('/prosesLevel', [LevelController::class, 'proseslevel']);
-    Route::post('/updatelevel', [LevelController::class, 'updatelevel']);
-    Route::get('/hapusLevel/{id}', [LevelController::class, 'hapusLevel']);
-
-    //notifikasi
-    Route::get('/notifikasi', [NotifikasiController::class, 'notifikasi']);
-    Route::post('/prosesnotifikasi', [NotifikasiController::class, 'prosesnotifikasi']);
-    Route::post('/updatenotifikasi', [NotifikasiController::class, 'updatenotifikasi']);
-    Route::get('/hapusnotifikasi/{id}', [NotifikasiController::class, 'hapusnotifikasi']);
-
-    //User
-    Route::get('/user', [UserController::class, 'user']);
-    Route::post('/prosesuser', [UserController::class, 'prosesuser']);
-    Route::post('/updateuser', [UserController::class, 'updateuser']);
-    Route::get('/hapususer/{id}', [UserController::class, 'hapususer']);
-
-    //Administrator
-    Route::get('/admin', [AdminController::class, 'admin']);
-    Route::post('/prosesAdmin', [AdminController::class, 'prosesAdmin']);
-    Route::post('/updateAdmin', [AdminController::class, 'updateAdmin']);
-    Route::get('/hapusAdmin/{id}', [AdminController::class, 'hapusAdmin']);
 
     });
 

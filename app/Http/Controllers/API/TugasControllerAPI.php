@@ -30,16 +30,8 @@ class TugasControllerAPI extends Controller
     public function createTugas(Request $request)
     {
         $data = $request->validate([
-            'judul_tugas' => 'required',
-            'status_tugas' => 'required',
-            'tgl_mulai' => 'required',
-            'tgl_selesai' => 'required',
-            'link_youtube' => 'required',
-            'link_drive' => 'required',
-            'open_link' => 'required',
-            'deskripsi' => 'required',
-            'gbr_tugas' => 'required',
-            'id_guru' => 'required',
+            'nama_tugas' => 'required',
+            'id_mapel' => 'required',
             'id_kelas' => 'required',
         ]);
 
@@ -53,16 +45,8 @@ class TugasControllerAPI extends Controller
     public function updateTugas(Request $request, Tugas $tugas)
     {
         $data = $request->validate([
-            'judul_tugas' => 'required',
-            'status_tugas' => 'required',
-            'tgl_mulai' => 'required',
-            'tgl_selesai' => 'required',
-            'link_youtube' => 'required',
-            'link_drive' => 'required',
-            'open_link' => 'required',
-            'deskripsi' => 'required',
-            'gbr_tugas' => 'required',
-            'id_guru' => 'required',
+            'nama_tugas' => 'required',
+            'id_mapel' => 'required',
             'id_kelas' => 'required',
         ]);
 

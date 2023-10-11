@@ -15,17 +15,9 @@ class CreateRsTugasTable extends Migration
     {
         Schema::create('rs_tugas', function (Blueprint $table) {
             $table->id();
-            $table->string('judul_tugas');
-            $table->enum('status_tugas',['Y','N']);
-            $table->date('tgl_mulai');
-            $table->date('tgl_selesai');
-            $table->string('link_youtube');
-            $table->string('link_drive');
-            $table->string('open_link');
-            $table->string('deskripsi');
-            $table->string('gbr_tugas');
+            $table->string('nama_tugas');
+            $table->bigInteger('id_mapel');
             $table->bigInteger('id_kelas');
-            $table->bigInteger('id_guru');
             $table->timestamps();
         });
     }

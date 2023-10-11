@@ -116,12 +116,12 @@
                     </a>
                 </li>
                 <li>
-                    <a href="#">
+                    <a href="/bahan">
                         <i class="bi bi-circle"></i><span>Bahan Mata Pelajaran</span>
                     </a>
                 </li>
                 <li>
-                    <a href="#">
+                    <a href="/tugas">
                         <i class="bi bi-circle"></i><span>Tugas Mata Pelajaran</span>
                     </a>
                 </li>
@@ -222,7 +222,7 @@
         </li>
 
         @elseif(Auth::user()->level == 2)
-        <li class="nav-item">
+        {{-- <li class="nav-item">
             <a class="nav-link @yield('dashboard') @yield('akademik') @yield('exam') @yield('keuangan') @yield('transaksi-pembayaran') @yield('profile')"
                 data-bs-target="#components-nav" data-bs-toggle="collapse" href="#">
                 <i class="bi bi-menu-button-wide"></i><span>Master Data</span><i class="bi bi-chevron-down ms-auto"></i>
@@ -254,7 +254,7 @@
                     </a>
                 </li>
             </ul>
-        </li><!-- End Components Nav -->
+        </li><!-- End Components Nav --> --}}
 
         <li class="nav-item">
             <a class="nav-link @yield('dashboard') @yield('master-data') @yield('exam') @yield('keuangan') @yield('transaksi-pembayaran') @yield('profile')"
@@ -292,12 +292,12 @@
                     </a>
                 </li>
                 <li>
-                    <a href="#">
+                    <a href="/bahan">
                         <i class="bi bi-circle"></i><span>Bahan Mata Pelajaran</span>
                     </a>
                 </li>
                 <li>
-                    <a href="#">
+                    <a href="/tugas">
                         <i class="bi bi-circle"></i><span>Tugas Mata Pelajaran</span>
                     </a>
                 </li>
@@ -352,7 +352,7 @@
             </ul>
         </li>
 
-        <li class="nav-item">
+        {{-- <li class="nav-item">
             <a class="nav-link @yield('dashboard') @yield('master-data') @yield('akademik') @yield('exam') @yield('transaksi-pembayaran') @yield('profile')"
                 data-bs-target="#tables-nav" data-bs-toggle="collapse" href="#">
                 <i class="bi bi-layout-text-window-reverse"></i><span>Keuangan</span><i
@@ -395,7 +395,7 @@
                     </a>
                 </li>
             </ul>
-        </li>
+        </li> --}}
 
         @endif
 
