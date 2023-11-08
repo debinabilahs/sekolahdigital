@@ -116,25 +116,25 @@
                                     <div class="row mb-3">
                                         <label for="inputText" class="col-sm-2 col-form-label">NIK Guru</label>
                                         <div class="col-sm-10">
-                                            <input type="text" name="nik" class="form-control">
+                                            <input type="text" name="nik" class="form-control" placeholder="Masukkan NIK">
                                         </div>
                                     </div>
                                     <div class="row mb-3">
                                         <label for="inputText" class="col-sm-2 col-form-label">Nama Guru</label>
                                         <div class="col-sm-10">
-                                            <input type="text" name="nama_guru" class="form-control">
+                                            <input type="text" name="nama_guru" class="form-control" placeholder="Masukkan Nama">
                                         </div>
                                     </div>
                                     <div class="row mb-3">
                                         <label for="inputEmail" class="col-sm-2 col-form-label">Email</label>
                                         <div class="col-sm-10">
-                                            <input type="email" name="email" class="form-control">
+                                            <input type="email" name="email" class="form-control" placeholder="Masukkan Email">
                                         </div>
                                     </div>
                                     <div class="row mb-3">
                                         <label for="inputTime" class="col-sm-2 col-form-label">Tempat lahir</label>
                                         <div class="col-sm-10">
-                                            <input type="text" name="tmp_lahir" class="form-control">
+                                            <input type="text" name="tmp_lahir" class="form-control" placeholder="Masukkan Tempat Lahir">
                                         </div>
                                     </div>
                                     <div class="row mb-3">
@@ -147,23 +147,23 @@
                                     <div class="row mb-3">
                                         <label for="inputNumber" class="col-sm-2 col-form-label">Telp</label>
                                         <div class="col-sm-10">
-                                            <input type="number" name="no_hp" class="form-control">
+                                            <input type="number" name="no_hp" class="form-control" placeholder="Masukkan No Telp">
                                         </div>
                                     </div>
                                     <div class="row mb-3">
                                         <label for="inputUsername" class="col-sm-2 col-form-label">Username</label>
                                         <div class="col-sm-10">
-                                            <input type="text" name="username" class="form-control">
+                                            <input type="text" name="username" class="form-control" placeholder="Masukkan Username">
                                         </div>
                                     </div>
                                     <div class="row mb-3">
                                         <label for="inputPassword" class="col-sm-2 col-form-label">Password</label>
                                         <div class="col-sm-10">
-                                            <input type="password" name="password" class="form-control">
+                                            <input type="password" name="password" class="form-control" placeholder="Masukkan Password">
                                         </div>
                                     </div>
                                     <div class="row mb-3">
-                                        <label for="foto" class="col-sm-2 col-form-label">foto guru</label>
+                                        <label for="foto" class="col-sm-2 col-form-label">Foto guru</label>
                                         <div class="col-sm-10">
                                             <input type="file" class="form-control" id="foto" name="foto">
                                         </div>

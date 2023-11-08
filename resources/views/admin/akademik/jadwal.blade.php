@@ -110,7 +110,7 @@
                                     <div class="col-md-12">
                                         <label for="hari" class="form-label">Hari</label>
                                         <input type="text" name="hari" class="form-control" id="hari"
-                                            hint="hari" required>
+                                            hint="hari" placeholder="Masukkan Nama Hari" required>
                                     </div>
                                     <div class="col-md-12">
                                         <label for="jam_mulai" class="form-label">JamMulai</label>

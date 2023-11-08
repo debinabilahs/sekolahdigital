@@ -112,7 +112,7 @@
                                     <div class="col-md-12">
                                         <label for="nama_mapel" class="form-label">Nama Mapel</label>
                                         <input type="text" name="nama_mapel" class="form-control" id="nama_mapel"
-                                            hint="nama mapel" required>
+                                            hint="nama mapel" placeholder="Masukkan Nama Mata Pelajaran"required>
                                     </div>
 
                                     <div class="col-md-12">
@@ -134,9 +134,9 @@
 
 
                                     <div class="col-md-12">
-                                        <label for="kkm" class="form-label">Kkm</label>
+                                        <label for="kkm" class="form-label">KKM</label>
                                         <input type="text" name="kkm" class="form-control" id="kkm"
-                                            hint="kkm" required>
+                                            hint="kkm" placeholder="Masukkan KKM" required>
                                     </div>
 
 

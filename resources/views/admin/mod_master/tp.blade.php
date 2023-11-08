@@ -97,7 +97,7 @@
                                     <div class="col-md-12">
                                         <label for="validationDefault01" class="form-label">Tahun Pelajaran</label>
                                         <input type="text" name="tahun_pelajaran" class="form-control"
-                                            id="validationDefault01" hint="Nama Tahun Pelajaran" required>
+                                            id="validationDefault01" hint="Nama Tahun Pelajaran" placeholder="Masukkan Tahun Pelajaran" required>
                                     </div>
 
                                     <!-- End Browser Default Validation -->

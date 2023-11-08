@@ -118,24 +118,20 @@
                                     <div class="col-md-12">
                                         <label for="kode_kelas" class="form-label">Kode Kelas</label>
                                         <input type="text" name="kode_kelas" class="form-control" id="kode_kelas"
-                                            hint="kode kelas" required>
+                                            hint="kode kelas" placeholder="Masukkan Kode Kelas" required>
                                     </div>
 
                                     <div class="col-md-12">
                                         <label for="nama_kelas" class="form-label">Nama Kelas</label>
                                         <input type="text" name="nama_kelas" class="form-control" id="nama_kelas"
-                                            hint="nama kelas" required>
+                                            hint="nama kelas" placeholder="Masukkan Nama Kelas" required>
                                     </div>
 
                                     <div class="col-md-12">
                                         <label for="wali_kelas" class="form-label">Wali Kelas</label>
                                         <input type="text" name="wali_kelas" class="form-control" id="wali_kelas"
-                                            hint="wali kelas" required>
+                                            hint="wali kelas" placeholder="Masukkan Nama Wali Kelas" required>
                                     </div>
-
-
-
-
 
                                     <!-- End Browser Default Validation -->
 

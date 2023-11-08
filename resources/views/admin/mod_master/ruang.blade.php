@@ -98,7 +98,7 @@
                                     <div class="col-md-12">
                                         <label for="validationDefault01" class="form-label">Nama ruang</label>
                                         <input type="text" name="nama_ruang" class="form-control"
-                                            id="validationDefault01" hint="Nama ruang" required>
+                                            id="validationDefault01" hint="Nama ruang" placeholder="Masukkan Nama Ruangan" required>
                                     </div>
 
                                     <!-- End Browser Default Validation -->

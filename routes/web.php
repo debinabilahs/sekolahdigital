@@ -19,6 +19,7 @@ use App\Http\Controllers\SiswaController;
 use App\Http\Controllers\JadwalController;
 use App\Http\Controllers\BahanController;
 use App\Http\Controllers\TugasController;
+use App\Http\Controllers\MateriController;
 use App\Http\Controllers\JurusanController;
 use App\Http\Controllers\SekolahController;
 use App\Http\Controllers\KeuanganController;
@@ -27,6 +28,8 @@ use App\Http\Controllers\DetpangkalController;
 use App\Http\Controllers\NotifikasiController;
 use App\Http\Controllers\PembayaranController;
 use App\Http\Controllers\RekappangkalController;
+use App\Http\Controllers\SoalController;
+use App\Http\Controllers\PaketController;
 
 /*
 |--------------------------------------------------------------------------
@@ -70,12 +73,6 @@ Route::middleware(['auth'])->group(function () {
     Route::post('/prosesopsi', [AdminController::class, 'prosesopsi']);
     Route::get('/hapusopsi/{id}', [AdminController::class, 'hapusopsi']);
 
-    //soal
-    Route::get('/soal', [AdminController::class, 'soal']);
-    Route::get('/rekapdsoal', [AdminController::class, 'rekapsoal']);
-    Route::post('/prosessoal', [AdminController::class, 'prosessoal']);
-    Route::get('/hapussoal/{id}', [AdminController::class, 'hapussoal']);
-
     //jadual
     Route::get('/jadwal', [JadwalController::class, 'jadwal']);
     Route::post('/prosesjadwal', [JadwalController::class, 'prosesjadwal']);
@@ -83,12 +80,13 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/hapusjadwal/{id}', [JadwalController::class, 'hapusjadwal']);
 
     //bahan materi
-    Route::get('/bahan', [BahanController::class, 'bahan']);
-    Route::post('/prosesbahan', [BahanController::class, 'prosesbahan']);
-    Route::post('/updatebahan', [BahanController::class, 'updatebahan']);
-    Route::get('/lihatbahan/{id}', [BahanController::class, 'lihatbahan']);
-    Route::get('/hapusbahan/{id}', [BahanController::class, 'hapusbahan']);
-    
+    Route::get('/materi', [MateriController::class, 'materi']);
+    Route::post('/upload', [MateriController::class, 'upload'])->name('ckeditor.upload');
+    Route::post('/prosesmateri', [MateriController::class, 'prosesmateri']);
+    Route::post('/updatemateri', [MateriController::class, 'updatemateri']);
+    Route::get('/lihatmateri/{id}', [MateriController::class, 'lihatmateri']);
+    Route::get('/hapusmateri/{id}', [MateriController::class, 'hapusmateri']);
+
     //tugas materi
     Route::get('/tugas', [TugasController::class, 'tugas']);
     Route::post('/prosestugas', [TugasController::class, 'prosestugas']);
@@ -96,6 +94,33 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/lihattugas/{id}', [TugasController::class, 'lihattugas']);
     Route::get('/hapustugas/{id}', [TugasController::class, 'hapustugas']);
 
+    //soal
+    // Route::get('/soal', [AdminController::class, 'soal']);
+    // Route::get('/rekapdsoal', [AdminController::class, 'rekapsoal']);
+    // Route::post('/prosessoal', [AdminController::class, 'prosessoal']);
+    // Route::get('/hapussoal/{id}', [AdminController::class, 'hapussoal']);
+    // Route::post('/soal/data', [SoalController::class])->name('soal.data');
+    // Route::resource('soal', SoalController::class);
+
+    //paketsoal 
+    // Route::get('/paketsoal', [SoalController::class, 'index']);
+    // Route::post('/paket-soal/data', 'PaketController@dataPaketSoal')->name('paket-soal.data');
+    // Route::get('/paket-soal/select', 'PaketController@select')->name('paket-soal.select');
+    // Route::resource('paket-soal', 'PaketController');
+
+     // soal
+    Route::get('/soal', [SoalController::class, 'soal']);
+    Route::post('/prosessoal', [SoalController::class, 'prosessoal']);
+    Route::post('/updatesoal', [SoalController::class, 'updatesoal']);
+    Route::get('/lihatsoal/{id}', [SoalController::class, 'lihatsoal']);
+    Route::get('/hapussoal/{id}', [SoalController::class, 'hapussoal']);
+
+     //Paket soal
+    Route::get('/paketsoal', [PaketController::class, 'paket']);
+    Route::post('/prosespaket', [PaketController::class, 'prosespaket']);
+    Route::post('/updatepaket', [PaketController::class, 'updatepaket']);
+    Route::get('/lihatpaket/{id}', [PaketController::class, 'lihatpaket']);
+    Route::get('/hapuspaket/{id}', [PaketController::class, 'hapuspaket']);
 
     // Grup rute untuk pengguna (Admin) yang telah login
     Route::group(['middleware' => ['cekUserLogin:1']], function() {

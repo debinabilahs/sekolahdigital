@@ -126,38 +126,38 @@
                                     <div class="row mb-3">
                                         <label for="inputText" class="col-sm-2 col-form-label">NIS </label>
                                         <div class="col-sm-10">
-                                            <input type="text" name="nis" class="form-control">
+                                            <input type="text" name="nis" class="form-control" placeholder="Masukkan NIS">
                                         </div>
                                     </div>
                                     <div class="row mb-3">
                                         <label for="inputText" class="col-sm-2 col-form-label">NISN Siswa</label>
                                         <div class="col-sm-10">
-                                            <input type="text" name="nisn" class="form-control">
+                                            <input type="text" name="nisn" class="form-control" placeholder="Masukkan NISN">
                                         </div>
                                     </div>
                                     <div class="row mb-3">
                                         <label for="inputText" class="col-sm-2 col-form-label">Nama Siswa</label>
                                         <div class="col-sm-10">
-                                            <input type="text" name="nama_siswa" class="form-control">
+                                            <input type="text" name="nama_siswa" class="form-control" placeholder="Masukkan Nama">
                                         </div>
                                     </div>
 
                                     <div class="row mb-3">
                                         <label for="inputUsername" class="col-sm-2 col-form-label">Username</label>
                                         <div class="col-sm-10">
-                                            <input type="text" name="username" class="form-control">
+                                            <input type="text" name="username" class="form-control" placeholder="Masukkan Username">
                                         </div>
                                     </div>
                                     <div class="row mb-3">
                                         <label for="inputPassword" class="col-sm-2 col-form-label">Password</label>
                                         <div class="col-sm-10">
-                                            <input type="password" name="password" class="form-control">
+                                            <input type="password" name="password" class="form-control" placeholder="Masukkan Password">
                                         </div>
                                     </div>
                                     <div class="row mb-3">
                                         <label for="inputEmail" class="col-sm-2 col-form-label">Email</label>
                                         <div class="col-sm-10">
-                                            <input type="email" name="email" class="form-control">
+                                            <input type="email" name="email" class="form-control" placeholder="Masukkan Email">
                                         </div>
                                     </div>
 

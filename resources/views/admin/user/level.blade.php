@@ -98,7 +98,7 @@
                                     <div class="col-md-12">
                                         <label for="validationDefault01" class="form-label">Nama level</label>
                                         <input type="text" name="nama_level" class="form-control"
-                                            id="validationDefault01" hint="Nama level" required>
+                                            id="validationDefault01" hint="Nama level" placeholder="Masukkan Nama Level" required>
                                     </div>
 
                                     <!-- End Browser Default Validation -->

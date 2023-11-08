@@ -30,16 +30,11 @@ class MateriControllerAPI extends Controller
     public function createMateri(Request $request)
     {
         $data = $request->validate([
-            'judul_materi' => 'required',
-            'status_materi' => 'required',
-            'tgl_mulai' => 'required',
-            'tgl_selesai' => 'required',
-            'link_youtube' => 'required',
-            'link_drive' => 'required',
-            'open_link' => 'required',
-            'deskripsi' => 'required',
-            'id_guru' => 'required',
+            'nama_materi' => 'required',
+            'id_mapel' => 'required',
             'id_kelas' => 'required',
+            'isi' => 'required',
+            'file' => 'required',
         ]);
 
         if (Materi::create($data)) {
@@ -52,16 +47,11 @@ class MateriControllerAPI extends Controller
     public function updateMateri(Request $request, Materi $materi)
     {
         $data = $request->validate([
-            'judul_materi' => 'required',
-            'status_materi' => 'required',
-            'tgl_mulai' => 'required',
-            'tgl_selesai' => 'required',
-            'link_youtube' => 'required',
-            'link_drive' => 'required',
-            'open_link' => 'required',
-            'deskripsi' => 'required',
-            'id_guru' => 'required',
+            'nama_materi' => 'required',
+            'id_mapel' => 'required',
             'id_kelas' => 'required',
+            'isi' => 'required',
+            'file' => 'required',
         ]);
 
         if (Materi::find($materi->id)->update($data)) {

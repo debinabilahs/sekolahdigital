@@ -91,6 +91,13 @@ Route::post('postGuru', [GuruControllerAPI::class, 'createGuru']);
 Route::post('updateGuru/{guru:id}', [GuruControllerAPI::class, 'updateGuru']);
 Route::post('deleteGuru/{guru:id}', [GuruControllerAPI::class, 'deleteGuru']);
 
+//GURU API ROUTE
+Route::get('getAdmin', [AdminControllerAPI::class, 'getAdmin']);
+Route::get('showAdmin', [AdminControllerAPI::class, 'showAdmin']);
+Route::post('postAdmin', [AdminControllerAPI::class, 'createAdmin']);
+Route::post('updateAdmin/{admin:id}', [AdminControllerAPI::class, 'updateAdmin']);
+Route::post('deleteAdmin/{admin:id}', [AdminControllerAPI::class, 'deleteAdmin']);
+
 //MAPEL API ROUTE
 Route::get('getMapel', [MapelControllerAPI::class, 'getMapel']);
 Route::get('showMapel', [MapelControllerAPI::class, 'showMapel']);
@@ -106,6 +113,12 @@ Route::post('updateJadwal/{jadwal:id}', [JadwalControllerAPI::class, 'updateJadw
 Route::post('deleteJadwal/{jadwal:id}', [JadwalControllerAPI::class, 'deleteJadwal']);
 
 //MATERI API ROUTE
+Route::get('getBahan', [BahanControllerAPI::class, 'getBahan']);
+Route::get('showBahan', [BahanControllerAPI::class, 'showBahan']);
+Route::post('postBahan', [BahanControllerAPI::class, 'createBahan']);
+Route::post('updateBahan/{bahan:id}', [BahanControllerAPI::class, 'updateBahan']);
+Route::post('deleteBahan/{bahan:id}', [BahanControllerAPI::class, 'deleteBahan']);
+
 Route::get('getMateri', [MateriControllerAPI::class, 'getMateri']);
 Route::get('showMateri', [MateriControllerAPI::class, 'showMateri']);
 Route::post('postMateri', [MateriControllerAPI::class, 'createMateri']);
@@ -126,7 +139,7 @@ Route::post('postEkstra', [EkstraControllerAPI::class, 'createEkstra']);
 Route::post('updateEkstra/{ekstra:id}', [EkstraControllerAPI::class, 'updateEkstra']);
 Route::post('deleteEkstra/{ekstra:id}', [EkstraControllerAPI::class, 'deleteEkstra']);
 
-//
+
 //KELAS API ROUTE
 Route::get('getKelas', [KelasControllerAPI::class, 'getKelas']);
 Route::get('showKelas', [KelasControllerAPI::class, 'showKelas']);
@@ -210,6 +223,13 @@ Route::get('showJawabexam', [JawabexamControllerAPI::class, 'showJawabexam']);
 Route::post('postJawabexam', [JawabexamControllerAPI::class, 'createJawabexam']);
 Route::post('updateJawabexam/{jawabexam:id}', [JawabexamControllerAPI::class, 'updateJawabexam']);
 Route::post('deleteJawabexam/{jawabexam:id}', [JawabexamControllerAPI::class, 'deleteJawabexam']);
+
+//SOAL API ROUTE
+Route::get('getPaketSoal', [PaketSoalControllerAPI::class, 'getPaketSoal']);
+Route::get('showPaketSoal', [PaketSoalControllerAPI::class, 'showPaketSoal']);  
+Route::post('postPaketSoal', [PaketSoalControllerAPI::class, 'createPaketSoal']);
+Route::post('updatePaketSoal/{paketsoal:id}', [PaketSoalControllerAPI::class, 'updatePaketSoal']);
+Route::post('deletePaketSoal/{paketsoal:id}', [PaketSoalControllerAPI::class, 'deletePaketSoal']);
 
 //SOAL API ROUTE
 Route::get('getSoal', [SoalControllerAPI::class, 'getSoal']);

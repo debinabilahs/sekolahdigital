@@ -123,50 +123,50 @@
                                     <div class="row mb-3">
                                         <label for="inputText" class="col-sm-2 col-form-label">Npsn</label>
                                         <div class="col-sm-10">
-                                            <input type="text" name="npsn" class="form-control">
+                                            <input type="text" name="npsn" class="form-control" placeholder="Masukkan NPSN">
                                         </div>
                                     </div>
                                     <div class="row mb-3">
                                         <label for="inputText" class="col-sm-2 col-form-label">Nama Sekolah</label>
                                         <div class="col-sm-10">
-                                            <input type="text" name="nama_sekolah" class="form-control">
+                                            <input type="text" name="nama_sekolah" class="form-control" placeholder="Masukkan Nama Sekolah">
                                         </div>
                                     </div>
                                     <div class="row mb-3">
                                         <label for="inputEmail" class="col-sm-2 col-form-label">Alamat</label>
                                         <div class="col-sm-10">
-                                            <input type="text" name="alamat" class="form-control">
+                                            <input type="text" name="alamat" class="form-control" placeholder="Masukkan Alamat">
                                         </div>
                                     </div>
                                     <div class="row mb-3">
                                         <label for="inputTime" class="col-sm-2 col-form-label">No Telp</label>
                                         <div class="col-sm-10">
-                                            <input type="text" name="no_telp" class="form-control">
+                                            <input type="text" name="no_telp" class="form-control" placeholder="Masukkan No Telp">
                                         </div>
                                     </div>
                                     <div class="row mb-3">
                                         <label for="inputDate" class="col-sm-2 col-form-label">Email</label>
                                         <div class="col-sm-10">
-                                            <input type="email" name="email" class="form-control">
+                                            <input type="email" name="email" class="form-control" placeholder="Masukkan Email">
                                         </div>
                                     </div>
 
                                     <div class="row mb-3">
                                         <label for="inputNumber" class="col-sm-2 col-form-label">Maps</label>
                                         <div class="col-sm-10">
-                                            <input type="text" name="maps" class="form-control">
+                                            <input type="text" name="maps" class="form-control" placeholder="Masukkan Koordinat Maps">
                                         </div>
                                     </div>
                                     <div class="row mb-3">
                                         <label for="inputUsername" class="col-sm-2 col-form-label">Nama Kepsek</label>
                                         <div class="col-sm-10">
-                                            <input type="text" name="nama_kepalasekolah" class="form-control">
+                                            <input type="text" name="nama_kepalasekolah" class="form-control" placeholder="Masukkan Nama Kepala Sekolah">
                                         </div>
                                     </div>
                                     <div class="row mb-3">
-                                        <label for="inputPassword" class="col-sm-2 col-form-label">Nip Kepsek</label>
+                                        <label for="inputPassword" class="col-sm-2 col-form-label">NIP Kepsek</label>
                                         <div class="col-sm-10">
-                                            <input type="number" name="nip_kepsek" class="form-control">
+                                            <input type="number" name="nip_kepsek" class="form-control" placeholder="Masukkan NIP Kepala Sekolah">
                                         </div>
                                     </div>
                                     <div class="row mb-3">

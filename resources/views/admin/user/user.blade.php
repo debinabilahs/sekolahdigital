@@ -109,27 +109,27 @@
                                     <div class="col-md-12">
                                         <label for="validationDefault01" class="form-label"> Username</label>
                                         <input type="text" name="username" class="form-control" id="validationDefault01"
-                                            hint="username" required>
+                                            hint="username" placeholder="Masukkan Username" required>
                                     </div>
                                     <div class="col-md-12">
                                         <label for="validationDefault01" class="form-label">Nama Lengkap</label>
                                         <input type="text" name="nama_lengkap" class="form-control"
-                                            id="validationDefault01" hint="nama_lengkap" required>
+                                            id="validationDefault01" hint="nama_lengkap" placeholder="Masukkan Nama Lengkap" required>
                                     </div>
                                     <div class="col-md-12">
                                         <label for="validationDefault01" class="form-label"> Email</label>
                                         <input type="email" name="email" class="form-control" id="validationDefault01"
-                                            hint="email" required>
+                                            hint="email" placeholder="Masukkan Email" required>
                                     </div>
                                     <div class="col-md-12">
                                         <label for="validationDefault01" class="form-label"> No Hp</label>
                                         <input type="number" name="no_hp" class="form-control"
-                                            id="validationDefault01" hint="no_hp" required>
+                                            id="validationDefault01" hint="no_hp" placeholder="Masukkan No HP" required>
                                     </div>
                                     <div class="col-md-12">
                                         <label for="validationDefault01" class="form-label"> Status</label>
                                         <input type="text" name="status" class="form-control"
-                                            id="validationDefault01" hint="status" required>
+                                            id="validationDefault01" hint="status" placeholder="Masukkan Status" required>
                                     </div>
                                     <div class="col-md-12">
                                         <label for="validationDefault01" class="form-label"> Level</label>
@@ -162,7 +162,7 @@
                                     <div class="col-md-12">
                                         <label for="validationDefault01" class="form-label">Password</label>
                                         <input type="password" name="password" class="form-control"
-                                            id="validationDefault01" hint="password" required>
+                                            id="validationDefault01" hint="password" placeholder="Masukkan Password" required>
                                     </div>
 
                                     <!-- End Browser Default Validation -->

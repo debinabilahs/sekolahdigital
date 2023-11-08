@@ -1,10 +1,18 @@
 @extends('admin.dashboard')
+@section('akademik', 'collapsed')
 @section('content')
     <script src="https://code.jquery.com/jquery-3.6.3.min.js"
         integrity="sha256-pvPw+upLPUjgMXY0G+8O0xUf+/Im1MZjXxxgOcBQBXU=" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"
         integrity="sha512-VEd+nq25CkR676O+pLBnDW09R7VQX9Mdiij052gVCp5yVH3jGtH70Ho/UUv4mJDsEdTvqRCFZg0NKGiojGnUCw=="
         crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="https://cdn.ckeditor.com/ckeditor5/40.0.0/classic/ckeditor.js"></script>
+    <style type="text/css">
+      .ck-editor__editable_inline
+      {
+          height: 250px;
+      }
+</style>
     <section class="section">
         <div class="row">
             <div class="col-lg-12">
@@ -36,34 +44,38 @@
                             <thead>
                                 <tr>
                                     <th scope="col">No</th>
-                                    <th scope="col">Exam</th>
-                                    <th scope="col">Desk Soal</th>
-                                    <th scope="col">Jawaban</th>
-                                    <th scope="col">Opsi</th>
+                                    <th scope="col">Nama Soal</th>
+                                    <th scope="col">Paket Soal</th>
+                                    <th scope="col">Mata Pelajaran</th>
+                                    <th scope="col">Kelas</th>
+                                    <th scope="col">Jenis</th>
                                     <th scope="col">Aksi</th>
                                 </tr>
                             </thead>
                             <tbody>
                                 <?php 
                   $no=1;
-                  foreach ($data as $index => $value) {
+                  foreach ($data as  $value) {
                     # code...
                   ?>
                                 <tr>
-                                    <td scope="row">{{ $index + $data->firstItem() }}</td>
-                                    <td>{{ $value->id_exam }} </td>
-                                    <td>{{ $value->nama_mapel }} </td>
-                                    <td>{{ $value->nama_guru }} </td>
-                                    <td>{{ $value->desk_soal }} </td>
-                                    <td>{{ $value->jawaban }} </td>
-                                    <td>{{ $value->id_opsi }} </td>
+                                    <td scope="row">{{ $no }}</td>
+                                    <td>{{ $value->nama }} </td>
+                                    <td>{{ $value->paket_soal->kode_paket }} </td>
+                                    <td>{{ $value->mapel->nama_mapel }} </td>
+                                    <td>{{ $value->kelas->nama_kelas }} </td>
+                                    <td>{{ $value->jenis }} </td>
 
-                                    <td>
+                                    <td>                                       
+                                        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#detailsoalModal{{ $value->id }}">
+                                            <i class="bi bi-eye"></i>
+                                        </button>
                                         <button type="button" class="btn btn-info" data-bs-toggle="modal"
                                             data-bs-target="#editModal{{ $value->id }}"><i
                                                 class="bi bi-pencil"></i></button>
                                         <a href="/hapussoal/{{ $value->id }}" button type="button"
-                                            class="btn btn-danger" onClick="alert('Yakin akan menghapus data ini!')"><i
+                                            class="btn btn-danger"
+                                            onClick="return confirm('Yakin akan menghapus data ini!')"><i
                                                 class="bi bi-trash"></i></button></a>
                                     </td>
                                 </tr>
@@ -72,7 +84,6 @@
 
                             </tbody>
                         </table>
-                        {{ $data->links() }}
                         <!-- End Table with hoverable rows -->
 
                     </div>
@@ -82,9 +93,11 @@
             </div>
         </div>
     </section>
+
     <!-- Modal -->
+    {{-- Tambah soal --}}
     <div class="modal fade" id="modalsoal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <div class="modal-dialog ">
+        <div class="modal-dialog modal-xl">
             <div class="modal-content">
                 <div class="modal-header">
                     <h1 class="modal-title fs-5" id="exampleModalLabel">Form Input Soal </h1>
@@ -100,104 +113,126 @@
 
                                 <!-- Browser Default Validation -->
 
-                                <form method="POST" action="/prosessoal" class="row g-3">
+                                <form method="POST" action="/prosessoal" class="row g-3" enctype="multipart/form-data">
                                     @csrf
 
+                                    
+                                        <div class="card-header">
+                                          <h4 class="card-title">Detail Soal</h4>
+                                        </div>
 
-                                    <div class="col-md-12">
-                                        <label for="validationDefault01" class="form-label">Exam</label>
-                                        <select class="form-select" aria-label="Default select example" name="id_mapel">
-                                            <option selected="">Pilih Mapel</option>
-                                            <?php $data21 = DB::select('select * From rs_mapel');
-                            foreach($data21 as $r){
-                            ?>
-                                            <option value="{{ $r->id }}">{{ $r->nama_mapel }}</option>
-                                            <?php } ?>
-                                        </select>
-                                    </div>
-                                    <div class="col-md-12">
-                                        <select class="form-select" aria-label="Default select example" name="id_guru">
-                                            <option selected="">Pilih Guru</option>
-                                            <?php $data21 = DB::select('select * From rs_guru');
-                            foreach($data21 as $r){
-                            ?>
-                                            <option value="{{ $r->id }}">{{ $r->nama_guru }}</option>
-                                            <?php } ?>
-                                        </select>
-                                    </div>
+                                        <div class="card-body">
+                                          <div class="row">
+                                            <div class="col-lg-3 col-md-6 col-sm-12">
+                                              <div class="form-group">
+                                                <label for="id_kelas">Kelas</label>
+                                                <select class="form-control" id="id_kelas" name="id_kelas">
+                                                  <option value="">Pilih Nama kelas</option>
+                                                  @foreach ($kelas as $items)
+                                                      <option value="{{ $items->id }}">{{ $items->nama_kelas }}
+                                                      </option>
+                                                  @endforeach
+                                                </select>                                              
+                                              </div>
+                                            </div>
+                                            <div class="col-lg-3 col-md-6 col-sm-12">
+                                              <div class="form-group">
+                                                <label for="id_mapel">Mata Pelajaran</label>
+                                                <select class="form-control" id="id_mapel" name="id_mapel">
+                                                  <option value="">Pilih Nama Mapel</option>
+                                                  @foreach ($mapel as $items)
+                                                      <option value="{{ $items->id }}">{{ $items->nama_mapel }}
+                                                      </option>
+                                                  @endforeach
+                                              </select>
+                                              </div>
+                                            </div>
+                                            <div class="col-lg-3 col-md-6 col-sm-12">
+                                              <div class="form-group">
+                                                <label for="paket_soal_id">Paket Soal</label>
+                                                <select class="form-control" id="paket_soal_id" name="paket_soal_id">
+                                                  <option value="">Pilih Kode Paket</option>
+                                                  @foreach ($paketsoal as $items)
+                                                      <option value="{{ $items->id }}">{{ $items->kode_paket }}
+                                                      </option>
+                                                  @endforeach
+                                              </select>
+                                              </div>
+                                            </div>
+                                            <div class="col-lg-3 col-md-6 col-sm-12">
+                                              <div class="form-group">
+                                                <label for="form-jenis">Jenis Soal</label>
+                                                <select name="jenis" id="jenis" class="form-control">
+                                                  <option value="">Pilih Jenis Soal</option>
+                                                  <option value="pilihan_ganda">Pilihan Ganda</option>
+                                                  <option value="essai">Essai</option>
+                                                </select>
+                                              </div>
 
-                                    <div class="col-md-12">
-                                        <label for="validationDefault01" class="form-label">DeskSoal</label>
-                                        <input type="text" name="desk_soal" class="form-control" id="validationDefault01"
-                                            hint="desk_soal" required>
-                                    </div>
+                                              
+                                            </div>
+                                          </div>
+                                        </div>
+                                      
+                                        <div class="card-header">
+                                          <h4 class="card-title">Isi Soal</h4>
+                                        </div>
+                                        <div class="card-body">
+                                          <div class="form-group">
+                                            <label for="form-nama">Nama <span class="text-muted">(informasi materi soal)</span></label>
+                                            <input type="text" name="nama" class="form-control" id="nama" placeholder="Masukkan Nama Soal">
+                                          </div>
+                                          <div class="form-group">
+                                            <label for="form-soal">Soal</label>
+                                            <textarea name="soal" class="form-control" id="soal" cols="30" rows="10"></textarea>
+                                          </div>
+                                          <div class="form-group">
+                                            <label for="media-soal">Media Soal (opsional)</label>
+                                            <input type="file" name="media" id="" class="form-control">
+                                            <small id="mediaHelp" class="form-text text-muted">File : MP3/MP4/3GP/AVI</small>
+                                          </div>
 
-                                    <div class="col-md-12">
-                                        <label for="validationDefault01" class="form-label">Jawaban</label>
-                                        <input type="text" name="jawaban" class="form-control" id="validationDefault01"
-                                            hint="jawaban" required>
-                                    </div>
+                                          <div class="form-group" id="form-pilgan" style="display: none;">
+                                            <!-- Tampilkan input untuk Pilihan Ganda di sini -->
+                                            <div class="form-group">
+                                              <label for="pilihan_ganda">Jawaban Pilihan Ganda</label>
+                                              <div class="row mt-1">
+                                                <div class="col-lg-9 order-lg-1 order-sm-2" id="list-pg">
+                                                  <h1 class="text-muted text-center"><span class="badge badge-danger">Pilih Jumlah Jawaban</span></h1>
+                                                  <h2 class="text-center"><i class="fas fa-arrow-down"></i></h2>
+                                                  <h1 class="text-muted text-center"><span class="badge badge-success">Pilih Jawaban Benar</span></h1>
+                                                </div>
+                                                <div class="col-lg-3 order-lg-2 ordder-sm-1">
+                                                  <div class="form-group">
+                                                    <label for="jumlah-pilihan">Jumlah Pilihan</label>
+                                                    <select name="soal[jumlah_pilihan]" id="jumlah-pilihan" class="form-control">
+                                                      <option value="">Pilihan</option>
+                                                      <option value="3">3</option>
+                                                      <option value="4">4</option>
+                                                      <option value="5">5</option>
+                                                    </select>
+                                                  </div>
+                                                  <div class="form-group">
+                                                    <label for="jawaban-benar">Jawaban Benar</label>
+                                                    <select name="jawaban[benar]" id="jawaban-benar" class="form-control">
+                                                      <option value="">-- Kosong --</option>
+                                                    </select>
+                                                  </div>
+                                                </div>
+                                              </div>
+                                            </div>
+                                          </div>
 
+                                          <div class="form-group" id="form-essai" style="display: none;">
+                                            <!-- Tampilkan input untuk Essai di sini -->
+                                            <div class="form-group">
+                                              <label for="form-essai">Jawaban Essai</label>
+                                              <input type="text" name="jawaban[essai]" class="form-control" id="form-essai" placeholder="Masukkan jawaban essai (huruf kecil)">
+                                            </div>
+                                          </div>
 
-                                    <div class="col-md-12">
-                                        <label for="validationDefault01" class="form-label">Opsi</label>
-                                        <select class="form-select" aria-label="Default select example" name="pil_A">
-                                            <option selected="">Pil A</option>
-                                            <?php $data21 = DB::select('select * From rs_opsi');
-                            foreach($data21 as $r){
-                            ?>
-                                            <option value="{{ $r->id }}">{{ $r->pil_A }}</option>
-                                            <?php } ?>
-                                        </select>
-                                    </div>
-                                    <div class="col-md-12">
-                                        <select class="form-select" aria-label="Default select example" name="pil_B">
-                                            <option selected="">Pil B</option>
-                                            <?php $data21 = DB::select('select * From rs_opsi');
-                            foreach($data21 as $r){
-                            ?>
-                                            <option value="{{ $r->id }}">{{ $r->pil_B }}</option>
-                                            <?php } ?>
-                                        </select>
-                                    </div>
-                                    <div class="col-md-12">
-                                        <select class="form-select" aria-label="Default select example" name="pil_C">
-                                            <option selected="">Pil C</option>
-                                            <?php $data21 = DB::select('select * From rs_opsi');
-                            foreach($data21 as $r){
-                            ?>
-                                            <option value="{{ $r->id }}">{{ $r->pil_C }}</option>
-                                            <?php } ?>
-                                        </select>
-                                    </div>
-                                    <div class="col-md-12">
-                                        <select class="form-select" aria-label="Default select example" name="pil_D">
-                                            <option selected="">Pil D</option>
-                                            <?php $data21 = DB::select('select * From rs_opsi');
-                            foreach($data21 as $r){
-                            ?>
-                                            <option value="{{ $r->id }}">{{ $r->pil_D }}</option>
-                                            <?php } ?>
-                                        </select>
-                                    </div>
-                                    <div class="col-md-12">
-                                        <select class="form-select" aria-label="Default select example" name="pil_E">
-                                            <option selected="">Pil E</option>
-                                            <?php $data21 = DB::select('select * From rs_opsi');
-                            foreach($data21 as $r){
-                            ?>
-                                            <option value="{{ $r->id }}">{{ $r->pil_E }}</option>
-                                            <?php } ?>
-                                        </select>
-                                    </div>
-
-
-
-
+                                        </div>
                                     <!-- End Browser Default Validation -->
-
-                            </div>
-
                         </div>
 
                     </div>
@@ -212,17 +247,18 @@
             </div>
         </div>
     </div>
+
+    <!-- Modal Detail soal -->
     <?php 
   $no=1;
   foreach ($data as  $value) {
     # code...
   ?>
-    <div class="modal fade" id="editModal{{ $value->id }}" tabindex="-1" aria-labelledby="exampleModalLabel"
-        aria-hidden="true">
-        <div class="modal-dialog ">
+    <div class="modal fade" id="detailsoalModal{{ $value->id }}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-xl">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h1 class="modal-title fs-5" id="exampleModalLabel">Edit pangkal Sekolah</h1>
+                    <h5 class="modal-title" id="exampleModalLabel">Detail soal</h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
@@ -235,105 +271,201 @@
 
                                 <!-- Browser Default Validation -->
 
-                                <form method="POST" action="/prosessoal" class="row g-3">
+                                <form method="POST" action="/lihatsoal" class="row g-3">
+                                    @csrf
+                                    <table class="table table-hover">
+                                        <tr>
+                                            <th scope="col">Nama Soal</th>
+                                            <td>{{ $value->nama }} </td>
+                                        </tr>
+                                        <tr>
+                                            <th scope="col">Paket Soal</th>
+                                            <td>{{ $value->paket_soal->kode_paket }} </td>
+                                        </tr>
+                                        <tr>
+                                            <th scope="col">Mata Pelajaran</th> 
+                                            <td>{{ $value->mapel->nama_mapel }} </td>
+                                        </tr>
+                                        <tr>
+                                            <th scope="col">Kelas</th>
+                                            <td>{{ $value->kelas->nama_kelas }} </td>
+                                        </tr>
+                                        <tr>
+                                            <th scope="col">Jenis Soal</th>
+                                            <td>{{ $value->jenis }} </td>
+                                        </tr>
+                                        <tr>
+                                            <th scope="col">Keterangan</th>
+                                            <td>{{ $value->keterangan }} </td>
+                                        </tr>
+                                    
+                                    </table>
+                                    <div class="col-sm-12">
+                                        <h4><b>Isi Soal :</b></h4>
+                                        <div id="detail-soal"></div>
+                            
+                                        <h4><b>Media Soal :</b></h4>
+                                        <div id="detail-media">
+                                          <i class="text-muted">Tidak Ada Media</i>
+                                          <br>
+                                          <audio src="#" controls></audio>
+                                          <video src="#" controls></video>
+                                        </div>
+                                      </div>
+                                      <hr>
+                                      <div class="col-sm-12">
+                                        <h4><b>Jawaban :</b></h4>
+                                        <div id="detail-jawaban"></div>
+                                      </div>
+                                    <!-- End Browser Default Validation -->
+
+                            </div>
+
+                        </div>
+
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary rounded-pill px-4 " style="font-size: 0.75rem"
+                        data-bs-dismiss="modal">Close</button>
+                </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    <?php } ?>
+
+
+    {{-- Edit soal --}}
+    <?php 
+  $no=1;
+  foreach ($data as  $value) {
+    # code...
+  ?>
+    <div class="modal fade" id="editModal{{ $value->id }}" tabindex="-1" aria-labelledby="exampleModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog ">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="exampleModalLabel">Edit soal</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="col-lg-12">
+
+
+                        <div class="card">
+                            <div class="card-body">
+                                <h5 class="card-title"></h5>
+
+                                <!-- Browser Default Validation -->
+
+                                <form method="POST" action="/updatesoal" class="row g-3">
                                     @csrf
                                     <input type="hidden" name="id" value="{{ $value->id }}">
 
-                                    <div class="col-md-12">
-                                        <label for="validationDefault01" class="form-label">Mapel</label>
-                                        <select class="form-select" aria-label="Default select example" name="id_mapel">
-                                            <option value="{{ $value->id_mapel }}" selected="">
-                                                {{ $value->nama_mapel }}</option>
-                                            <option>Pilih Mapel</option>
-                                            <?php $data21 = DB::select('select * From rs_mapel');
-                              foreach($data21 as $r){
-                              ?>
-                                            <option value="{{ $r->id }}">{{ $r->nama_mapel }}</option>
-                                            <?php } ?>
-                                        </select>
-                                    </div>
-                                    <div class="col-md-12">
-                                        <select class="form-select" aria-label="Default select example" name="id_guru">
-                                            <option value="{{ $value->id_guru }}" selected="">{{ $value->nama_guru }}
-                                            </option>
-                                            <option>Pilih Guru</option>
-                                            <?php $data21 = DB::select('select * From rs_guru');
-                              foreach($data21 as $r){
-                              ?>
-                                            <option value="{{ $r->id }}">{{ $r->nama_guru }}</option>
-                                            <?php } ?>
-                                        </select>
-                                    </div>
-
-                                    <div class="col-md-12">
-                                        <label for="validationDefault01" class="form-label">DeskSoal</label>
-                                        <input value="{{ $value->desk_soal }}"type="text" name="desk_soal"
-                                            class="form-control" id="validationDefault01" hint="desk_soal" required>
-                                    </div>
-
-                                    <div class="col-md-12">
-                                        <label for="validationDefault01" class="form-label">Jawaban</label>
-                                        <input value="{{ $value->jawaban }}"type="text" name="jawaban"
-                                            class="form-control" id="validationDefault01" hint="jawaban" required>
-                                    </div>
-
-
-                                    <div class="col-md-12">
-                                        <label for="validationDefault01" class="form-label">Opsi</label>
-                                        <select class="form-select" aria-label="Default select example" name="pil_A">
-                                            <option value="{{ $r->id_opsi }}" selected="">{{ $value->pil_A }}
-                                            </option>
-                                            <?php $data21 = DB::select('select * From rs_opsi');
-                            foreach($data21 as $r){
-                            ?>
-                                            <option value="{{ $r->id }}">{{ $r->pil_A }}</option>
-                                            <?php } ?>
-                                        </select>
-                                    </div>
-                                    <div class="col-md-12">
-                                        <select class="form-select" aria-label="Default select example" name="pil_B">
-                                            <option value="{{ $r->id_opsi }}" selected="">{{ $value->pil_B }}
-                                            </option>
-                                            <?php $data21 = DB::select('select * From rs_opsi');
-                            foreach($data21 as $r){
-                            ?>
-                                            <option value="{{ $r->id }}">{{ $r->pil_B }}</option>
-                                            <?php } ?>
-                                        </select>
-                                    </div>
-                                    <div class="col-md-12">
-                                        <select class="form-select" aria-label="Default select example" name="pil_C">
-                                            <option value="{{ $r->id_opsi }}" selected="">{{ $value->pil_C }}
-                                            </option>
-                                            <?php $data21 = DB::select('select * From rs_opsi');
-                            foreach($data21 as $r){
-                            ?>
-                                            <option value="{{ $r->id }}">{{ $r->pil_C }}</option>
-                                            <?php } ?>
-                                        </select>
-                                    </div>
-                                    <div class="col-md-12">
-                                        <select class="form-select" aria-label="Default select example" name="pil_D">
-                                            <option value="{{ $r->id_opsi }}" selected="">{{ $value->pil_D }}
-                                            </option>
-                                            <?php $data21 = DB::select('select * From rs_opsi');
-                            foreach($data21 as $r){
-                            ?>
-                                            <option value="{{ $r->id }}">{{ $r->pil_D }}</option>
-                                            <?php } ?>
-                                        </select>
-                                    </div>
-                                    <div class="col-md-12">
-                                        <select class="form-select" aria-label="Default select example" name="pil_E">
-                                            <option value="{{ $r->id_opsi }}" selected="">{{ $value->pil_E }}
-                                            </option>
-                                            <?php $data21 = DB::select('select * From rs_opsi');
-                            foreach($data21 as $r){
-                            ?>
-                                            <option value="{{ $r->idss }}">{{ $r->pil_E }}</option>
-                                            <?php } ?>
-                                        </select>
-                                    </div>
+                                    <div class="card">
+                                        <div class="card-header">
+                                          <h4 class="card-title">Detail Soal</h4>
+                                        </div>
+                                        <div class="card-body">
+                                          <div class="row">
+                                            <div class="col-lg-3 col-md-6 col-sm-12">
+                                              <div class="form-group">
+                                                <label for="form-kelas">Kelas</label>
+                                                <select name="soal[kelas_id]" id="form-kelas" class="form-control select-kelas">
+                                                  <option value="{{ $soal['kelas']['id'] }}">{{ $soal['kelas']['nama'] }}</option>
+                                                </select>
+                                              </div>
+                                            </div>
+                                            <div class="col-lg-3 col-md-6 col-sm-12">
+                                              <div class="form-group">
+                                                <label for="form-mapel">Mata Pelajaran</label>
+                                                <select name="soal[mapel_id]" id="form-mapel" class="form-control select-mapel">
+                                                  <option value="{{ $soal['mapel']['id'] }}">{{ $soal['mapel']['nama'] }}</option>
+                                                </select>
+                                              </div>
+                                            </div>
+                                            <div class="col-lg-3 col-md-6 col-sm-12">
+                                              <div class="form-group">
+                                                <label for="form-paket">Paket Soal</label>
+                                                <select name="soal[paket_soal_id]" id="form-paket" class="form-control select-paket">
+                                                  <option value="{{ $soal['paket_soal']['id'] }}">{{ $soal['paket_soal']['nama'] }}</option>
+                                                </select>
+                                              </div>
+                                            </div>
+                                            <div class="col-lg-3 col-md-6 col-sm-12">
+                                              <div class="form-group">
+                                                <label for="form-jenis">Jenis Soal</label>
+                                                <select name="soal[jenis]" id="form-jenis" class="form-control" disabled>
+                                                  <option value="{{ $soal['jenis'] }}">{{ $soal['jenis'] == 'essai' ? 'Essai' : 'Pilihan Ganda' }}</option>
+                                                </select>
+                                              </div>
+                                            </div>
+                                          </div>
+                                        </div>
+                                      </div>
+                                      <div class="card">
+                                        <div class="card-header">
+                                          <h4 class="card-title">Isi Soal</h4>
+                                        </div>
+                                        <div class="card-body">
+                                          <div class="form-group">
+                                            <label for="form-nama">Nama <span class="text-muted">(informasi materi soal)</span></label>
+                                            <input type="text" name="soal[nama]" value="{{ $soal['nama'] }}" class="form-control" id="form-nama" placeholder="Masukkan Nama Soal">
+                                          </div>
+                                          <div class="form-group">
+                                            <label for="form-soal">Soal</label>
+                                            <textarea name="soal[soal]" class="form-control" id="form-soal" cols="30" rows="10">
+                                              {{ $soal['soal'] }}
+                                            </textarea>
+                                          </div>
+                                          <div class="form-group">
+                                            <label for="media-soal">Media Soal (opsional)</label>
+                                            <input type="file" name="soal[soal_media]" id="" class="form-control">
+                                            <small id="mediaHelp" class="form-text text-muted">File : MP3/MP4/3GP/AVI</small>
+                                          </div>
+                                  
+                                          {{-- Jawaban Essai --}}
+                                          @if($soal['jenis'] == 'essai')
+                                          <div class="form-group" id="form-essai">
+                                            <label for="form-jawaban">Jawaban Essai</label>
+                                            <input type="text" name="jawaban[essai]" value="{{ $soal['soal_jawaban'][0]['jawaban'] }}" class="form-control" id="form-jawaban" placeholder="Masukkan jawaban essai (huruf kecil)">
+                                          </div>
+                                          @elseif($soal['jenis'] == 'pilihan_ganda')
+                                          {{-- Jawaban Pilihan Ganda --}}
+                                          <div id="form-pilgan">
+                                            <div class="form-group">
+                                              <label for="">Jawaban Pilihan Ganda</label>
+                                              <div class="row mt-1">
+                                                <div class="col-lg-9 order-lg-1 order-sm-2" id="list-pg">
+                                                  {{-- List Jawaban --}}
+                                                  @foreach($soal['soal_jawaban'] as $key => $value)
+                                                  <div class="mb-4" id="jawaban-{{ $key + 1 }}">
+                                                    <h4><b>Pilihan {{ $key + 1 }}</b></h4>
+                                                    <textarea name="jawaban[pilgan][{{ $value['id'] }}][jawaban]" id="jawaban-pilgan-{{ $key + 1 }}" cols="30" rows="10" class="form-control jawaban-pilgan">
+                                                      {{ $value['jawaban'] }}
+                                                    </textarea>
+                                                    <h5 class="mt-2">Media Jawaban (opsional)</h5>
+                                                    <input type="file" name="jawaban[pilgan][{{ $value['id'] }}][media]" id="media-jawaban-{{ $key + 1 }}" class="form-control">
+                                                    <small class="form-text text-muted">File : MP3/MP4/3GP/AVI</small>
+                                                  </div>
+                                                  @endforeach
+                                                </div>
+                                                <div class="col-lg-3 order-lg-2 ordder-sm-1">
+                                                  <div class="form-group">
+                                                    <label for="jawaban-benar">Jawaban Benar</label>
+                                                    <select name="jawaban[benar]" id="jawaban-benar" class="form-control">
+                                                      @foreach($soal['soal_jawaban'] as $key => $value)
+                                                      <option value="{{ $value['id'] }}" {{ $value['status'] == 1 ? 'selected' : '' }}>Pilihan {{ $key + 1 }}</option>
+                                                      @endforeach
+                                                    </select>
+                                                  </div>
+                                                </div>
+                                              </div>
+                                            </div>
+                                          </div>
+                                          @endif
                                     <!-- End Browser Default Validation -->
 
                             </div>
@@ -378,6 +510,84 @@
             @if (Session::has('success'))
                 toastr.success("{{ Session::get('success') }}")
             @endif
+        </script>
+        <script>
+          ClassicEditor
+              .create( document.querySelector( '#soal' ),                
+              {
+                  ckfinder:
+                  {
+                      uploadUrl:"{{route('ckeditor.upload', ['_token'=>csrf_token()])}}",
+                  }
+
+              },
+              
+              )
+              .catch( error => {
+                  console.error( error );
+              } );
+      </script>
+        <script>
+            $(document).ready(function () {
+              $('#jenis').on('change', function () {
+                var jenis = $(this).val();
+
+                if (jenis === 'pilihan_ganda') {
+                    $('#form-pilgan').show();
+                    $('#form-essai').hide();
+                } else if (jenis === 'essai') {
+                    $('#form-essai').show();
+                    $('#form-pilgan').hide();
+                } else {
+                    $('#form-pilgan').hide();
+                    $('#form-essai').hide();
+                }
+            });
+        });
+
+        // jumlah jawaban
+        $('#jumlah-pilihan').on('change', function(){
+          let list = '';
+          let option = '<option value>-- Jawaban --</option>';
+          let jumlah = $(this).val();
+          
+          for (let id = 1; id <= jumlah; id++) {
+            let pilihan = String.fromCharCode(64 + id);
+            
+            list += `
+            <div class="mb-4" id="jawaban-${id}">
+              <h4><b>Pilihan ${pilihan}</b></h4>
+              <textarea name="jawaban[pilgan][${id}][jawaban]" id="jawaban-pilgan-${id}" cols="30" rows="10" class="form-control jawaban-pilgan"></textarea>
+              <h5 class="mt-2">Media Jawaban (opsional)</h5>
+              <input type="file" name="jawaban[pilgan][${id}][media]" id="media-jawaban-${id}" class="form-control">
+              <small class="form-text text-muted">File : MP3/MP4/3GP/AVI</small>
+            </div>`;
+
+            option += `<option value="${id}">${pilihan}</option>`;
+          }
+          $('#list-pg').html(list);
+
+          // Inisialisasi CKEditor hanya pada elemen yang baru ditambahkan
+          $('#list-pg .jawaban-pilgan:not(.initialized)').each(function() {
+            $(this).addClass('initialized'); // Tandai elemen yang sudah diinisialisasi
+            ClassicEditor
+              .create(document.querySelector('#' + $(this).attr('id')), {
+                height: '100px',
+                ckfinder: {
+                  uploadUrl: '/filemanager/upload?type=Images&_token='
+                }
+              })
+              .catch(error => {
+                console.error(error);
+              });
+          });
+
+
+          // Update elemen select untuk jawaban benar
+          $('#jawaban-benar').html(option);
+        });
+
+
         </script>
     </div>
 @endsection

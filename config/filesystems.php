@@ -42,6 +42,13 @@ return [
             'visibility' => 'public',
         ],
 
+        'public' => [
+            'driver' => 'local',
+            'root' => public_path('upload'), // Gantilah 'uploads' dengan direktori yang sesuai
+            'url' => env('APP_URL').'/upload', // Gantilah 'uploads' dengan direktori yang sesuai
+            'visibility' => 'public',
+        ],
+
         's3' => [
             'driver' => 's3',
             'key' => env('AWS_ACCESS_KEY_ID'),
