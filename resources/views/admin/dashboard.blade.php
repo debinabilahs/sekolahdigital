@@ -1,9 +1,15 @@
+
 <!DOCTYPE html>
 <html lang="en">
 
 <head>
     <meta charset="utf-8">
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
+
+    <script src="path-to-bootstrap/js/jquery.min.js"></script>
+    <script src="path-to-bootstrap/js/bootstrap.min.js"></script>
+
+    <link rel="stylesheet" href="path-to-bootstrap/css/bootstrap.min.css">
 
     <title>Jagat Class Digital</title>
     <meta content="" name="description">

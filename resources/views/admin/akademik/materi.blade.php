@@ -340,7 +340,7 @@
 
                                     <div class="form-group">
                                         <label>Isi</label>
-                                        <textarea name="isi" id="isi" class="form-control border-input" value="{{ $value->isi }}" required></textarea>
+                                        <textarea name="isi" id="isi" class="form-control border-input" required>{{ $value->isi }}</textarea>
                                         
                                     </div>
 
@@ -397,7 +397,7 @@
                 toastr.success("{{ Session::get('success') }}")
             @endif
         </script>
-        <script>
+        {{-- <script>
             ClassicEditor
                 .create( document.querySelector( '#isi' ),                
                 {
@@ -412,6 +412,6 @@
                 .catch( error => {
                     console.error( error );
                 } );
-        </script>
+        </script> --}}
     </div>
 @endsection

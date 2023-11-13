@@ -61,13 +61,13 @@
                                 <tr>
                                     <td scope="row">{{ $no }}</td>
                                     <td>{{ $value->nama }} </td>
-                                    <td>{{ $value->paket_soal->kode_paket }} </td>
+                                    <td>{{ $value->paketsoal->kode_paket }} </td>
                                     <td>{{ $value->mapel->nama_mapel }} </td>
                                     <td>{{ $value->kelas->nama_kelas }} </td>
                                     <td>{{ $value->jenis }} </td>
 
                                     <td>                                       
-                                        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#detailsoalModal{{ $value->id }}">
+                                        <button id="openDetail" type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#detailsoalModal{{ $value->id }}">
                                             <i class="bi bi-eye"></i>
                                         </button>
                                         <button type="button" class="btn btn-info" data-bs-toggle="modal"
@@ -100,7 +100,7 @@
         <div class="modal-dialog modal-xl">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h1 class="modal-title fs-5" id="exampleModalLabel">Form Input Soal </h1>
+                    <h1 class="modal-title fs-5" id="modalsoal">Form Input Soal </h1>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
@@ -113,7 +113,7 @@
 
                                 <!-- Browser Default Validation -->
 
-                                <form method="POST" action="/prosessoal" class="row g-3" enctype="multipart/form-data">
+                                <form method="POST" id="form-tambah" action="/prosessoal" class="row g-3" enctype="multipart/form-data">
                                     @csrf
 
                                     
@@ -205,7 +205,7 @@
                                                 <div class="col-lg-3 order-lg-2 ordder-sm-1">
                                                   <div class="form-group">
                                                     <label for="jumlah-pilihan">Jumlah Pilihan</label>
-                                                    <select name="soal[jumlah_pilihan]" id="jumlah-pilihan" class="form-control">
+                                                    <select name="jumlah-pilihan" id="jumlah-pilihan" class="form-control">
                                                       <option value="">Pilihan</option>
                                                       <option value="3">3</option>
                                                       <option value="4">4</option>
@@ -215,7 +215,7 @@
                                                   <div class="form-group">
                                                     <label for="jawaban-benar">Jawaban Benar</label>
                                                     <select name="jawaban[benar]" id="jawaban-benar" class="form-control">
-                                                      <option value="">-- Kosong --</option>
+                                                      <option value="">-- Klik Jumlah Pilihan Dulu --</option>
                                                     </select>
                                                   </div>
                                                 </div>
@@ -255,10 +255,10 @@
     # code...
   ?>
     <div class="modal fade" id="detailsoalModal{{ $value->id }}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <div class="modal-dialog modal-xl">
+        <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Detail soal</h5>
+                    <h5 class="modal-title" id="detailsoalModal">Detail Soal</h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
@@ -274,49 +274,42 @@
                                 <form method="POST" action="/lihatsoal" class="row g-3">
                                     @csrf
                                     <table class="table table-hover">
-                                        <tr>
-                                            <th scope="col">Nama Soal</th>
-                                            <td>{{ $value->nama }} </td>
-                                        </tr>
-                                        <tr>
-                                            <th scope="col">Paket Soal</th>
-                                            <td>{{ $value->paket_soal->kode_paket }} </td>
-                                        </tr>
-                                        <tr>
-                                            <th scope="col">Mata Pelajaran</th> 
-                                            <td>{{ $value->mapel->nama_mapel }} </td>
-                                        </tr>
-                                        <tr>
-                                            <th scope="col">Kelas</th>
-                                            <td>{{ $value->kelas->nama_kelas }} </td>
-                                        </tr>
-                                        <tr>
-                                            <th scope="col">Jenis Soal</th>
-                                            <td>{{ $value->jenis }} </td>
-                                        </tr>
-                                        <tr>
-                                            <th scope="col">Keterangan</th>
-                                            <td>{{ $value->keterangan }} </td>
-                                        </tr>
-                                    
-                                    </table>
-                                    <div class="col-sm-12">
-                                        <h4><b>Isi Soal :</b></h4>
-                                        <div id="detail-soal"></div>
-                            
-                                        <h4><b>Media Soal :</b></h4>
-                                        <div id="detail-media">
-                                          <i class="text-muted">Tidak Ada Media</i>
-                                          <br>
-                                          <audio src="#" controls></audio>
-                                          <video src="#" controls></video>
-                                        </div>
-                                      </div>
-                                      <hr>
-                                      <div class="col-sm-12">
-                                        <h4><b>Jawaban :</b></h4>
-                                        <div id="detail-jawaban"></div>
-                                      </div>
+                                      <tr>
+                                          <th scope="col">Nama Soal</th>
+                                          <td>{{ $value->nama }} </td>
+                                      </tr>
+                                      <tr>
+                                          <th scope="col">Paket Soal</th>
+                                          <td>{{ $value->paketsoal->kode_paket }} </td>
+                                      </tr>
+                                      <tr>
+                                          <th scope="col">Mata Pelajaran</th> 
+                                          <td>{{ $value->mapel->nama_mapel }} </td>
+                                      </tr>
+                                      <tr>
+                                          <th scope="col">Kelas</th>
+                                          <td>{{ $value->kelas->nama_kelas }} </td>
+                                      </tr>
+                                      <tr>
+                                          <th scope="col">Jenis Soal</th>
+                                          <td>{{ $value->jenis }} </td>
+                                      </tr>
+                                      <tr>
+                                          <th scope="col">Isi Soal</th>
+                                          <td>{{ $value->soal }} </td>
+                                      </tr>
+                                      <tr>
+                                          <th scope="col">Media Soal</th>
+                                          <td>{{ $value->media }} </td>
+                                      </tr>
+                                      <tr>
+                                          <th scope="col">Media Soal</th>
+                                          <td>{{ $value->media }} </td>
+                                      </tr>
+                                      <tr>
+                                          <th scope="col">Jawaban</th>
+                                          <td>{{ $value->jawaban }} </td>
+                                      </tr>
                                     <!-- End Browser Default Validation -->
 
                             </div>
@@ -347,7 +340,7 @@
         <div class="modal-dialog ">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h1 class="modal-title fs-5" id="exampleModalLabel">Edit soal</h1>
+                    <h1 class="modal-title fs-5" id="editModal">Edit soal</h1>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
@@ -362,7 +355,7 @@
 
                                 <form method="POST" action="/updatesoal" class="row g-3">
                                     @csrf
-                                    <input type="hidden" name="id" value="{{ $value->id }}">
+                                    {{-- <input type="hidden" name="id" value="{{ $value->id }}"> --}}
 
                                     <div class="card">
                                         <div class="card-header">
@@ -372,34 +365,66 @@
                                           <div class="row">
                                             <div class="col-lg-3 col-md-6 col-sm-12">
                                               <div class="form-group">
-                                                <label for="form-kelas">Kelas</label>
-                                                <select name="soal[kelas_id]" id="form-kelas" class="form-control select-kelas">
-                                                  <option value="{{ $soal['kelas']['id'] }}">{{ $soal['kelas']['nama'] }}</option>
-                                                </select>
+                                                <input type="hidden" class="form-control" id="id" name="id"
+                                                  value="{{ $value->id }}">
+                                              <label for="id_kelas">Nama kelas</label>
+                                              <select class="form-control" id="id_kelas" name="id_kelas">
+                                                  <option value="{{ $value->id_kelas }}">
+                                                      {{ $value->kelas->nama_kelas }}
+                                                  </option>
+                                                  @foreach ($kelas as $items)
+                                                      <option value="{{ $items->id }}">{{ $items->nama_kelas }}
+                                                      </option>
+                                                  @endforeach
+                                              </select>
                                               </div>
                                             </div>
+
                                             <div class="col-lg-3 col-md-6 col-sm-12">
                                               <div class="form-group">
-                                                <label for="form-mapel">Mata Pelajaran</label>
-                                                <select name="soal[mapel_id]" id="form-mapel" class="form-control select-mapel">
-                                                  <option value="{{ $soal['mapel']['id'] }}">{{ $soal['mapel']['nama'] }}</option>
-                                                </select>
+                                              <input type="hidden" class="form-control" id="id" name="id"
+                                                  value="{{ $value->id }}">
+                                              <label for="id_kelas">Nama kelas</label>
+                                              <select class="form-control" id="id_kelas" name="id_kelas">
+                                                  <option value="{{ $value->id_kelas }}">
+                                                      {{ $value->kelas->nama_kelas }}
+                                                  </option>
+                                                  @foreach ($kelas as $items)
+                                                      <option value="{{ $items->id }}">{{ $items->nama_kelas }}
+                                                      </option>
+                                                  @endforeach
+                                              </select>                                    
                                               </div>
                                             </div>
+
                                             <div class="col-lg-3 col-md-6 col-sm-12">
                                               <div class="form-group">
+                                                <input type="hidden" class="form-control" id="id" name="id"
+                                                  value="{{ $value->id }}">
                                                 <label for="form-paket">Paket Soal</label>
-                                                <select name="soal[paket_soal_id]" id="form-paket" class="form-control select-paket">
-                                                  <option value="{{ $soal['paket_soal']['id'] }}">{{ $soal['paket_soal']['nama'] }}</option>
-                                                </select>
+                                                <select class="form-control" id="paket_soal_id" name="paket_soal_id">
+                                                  <option value="{{ $value->paket_soal_id }}">
+                                                      {{ $value->paketsoal->kode_paket }}
+                                                  </option>
+                                                  @foreach ($paketsoal as $items)
+                                                      <option value="{{ $items->id }}">{{ $items->kode_paket }}
+                                                      </option>
+                                                  @endforeach
+                                              </select>  
                                               </div>
                                             </div>
+
                                             <div class="col-lg-3 col-md-6 col-sm-12">
                                               <div class="form-group">
+                                                <input type="hidden" class="form-control" id="id" name="id"
+                                                  value="{{ $value->id }}">
                                                 <label for="form-jenis">Jenis Soal</label>
-                                                <select name="soal[jenis]" id="form-jenis" class="form-control" disabled>
-                                                  <option value="{{ $soal['jenis'] }}">{{ $soal['jenis'] == 'essai' ? 'Essai' : 'Pilihan Ganda' }}</option>
-                                                </select>
+                                                <select class="form-control" id="jenis" name="jenis">
+                                                  <option value="{{ $value->jenis }}">
+                                                      {{ $value->jenis }}
+                                                  </option>
+                                                  
+                                              </select>  
                                               </div>
                                             </div>
                                           </div>
@@ -412,12 +437,12 @@
                                         <div class="card-body">
                                           <div class="form-group">
                                             <label for="form-nama">Nama <span class="text-muted">(informasi materi soal)</span></label>
-                                            <input type="text" name="soal[nama]" value="{{ $soal['nama'] }}" class="form-control" id="form-nama" placeholder="Masukkan Nama Soal">
+                                            <input type="text" name="nama" value="{{ $value->nama }}" class="form-control" id="form-nama" placeholder="Masukkan Nama Soal">
                                           </div>
                                           <div class="form-group">
                                             <label for="form-soal">Soal</label>
-                                            <textarea name="soal[soal]" class="form-control" id="form-soal" cols="30" rows="10">
-                                              {{ $soal['soal'] }}
+                                            <textarea name="soal" class="form-control" id="soal" cols="30" rows="10">
+                                              {{ $value->soal }}
                                             </textarea>
                                           </div>
                                           <div class="form-group">
@@ -427,12 +452,12 @@
                                           </div>
                                   
                                           {{-- Jawaban Essai --}}
-                                          @if($soal['jenis'] == 'essai')
+                                          @if('jenis' == 'essai')
                                           <div class="form-group" id="form-essai">
                                             <label for="form-jawaban">Jawaban Essai</label>
                                             <input type="text" name="jawaban[essai]" value="{{ $soal['soal_jawaban'][0]['jawaban'] }}" class="form-control" id="form-jawaban" placeholder="Masukkan jawaban essai (huruf kecil)">
                                           </div>
-                                          @elseif($soal['jenis'] == 'pilihan_ganda')
+                                          @elseif('jenis' == 'pilihan_ganda')
                                           {{-- Jawaban Pilihan Ganda --}}
                                           <div id="form-pilgan">
                                             <div class="form-group">
@@ -491,7 +516,7 @@
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h1 class="modal-title fs-5" id="exampleModalLabel">Modal title</h1>
+                    <h1 class="modal-title fs-5" id="modal2">Modal title</h1>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
@@ -563,6 +588,7 @@
               <small class="form-text text-muted">File : MP3/MP4/3GP/AVI</small>
             </div>`;
 
+            // option jawaban
             option += `<option value="${id}">${pilihan}</option>`;
           }
           $('#list-pg').html(list);
@@ -587,6 +613,20 @@
           $('#jawaban-benar').html(option);
         });
 
+    //     // simpan
+    // $('#form-tambah').on('submit', function(e) {
+    //   e.preventDefault();
+    //   var data = new FormData(this)
+    //   // isi soal
+    //   data.append('soal', CKEDITOR.instances['soal'].getData())
+    //   var jumlah_pilihan = $('#jumlah-pilihan').val()
+    //   // console.log(jumlah_pilihan)
+    //   for (let i = 1; i <= jumlah_pilihan; i++) {
+    //     // console.log('jawaban ' + i)
+    //     data.append('jawaban[pilgan]['+i+'][jawaban]', CKEDITOR.instances['jawaban-pilgan-'+i].getData())
+    //   }
+      
+    // })
 
         </script>
     </div>

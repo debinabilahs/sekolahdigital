@@ -18,6 +18,7 @@ class SoalController extends Controller
     $mapel = Mapel::all();
     $kelas = Kelas::all();
     $paketsoal = PaketSoal::all();
+    $data = Soal::with(['kelas', 'mapel', 'paketsoal'])->get();
 
     return view('admin.exam.soal', compact('data', 'mapel', 'kelas', 'paketsoal'));
 }
@@ -41,7 +42,6 @@ public function prosesSoal(Request $request)
         'jenis' => $request->jenis,
         'soal' => $request->soal,
     ]);
-    echo var_dump($soal);
 
     if ($request->hasFile('media')) {
         $media_soal = $request->file('media');
@@ -126,11 +126,12 @@ public function prosesSoal(Request $request)
             return redirect('/soal')->with('error', 'Soal Materi tidak ditemukan');
         }
 
-        // Ambil data mapel dan kelas terkait bahan
+        // Ambil data mapel dan kelas terkait 
         $mapel = Mapel::find($soal->id_mapel);
         $kelas = Kelas::find($soal->id_kelas);
-
+        $paketsoal = PaketSoal::find($soal->paket_soal_id);
         
+        return view('admin.exam.soal', compact('soal', 'mapel', 'kelas', 'paketsoal'));
     }
 
 }

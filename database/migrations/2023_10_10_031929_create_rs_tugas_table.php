@@ -18,6 +18,8 @@ class CreateRsTugasTable extends Migration
             $table->string('nama_tugas');
             $table->bigInteger('id_mapel');
             $table->bigInteger('id_kelas');
+            $table->string('deskripsi');
+            $table->string('file');
             $table->timestamps();
         });
     }

@@ -25,12 +25,16 @@ class TugasController extends Controller
             'nama_tugas' => 'required',
             'id_mapel' => 'required',
             'id_kelas' => 'required',
+            'deskripsi' => 'required',
+            'file' => 'required',
         ]);
         // dd($request);
         $tugas = Tugas::create([
             'nama_tugas' => $request->nama_tugas,
             'id_mapel' => $request->id_mapel,
             'id_kelas' => $request->id_kelas,
+            'deskripsi' => $request->deskripsi,
+            'file' => $request->file,
         ]);
 
         if ($tugas) {
@@ -45,6 +49,8 @@ class TugasController extends Controller
             'nama_tugas' => 'required',
             'id_mapel' => 'required',
             'id_kelas' => 'required',
+            'deskripsi' => 'required',
+            'file' => 'required',
         ]);
 
         $tugas = Tugas::where('id', $request->id)->update([
@@ -52,7 +58,8 @@ class TugasController extends Controller
             'nama_tugas' => $request->nama_tugas,
             'id_mapel' => $request->id_mapel,
             'id_kelas' => $request->id_kelas,
-
+            'deskripsi' => $request->deskripsi,
+            'file' => $request->file,
 
         ]);
 

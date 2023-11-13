@@ -6,6 +6,13 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"
         integrity="sha512-VEd+nq25CkR676O+pLBnDW09R7VQX9Mdiij052gVCp5yVH3jGtH70Ho/UUv4mJDsEdTvqRCFZg0NKGiojGnUCw=="
         crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+        <script src="https://cdn.ckeditor.com/ckeditor5/40.0.0/classic/ckeditor.js"></script>
+    <style type="text/css">
+            .ck-editor__editable_inline
+            {
+                height: 250px;
+            }
+    </style>
     <section class="section">
         <div class="row">
             <div class="col-lg-12">
@@ -88,7 +95,7 @@
     <!-- Modal -->
     {{-- Tambah Tugas --}}
     <div class="modal fade" id="modaltugas" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <div class="modal-dialog ">
+        <div class="modal-dialog modal-lg">
             <div class="modal-content">
                 <div class="modal-header">
                     <h1 class="modal-title fs-5" id="exampleModalLabel">Form Input Tugas </h1>
@@ -136,6 +143,18 @@
                                         </select>
                                     </div>
 
+                                    <div class="form-group">
+                                        <label>Deskripsi</label>
+                                        <textarea name="deskripsi" id="deskripsi" class="form-control border-input" placeholder="Masukkan isi/deskripsi" required></textarea>
+                                    </div>
+
+                                    <div class="col-md-12">
+                                        <label for="file">File</label>
+                                        <div class="col-sm-12">
+                                            <input type="file" class="form-control" id="file" name="file">
+                                        </div>
+                                    </div>
+
                                     <!-- End Browser Default Validation -->
 
                             </div>
@@ -162,7 +181,7 @@
     # code...
   ?>
     <div class="modal fade" id="detailTugasModal{{ $value->id }}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <div class="modal-dialog">
+        <div class="modal-dialog modal-lg">
             <div class="modal-content">
                 <div class="modal-header">
                     <h5 class="modal-title" id="exampleModalLabel">Detail Tugas</h5>
@@ -197,6 +216,40 @@
                                                 <td>{{ $value->kelas->nama_kelas }} </td>
             
                                         
+                                            </tr>
+            
+                                        </tbody>
+                                    </table>
+                                    <table class="table table-hover">
+                                        <thead>
+                                            <tr>
+                                                <th scope="col">Deskripsi</th>
+                                                
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr>
+                                                <td>
+                                                    {!! $value->deskripsi !!}
+                                                </td>
+                                                
+                                            </tr>
+            
+                                        </tbody>
+                                    </table>
+                                    <table class="table table-hover">
+                                        <thead>
+                                            <tr>
+                                                
+                                                <th scope="col">File</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr>
+                                                
+                                                <td>
+                                                    {!! $value->file !!}
+                                                </td>
                                             </tr>
             
                                         </tbody>
@@ -330,6 +383,18 @@
                                         </select>
                                     </div>
 
+                                    <div class="form-group">
+                                        <label>Deskripsi</label>
+                                        <textarea name="deskripsi" id="deskripsi" class="form-control border-input" required>{{ $value->deskripsi }}</textarea>
+                                        
+                                    </div>
+
+                                    <div class="col-md-12">
+                                        <label for="file">File</label>
+                                        <div class="col-sm-12">
+                                            <input type="file" class="form-control" id="file" name="file" value="{{ $value->file }}">
+                                        </div>
+                                    </div>
                                     <!-- End Browser Default Validation -->
 
                             </div>
@@ -374,6 +439,22 @@
             @if (Session::has('success'))
                 toastr.success("{{ Session::get('success') }}")
             @endif
+        </script>
+        <script>
+            ClassicEditor
+                .create( document.querySelector( '#deskripsi' ),                
+                // {
+                //     ckfinder:
+                //     {
+                //         uploadUrl:"{{route('ckeditor.upload', ['_token'=>csrf_token()])}}",
+                //     }
+
+                // },
+                
+                )
+                .catch( error => {
+                    console.error( error );
+                } );
         </script>
     </div>
 @endsection

@@ -22,15 +22,15 @@ class Soal extends Model
       ];
   
       public function kelas() {
-          return $this->belongsTo(Kelas::class);
+          return $this->belongsTo(Kelas::class, 'id_kelas');
       }
   
       public function mapel() {
-          return $this->belongsTo(Mapel::class);
+          return $this->belongsTo(Mapel::class, 'id_mapel');
       }
   
-      public function paket_soal() {
-          return $this->belongsTo(PaketSoal::class);
+      public function paketsoal() {
+          return $this->belongsTo(PaketSoal::class, 'paket_soal_id');
       }
   
       public function soal_jawaban() {
