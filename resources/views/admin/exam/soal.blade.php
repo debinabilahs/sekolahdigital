@@ -8,11 +8,10 @@
         crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     <script src="https://cdn.ckeditor.com/ckeditor5/40.0.0/classic/ckeditor.js"></script>
     <style type="text/css">
-      .ck-editor__editable_inline
-      {
-          height: 250px;
-      }
-</style>
+        .ck-editor__editable_inline {
+            height: 250px;
+        }
+    </style>
     <section class="section">
         <div class="row">
             <div class="col-lg-12">
@@ -53,7 +52,7 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                <?php 
+                                <?php
                   $no=1;
                   foreach ($data as  $value) {
                     # code...
@@ -66,8 +65,9 @@
                                     <td>{{ $value->kelas->nama_kelas }} </td>
                                     <td>{{ $value->jenis }} </td>
 
-                                    <td>                                       
-                                        <button id="openDetail" type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#detailsoalModal{{ $value->id }}">
+                                    <td>
+                                        <button id="openDetail" type="button" class="btn btn-primary"
+                                            data-bs-toggle="modal" data-bs-target="#detailsoal{{ $value->id }}">
                                             <i class="bi bi-eye"></i>
                                         </button>
                                         <button type="button" class="btn btn-info" data-bs-toggle="modal"
@@ -113,126 +113,137 @@
 
                                 <!-- Browser Default Validation -->
 
-                                <form method="POST" id="form-tambah" action="/prosessoal" class="row g-3" enctype="multipart/form-data">
+                                <form method="POST" id="form-tambah" action="/prosessoal" class="row g-3"
+                                    enctype="multipart/form-data">
                                     @csrf
 
-                                    
-                                        <div class="card-header">
-                                          <h4 class="card-title">Detail Soal</h4>
-                                        </div>
 
-                                        <div class="card-body">
-                                          <div class="row">
-                                            <div class="col-lg-3 col-md-6 col-sm-12">
-                                              <div class="form-group">
-                                                <label for="id_kelas">Kelas</label>
-                                                <select class="form-control" id="id_kelas" name="id_kelas">
-                                                  <option value="">Pilih Nama kelas</option>
-                                                  @foreach ($kelas as $items)
-                                                      <option value="{{ $items->id }}">{{ $items->nama_kelas }}
-                                                      </option>
-                                                  @endforeach
-                                                </select>                                              
-                                              </div>
-                                            </div>
-                                            <div class="col-lg-3 col-md-6 col-sm-12">
-                                              <div class="form-group">
-                                                <label for="id_mapel">Mata Pelajaran</label>
-                                                <select class="form-control" id="id_mapel" name="id_mapel">
-                                                  <option value="">Pilih Nama Mapel</option>
-                                                  @foreach ($mapel as $items)
-                                                      <option value="{{ $items->id }}">{{ $items->nama_mapel }}
-                                                      </option>
-                                                  @endforeach
-                                              </select>
-                                              </div>
-                                            </div>
-                                            <div class="col-lg-3 col-md-6 col-sm-12">
-                                              <div class="form-group">
-                                                <label for="paket_soal_id">Paket Soal</label>
-                                                <select class="form-control" id="paket_soal_id" name="paket_soal_id">
-                                                  <option value="">Pilih Kode Paket</option>
-                                                  @foreach ($paketsoal as $items)
-                                                      <option value="{{ $items->id }}">{{ $items->kode_paket }}
-                                                      </option>
-                                                  @endforeach
-                                              </select>
-                                              </div>
-                                            </div>
-                                            <div class="col-lg-3 col-md-6 col-sm-12">
-                                              <div class="form-group">
-                                                <label for="form-jenis">Jenis Soal</label>
-                                                <select name="jenis" id="jenis" class="form-control">
-                                                  <option value="">Pilih Jenis Soal</option>
-                                                  <option value="pilihan_ganda">Pilihan Ganda</option>
-                                                  <option value="essai">Essai</option>
-                                                </select>
-                                              </div>
+                                    <div class="card-header">
+                                        <h4 class="card-title">Detail Soal</h4>
+                                    </div>
 
-                                              
+                                    <div class="card-body">
+                                        <div class="row">
+                                            <div class="col-lg-3 col-md-6 col-sm-12">
+                                                <div class="form-group">
+                                                    <label for="id_kelas">Kelas</label>
+                                                    <select class="form-control" id="id_kelas" name="id_kelas">
+                                                        <option value="">Pilih Nama kelas</option>
+                                                        @foreach ($kelas as $items)
+                                                            <option value="{{ $items->id }}">{{ $items->nama_kelas }}
+                                                            </option>
+                                                        @endforeach
+                                                    </select>
+                                                </div>
                                             </div>
-                                          </div>
+                                            <div class="col-lg-3 col-md-6 col-sm-12">
+                                                <div class="form-group">
+                                                    <label for="id_mapel">Mata Pelajaran</label>
+                                                    <select class="form-control" id="id_mapel" name="id_mapel">
+                                                        <option value="">Pilih Nama Mapel</option>
+                                                        @foreach ($mapel as $items)
+                                                            <option value="{{ $items->id }}">{{ $items->nama_mapel }}
+                                                            </option>
+                                                        @endforeach
+                                                    </select>
+                                                </div>
+                                            </div>
+                                            <div class="col-lg-3 col-md-6 col-sm-12">
+                                                <div class="form-group">
+                                                    <label for="paket_soal_id">Paket Soal</label>
+                                                    <select class="form-control" id="paket_soal_id" name="paket_soal_id">
+                                                        <option value="">Pilih Kode Paket</option>
+                                                        @foreach ($paketsoal as $items)
+                                                            <option value="{{ $items->id }}">{{ $items->kode_paket }}
+                                                            </option>
+                                                        @endforeach
+                                                    </select>
+                                                </div>
+                                            </div>
+                                            <div class="col-lg-3 col-md-6 col-sm-12">
+                                                <div class="form-group">
+                                                    <label for="form-jenis">Jenis Soal</label>
+                                                    <select name="jenis" id="jenis" class="form-control">
+                                                        <option value="">Pilih Jenis Soal</option>
+                                                        <option value="pilihan_ganda">Pilihan Ganda</option>
+                                                        <option value="essai">Essai</option>
+                                                    </select>
+                                                </div>
+
+
+                                            </div>
                                         </div>
-                                      
-                                        <div class="card-header">
-                                          <h4 class="card-title">Isi Soal</h4>
+                                    </div>
+
+                                    <div class="card-header">
+                                        <h4 class="card-title">Isi Soal</h4>
+                                    </div>
+                                    <div class="card-body">
+                                        <div class="form-group">
+                                            <label for="form-nama">Nama <span class="text-muted">(informasi materi
+                                                    soal)</span></label>
+                                            <input type="text" name="nama" class="form-control" id="nama"
+                                                placeholder="Masukkan Nama Soal">
                                         </div>
-                                        <div class="card-body">
-                                          <div class="form-group">
-                                            <label for="form-nama">Nama <span class="text-muted">(informasi materi soal)</span></label>
-                                            <input type="text" name="nama" class="form-control" id="nama" placeholder="Masukkan Nama Soal">
-                                          </div>
-                                          <div class="form-group">
+                                        <div class="form-group">
                                             <label for="form-soal">Soal</label>
                                             <textarea name="soal" class="form-control" id="soal" cols="30" rows="10"></textarea>
-                                          </div>
-                                          <div class="form-group">
+                                        </div>
+                                        <div class="form-group">
                                             <label for="media-soal">Media Soal (opsional)</label>
                                             <input type="file" name="media" id="" class="form-control">
-                                            <small id="mediaHelp" class="form-text text-muted">File : MP3/MP4/3GP/AVI</small>
-                                          </div>
+                                            <small id="mediaHelp" class="form-text text-muted">File :
+                                                MP3/MP4/3GP/AVI</small>
+                                        </div>
 
-                                          <div class="form-group" id="form-pilgan" style="display: none;">
+                                        <div class="form-group" id="form-pilgan" style="display: none;">
                                             <!-- Tampilkan input untuk Pilihan Ganda di sini -->
                                             <div class="form-group">
-                                              <label for="pilihan_ganda">Jawaban Pilihan Ganda</label>
-                                              <div class="row mt-1">
-                                                <div class="col-lg-9 order-lg-1 order-sm-2" id="list-pg">
-                                                  <h1 class="text-muted text-center"><span class="badge badge-danger">Pilih Jumlah Jawaban</span></h1>
-                                                  <h2 class="text-center"><i class="fas fa-arrow-down"></i></h2>
-                                                  <h1 class="text-muted text-center"><span class="badge badge-success">Pilih Jawaban Benar</span></h1>
+                                                <label for="pilihan_ganda">Jawaban Pilihan Ganda</label>
+                                                <div class="row mt-1">
+                                                    <div class="col-lg-9 order-lg-1 order-sm-2" id="list-pg">
+                                                        <h1 class="text-muted text-center"><span
+                                                                class="badge badge-danger">Pilih Jumlah Jawaban</span></h1>
+                                                        <h2 class="text-center"><i class="fas fa-arrow-down"></i></h2>
+                                                        <h1 class="text-muted text-center"><span
+                                                                class="badge badge-success">Pilih Jawaban Benar</span></h1>
+                                                    </div>
+                                                    <div class="col-lg-3 order-lg-2 ordder-sm-1">
+                                                        <div class="form-group">
+                                                            <label for="jumlah-pilihan">Jumlah Pilihan</label>
+                                                            <select name="jumlah-pilihan" id="jumlah-pilihan"
+                                                                class="form-control">
+                                                                <option value="">Pilihan</option>
+                                                                <option value="3">3</option>
+                                                                <option value="4">4</option>
+                                                                <option value="5">5</option>
+                                                            </select>
+                                                        </div>
+                                                        <div class="form-group">
+                                                            <label for="jawaban-benar">Jawaban Benar</label>
+                                                            <select name="jawaban[benar]" id="jawaban-benar"
+                                                                class="form-control">
+                                                                <option value="">-- Klik Jumlah Pilihan Dulu --
+                                                                </option>
+                                                            </select>
+                                                        </div>
+                                                    </div>
                                                 </div>
-                                                <div class="col-lg-3 order-lg-2 ordder-sm-1">
-                                                  <div class="form-group">
-                                                    <label for="jumlah-pilihan">Jumlah Pilihan</label>
-                                                    <select name="jumlah-pilihan" id="jumlah-pilihan" class="form-control">
-                                                      <option value="">Pilihan</option>
-                                                      <option value="3">3</option>
-                                                      <option value="4">4</option>
-                                                      <option value="5">5</option>
-                                                    </select>
-                                                  </div>
-                                                  <div class="form-group">
-                                                    <label for="jawaban-benar">Jawaban Benar</label>
-                                                    <select name="jawaban[benar]" id="jawaban-benar" class="form-control">
-                                                      <option value="">-- Klik Jumlah Pilihan Dulu --</option>
-                                                    </select>
-                                                  </div>
-                                                </div>
-                                              </div>
                                             </div>
-                                          </div>
+                                        </div>
 
-                                          <div class="form-group" id="form-essai" style="display: none;">
+                                        <div class="form-group" id="form-essai" style="display: none;">
                                             <!-- Tampilkan input untuk Essai di sini -->
                                             <div class="form-group">
-                                              <label for="form-essai">Jawaban Essai</label>
-                                              <input type="text" name="jawaban[essai]" class="form-control" id="form-essai" placeholder="Masukkan jawaban essai (huruf kecil)">
+                                                <label for="form-essai">Jawaban Essai</label>
+                                                <input type="text" name="jawaban[essai]" class="form-control"
+                                                    id="form-essai" placeholder="Masukkan jawaban essai (huruf kecil)">
                                             </div>
-                                          </div>
-
                                         </div>
+
+                                    </div>
                                     <!-- End Browser Default Validation -->
+                            </div>
                         </div>
 
                     </div>
@@ -249,267 +260,284 @@
     </div>
 
     <!-- Modal Detail soal -->
-    <?php 
-  $no=1;
-  foreach ($data as  $value) {
-    # code...
-  ?>
-    <div class="modal fade" id="detailsoalModal{{ $value->id }}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="detailsoalModal">Detail Soal</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body">
-                    <div class="col-lg-12">
+    @foreach ($data as $value)
+        <div class="modal fade" id="detailsoal{{ $value->id }}" tabindex="-1" aria-labelledby="exampleModalLabel"
+            aria-hidden="true">
+            <div class="modal-dialog modal-lg">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="detailsoalModal">Detail Soal</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="col-lg-12">
+                            <div class="card">
+                                <div class="card-body">
+                                    <h5 class="card-title"></h5>
 
+                                    <!-- Browser Default Validation -->
 
-                        <div class="card">
-                            <div class="card-body">
-                                <h5 class="card-title"></h5>
-
-                                <!-- Browser Default Validation -->
-
-                                <form method="POST" action="/lihatsoal" class="row g-3">
-                                    @csrf
                                     <table class="table table-hover">
-                                      <tr>
-                                          <th scope="col">Nama Soal</th>
-                                          <td>{{ $value->nama }} </td>
-                                      </tr>
-                                      <tr>
-                                          <th scope="col">Paket Soal</th>
-                                          <td>{{ $value->paketsoal->kode_paket }} </td>
-                                      </tr>
-                                      <tr>
-                                          <th scope="col">Mata Pelajaran</th> 
-                                          <td>{{ $value->mapel->nama_mapel }} </td>
-                                      </tr>
-                                      <tr>
-                                          <th scope="col">Kelas</th>
-                                          <td>{{ $value->kelas->nama_kelas }} </td>
-                                      </tr>
-                                      <tr>
-                                          <th scope="col">Jenis Soal</th>
-                                          <td>{{ $value->jenis }} </td>
-                                      </tr>
-                                      <tr>
-                                          <th scope="col">Isi Soal</th>
-                                          <td>{{ $value->soal }} </td>
-                                      </tr>
-                                      <tr>
-                                          <th scope="col">Media Soal</th>
-                                          <td>{{ $value->media }} </td>
-                                      </tr>
-                                      <tr>
-                                          <th scope="col">Media Soal</th>
-                                          <td>{{ $value->media }} </td>
-                                      </tr>
-                                      <tr>
-                                          <th scope="col">Jawaban</th>
-                                          <td>{{ $value->jawaban }} </td>
-                                      </tr>
+                                        <tr>
+                                            <th scope="col">Nama Soal</th>
+                                            <td>{{ $value->nama }} </td>
+                                        </tr>
+                                        <tr>
+                                            <th scope="col">Paket Soal</th>
+                                            <td>{{ $value->paketsoal->kode_paket }} </td>
+                                        </tr>
+                                        <tr>
+                                            <th scope="col">Mata Pelajaran</th>
+                                            <td>{{ $value->mapel->nama_mapel }} </td>
+                                        </tr>
+                                        <tr>
+                                            <th scope="col">Kelas</th>
+                                            <td>{{ $value->kelas->nama_kelas }} </td>
+                                        </tr>
+                                        <tr>
+                                            <th scope="col">Jenis Soal</th>
+                                            <td>{{ $value->jenis }} </td>
+                                        </tr>
+                                        <tr>
+                                            <th scope="col">Isi Soal</th>
+                                            <td>{!! $value->soal !!} </td>
+                                        </tr>
+                                        <tr>
+                                            <th scope="col">Media Soal</th>
+                                            <td>{{ $value->media }} </td>
+                                        </tr>
+
+                                        <tr>
+                                            <th scope="col">Jawaban</th>
+                                            <td>{{ $value->jawaban }} </td>
+                                        </tr>
+                                    </table>
+
                                     <!-- End Browser Default Validation -->
-
+                                </div>
                             </div>
-
                         </div>
-
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary rounded-pill px-4 " style="font-size: 0.75rem"
+                            data-bs-dismiss="modal">Close</button>
                     </div>
                 </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary rounded-pill px-4 " style="font-size: 0.75rem"
-                        data-bs-dismiss="modal">Close</button>
-                </div>
-                </form>
             </div>
         </div>
-    </div>
-    <?php } ?>
+    @endforeach
 
 
     {{-- Edit soal --}}
-    <?php 
-  $no=1;
-  foreach ($data as  $value) {
-    # code...
-  ?>
-    <div class="modal fade" id="editModal{{ $value->id }}" tabindex="-1" aria-labelledby="exampleModalLabel"
-        aria-hidden="true">
-        <div class="modal-dialog ">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h1 class="modal-title fs-5" id="editModal">Edit soal</h1>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body">
-                    <div class="col-lg-12">
+    @foreach ($data as $value)
+        <div class="modal fade" id="editModal{{ $value->id }}" tabindex="-1" aria-labelledby="exampleModalLabel"
+            aria-hidden="true">
+            <div class="modal-dialog modal-lg ">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h1 class="modal-title fs-5" id="editModal">Edit soal</h1>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="col-lg-12">
 
 
-                        <div class="card">
-                            <div class="card-body">
-                                <h5 class="card-title"></h5>
+                            <div class="card">
+                                <div class="card-body">
+                                    <h5 class="card-title"></h5>
+                                    <form method="POST" action="{{ route('editsoal') }}" class="row g-3"
+                                        enctype="multipart/form-data">
+                                        @csrf
+                                        <div class="card">
+                                            <div class="card-header">
+                                                <h4 class="card-title">Detail Soal</h4>
+                                            </div>
+                                            <div class="card-body">
+                                                <div class="row">
+                                                    <div class="col-lg-3 col-md-6 col-sm-12">
+                                                        <div class="form-group">
+                                                            <input type="hidden" class="form-control" id="id"
+                                                                name="id" value="{{ $value->id }}">
+                                                            <label for="id_kelas">Nama kelas</label>
+                                                            <select class="form-control" id="id_kelas" name="id_kelas">
+                                                                <option value="{{ $value->id_kelas }}">
+                                                                    {{ $value->kelas->nama_kelas }}
+                                                                </option>
+                                                                @foreach ($kelas as $items)
+                                                                    <option value="{{ $items->id }}">
+                                                                        {{ $items->nama_kelas }}
+                                                                    </option>
+                                                                @endforeach
+                                                            </select>
+                                                        </div>
+                                                    </div>
 
-                                <!-- Browser Default Validation -->
+                                                    <div class="col-lg-3 col-md-6 col-sm-12">
+                                                        <div class="form-group">
+                                                            <input type="hidden" class="form-control" id="id"
+                                                                name="id" value="{{ $value->id }}">
+                                                            <label for="id_kelas">Nama kelas</label>
+                                                            <select class="form-control" id="id_kelas" name="id_kelas">
+                                                                <option value="{{ $value->id_kelas }}">
+                                                                    {{ $value->kelas->nama_kelas }}
+                                                                </option>
+                                                                @foreach ($kelas as $items)
+                                                                    <option value="{{ $items->id }}">
+                                                                        {{ $items->nama_kelas }}
+                                                                    </option>
+                                                                @endforeach
+                                                            </select>
+                                                        </div>
+                                                    </div>
 
-                                <form method="POST" action="/updatesoal" class="row g-3">
-                                    @csrf
-                                    {{-- <input type="hidden" name="id" value="{{ $value->id }}"> --}}
+                                                    <div class="col-lg-3 col-md-6 col-sm-12">
+                                                        <div class="form-group">
+                                                            <input type="hidden" class="form-control" id="id"
+                                                                name="id" value="{{ $value->id }}">
+                                                            <label for="form-paket">Paket Soal</label>
+                                                            <select class="form-control" id="paket_soal_id"
+                                                                name="paket_soal_id">
+                                                                <option value="{{ $value->paket_soal_id }}">
+                                                                    {{ $value->paketsoal->kode_paket }}
+                                                                </option>
+                                                                @foreach ($paketsoal as $items)
+                                                                    <option value="{{ $items->id }}">
+                                                                        {{ $items->kode_paket }}
+                                                                    </option>
+                                                                @endforeach
+                                                            </select>
+                                                        </div>
+                                                    </div>
 
-                                    <div class="card">
-                                        <div class="card-header">
-                                          <h4 class="card-title">Detail Soal</h4>
+                                                    <div class="col-lg-3 col-md-6 col-sm-12">
+                                                        <div class="form-group">
+                                                            <input type="hidden" class="form-control" id="id"
+                                                                name="id" value="{{ $value->id }}">
+                                                            <label for="form-jenis">Jenis Soal</label>
+                                                            <select class="form-control" id="jenis" name="jenis">
+                                                                <option value="{{ $value->jenis }}">
+                                                                    {{ $value->jenis }}
+                                                                </option>
+
+                                                            </select>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-lg-3 col-md-6 col-sm-12">
+                                                        <div class="form-group">
+                                                            <input type="hidden" class="form-control" id="id"
+                                                                name="id" value="{{ $value->id }}">
+                                                            <label for="form-jenis">Mapel</label>
+                                                            <select class="form-control" id="jenis" name="id_mapel">
+                                                                <option value="{{ $value->id_mapel }}">
+                                                                    {{ $value->mapel->nama_mapel }}
+                                                                </option>
+
+                                                            </select>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
                                         </div>
-                                        <div class="card-body">
-                                          <div class="row">
-                                            <div class="col-lg-3 col-md-6 col-sm-12">
-                                              <div class="form-group">
-                                                <input type="hidden" class="form-control" id="id" name="id"
-                                                  value="{{ $value->id }}">
-                                              <label for="id_kelas">Nama kelas</label>
-                                              <select class="form-control" id="id_kelas" name="id_kelas">
-                                                  <option value="{{ $value->id_kelas }}">
-                                                      {{ $value->kelas->nama_kelas }}
-                                                  </option>
-                                                  @foreach ($kelas as $items)
-                                                      <option value="{{ $items->id }}">{{ $items->nama_kelas }}
-                                                      </option>
-                                                  @endforeach
-                                              </select>
-                                              </div>
+                                        <div class="card">
+                                            <div class="card-header">
+                                                <h4 class="card-title">Isi Soal</h4>
                                             </div>
+                                            <div class="card-body">
+                                                <div class="form-group">
+                                                    <label for="form-nama">Nama <span class="text-muted">(informasi materi
+                                                            soal)</span></label>
+                                                    <input type="text" name="nama" value="{{ $value->nama }}"
+                                                        class="form-control" id="form-nama"
+                                                        placeholder="Masukkan Nama Soal">
+                                                </div>
+                                                <div class="form-group">
+                                                    <label for="form-soal">Soal</label>
+                                                    <textarea name="soal" class="form-control" id="edit_soal_{{ $value->id }}" cols="30" rows="10">
+                                             {{ $value->soal }}
 
-                                            <div class="col-lg-3 col-md-6 col-sm-12">
-                                              <div class="form-group">
-                                              <input type="hidden" class="form-control" id="id" name="id"
-                                                  value="{{ $value->id }}">
-                                              <label for="id_kelas">Nama kelas</label>
-                                              <select class="form-control" id="id_kelas" name="id_kelas">
-                                                  <option value="{{ $value->id_kelas }}">
-                                                      {{ $value->kelas->nama_kelas }}
-                                                  </option>
-                                                  @foreach ($kelas as $items)
-                                                      <option value="{{ $items->id }}">{{ $items->nama_kelas }}
-                                                      </option>
-                                                  @endforeach
-                                              </select>                                    
-                                              </div>
-                                            </div>
-
-                                            <div class="col-lg-3 col-md-6 col-sm-12">
-                                              <div class="form-group">
-                                                <input type="hidden" class="form-control" id="id" name="id"
-                                                  value="{{ $value->id }}">
-                                                <label for="form-paket">Paket Soal</label>
-                                                <select class="form-control" id="paket_soal_id" name="paket_soal_id">
-                                                  <option value="{{ $value->paket_soal_id }}">
-                                                      {{ $value->paketsoal->kode_paket }}
-                                                  </option>
-                                                  @foreach ($paketsoal as $items)
-                                                      <option value="{{ $items->id }}">{{ $items->kode_paket }}
-                                                      </option>
-                                                  @endforeach
-                                              </select>  
-                                              </div>
-                                            </div>
-
-                                            <div class="col-lg-3 col-md-6 col-sm-12">
-                                              <div class="form-group">
-                                                <input type="hidden" class="form-control" id="id" name="id"
-                                                  value="{{ $value->id }}">
-                                                <label for="form-jenis">Jenis Soal</label>
-                                                <select class="form-control" id="jenis" name="jenis">
-                                                  <option value="{{ $value->jenis }}">
-                                                      {{ $value->jenis }}
-                                                  </option>
-                                                  
-                                              </select>  
-                                              </div>
-                                            </div>
-                                          </div>
-                                        </div>
-                                      </div>
-                                      <div class="card">
-                                        <div class="card-header">
-                                          <h4 class="card-title">Isi Soal</h4>
-                                        </div>
-                                        <div class="card-body">
-                                          <div class="form-group">
-                                            <label for="form-nama">Nama <span class="text-muted">(informasi materi soal)</span></label>
-                                            <input type="text" name="nama" value="{{ $value->nama }}" class="form-control" id="form-nama" placeholder="Masukkan Nama Soal">
-                                          </div>
-                                          <div class="form-group">
-                                            <label for="form-soal">Soal</label>
-                                            <textarea name="soal" class="form-control" id="soal" cols="30" rows="10">
-                                              {{ $value->soal }}
                                             </textarea>
-                                          </div>
-                                          <div class="form-group">
-                                            <label for="media-soal">Media Soal (opsional)</label>
-                                            <input type="file" name="soal[soal_media]" id="" class="form-control">
-                                            <small id="mediaHelp" class="form-text text-muted">File : MP3/MP4/3GP/AVI</small>
-                                          </div>
-                                  
-                                          {{-- Jawaban Essai --}}
-                                          @if('jenis' == 'essai')
-                                          <div class="form-group" id="form-essai">
-                                            <label for="form-jawaban">Jawaban Essai</label>
-                                            <input type="text" name="jawaban[essai]" value="{{ $soal['soal_jawaban'][0]['jawaban'] }}" class="form-control" id="form-jawaban" placeholder="Masukkan jawaban essai (huruf kecil)">
-                                          </div>
-                                          @elseif('jenis' == 'pilihan_ganda')
-                                          {{-- Jawaban Pilihan Ganda --}}
-                                          <div id="form-pilgan">
-                                            <div class="form-group">
-                                              <label for="">Jawaban Pilihan Ganda</label>
-                                              <div class="row mt-1">
-                                                <div class="col-lg-9 order-lg-1 order-sm-2" id="list-pg">
-                                                  {{-- List Jawaban --}}
-                                                  @foreach($soal['soal_jawaban'] as $key => $value)
-                                                  <div class="mb-4" id="jawaban-{{ $key + 1 }}">
-                                                    <h4><b>Pilihan {{ $key + 1 }}</b></h4>
-                                                    <textarea name="jawaban[pilgan][{{ $value['id'] }}][jawaban]" id="jawaban-pilgan-{{ $key + 1 }}" cols="30" rows="10" class="form-control jawaban-pilgan">
+                                                </div>
+                                                <div class="form-group">
+                                                    <label for="media-soal">Media Soal (opsional)</label>
+                                                    <input type="file" name="soal[soal_media]" id=""
+                                                        class="form-control">
+                                                    <small id="mediaHelp" class="form-text text-muted">File :
+                                                        MP3/MP4/3GP/AVI</small>
+                                                </div>
+
+
+                                                @if ('jenis' == 'essai')
+                                                    <div class="form-group" id="form-essai">
+                                                        <label for="form-jawaban">Jawaban Essai</label>
+                                                        <input type="text" name="jawaban[essai]"
+                                                            value="{{ $soal['soal_jawaban'][0]['jawaban'] }}"
+                                                            class="form-control" id="form-jawaban"
+                                                            placeholder="Masukkan jawaban essai (huruf kecil)">
+                                                    </div>
+                                                @elseif('jenis' == 'pilihan_ganda')
+                                                    <div id="form-pilgan">
+                                                        <div class="form-group">
+                                                            <label for="">Jawaban Pilihan Ganda</label>
+                                                            <div class="row mt-1">
+                                                                <div class="col-lg-9 order-lg-1 order-sm-2"
+                                                                    id="list-pg">
+
+                                                                    @foreach ($soal['soal_jawaban'] as $key => $value)
+                                                                        <div class="mb-4"
+                                                                            id="jawaban-{{ $key + 1 }}">
+                                                                            <h4><b>Pilihan {{ $key + 1 }}</b></h4>
+                                                                            <textarea name="jawaban[pilgan][{{ $value['id'] }}][jawaban]" id="jawaban-pilgan-{{ $key + 1 }}"
+                                                                                cols="30" rows="10" class="form-control jawaban-pilgan">
                                                       {{ $value['jawaban'] }}
                                                     </textarea>
-                                                    <h5 class="mt-2">Media Jawaban (opsional)</h5>
-                                                    <input type="file" name="jawaban[pilgan][{{ $value['id'] }}][media]" id="media-jawaban-{{ $key + 1 }}" class="form-control">
-                                                    <small class="form-text text-muted">File : MP3/MP4/3GP/AVI</small>
-                                                  </div>
-                                                  @endforeach
-                                                </div>
-                                                <div class="col-lg-3 order-lg-2 ordder-sm-1">
-                                                  <div class="form-group">
-                                                    <label for="jawaban-benar">Jawaban Benar</label>
-                                                    <select name="jawaban[benar]" id="jawaban-benar" class="form-control">
-                                                      @foreach($soal['soal_jawaban'] as $key => $value)
-                                                      <option value="{{ $value['id'] }}" {{ $value['status'] == 1 ? 'selected' : '' }}>Pilihan {{ $key + 1 }}</option>
-                                                      @endforeach
-                                                    </select>
-                                                  </div>
-                                                </div>
-                                              </div>
+                                                                            <h5 class="mt-2">Media Jawaban (opsional)
+                                                                            </h5>
+                                                                            <input type="file"
+                                                                                name="jawaban[pilgan][{{ $value['id'] }}][media]"
+                                                                                id="media-jawaban-{{ $key + 1 }}"
+                                                                                class="form-control">
+                                                                            <small class="form-text text-muted">File :
+                                                                                MP3/MP4/3GP/AVI</small>
+                                                                        </div>
+                                                                    @endforeach
+                                                                </div>
+                                                                <div class="col-lg-3 order-lg-2 ordder-sm-1">
+                                                                    <div class="form-group">
+                                                                        <label for="jawaban-benar">Jawaban Benar</label>
+                                                                        <select name="jawaban[benar]" id="jawaban-benar"
+                                                                            class="form-control">
+                                                                            @foreach ($soal['soal_jawaban'] as $key => $value)
+                                                                                <option value="{{ $value['id'] }}"
+                                                                                    {{ $value['status'] == 1 ? 'selected' : '' }}>
+                                                                                    Pilihan {{ $key + 1 }}</option>
+                                                                            @endforeach
+                                                                        </select>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                @endif
+
                                             </div>
-                                          </div>
-                                          @endif
-                                    <!-- End Browser Default Validation -->
 
+                                        </div>
+
+                                </div>
                             </div>
-
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary rounded-pill px-4 "
+                                    style="font-size: 0.75rem" data-bs-dismiss="modal">Close</button>
+                                <button type="submit" name="update" class="btn btn-primary rounded-pill px-4 "
+                                    style="font-size: 0.75rem">Update</button>
+                            </div>
+                            </form>
                         </div>
-
                     </div>
                 </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary rounded-pill px-4 " style="font-size: 0.75rem"
-                        data-bs-dismiss="modal">Close</button>
-                    <button type="submit" name="update" class="btn btn-primary rounded-pill px-4 "
-                        style="font-size: 0.75rem">Update</button>
-                </div>
-                </form>
             </div>
         </div>
-    </div>
-    <?php } ?>
+    @endforeach
 
 
     <div class="modal fade" id="modal2" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -536,50 +564,54 @@
                 toastr.success("{{ Session::get('success') }}")
             @endif
         </script>
-        <script>
-          ClassicEditor
-              .create( document.querySelector( '#soal' ),                
-              {
-                  ckfinder:
-                  {
-                      uploadUrl:"{{route('ckeditor.upload', ['_token'=>csrf_token()])}}",
-                  }
 
-              },
-              
-              )
-              .catch( error => {
-                  console.error( error );
-              } );
-      </script>
         <script>
-            $(document).ready(function () {
-              $('#jenis').on('change', function () {
-                var jenis = $(this).val();
+            $(document).ready(function() {
+                // Inisialisasi CKEditor pada modal tambah data
+                ClassicEditor
+                    .create(document.querySelector('#soal'))
+                    .catch(error => {
+                        console.error(error);
+                    });
 
-                if (jenis === 'pilihan_ganda') {
-                    $('#form-pilgan').show();
-                    $('#form-essai').hide();
-                } else if (jenis === 'essai') {
-                    $('#form-essai').show();
-                    $('#form-pilgan').hide();
-                } else {
-                    $('#form-pilgan').hide();
-                    $('#form-essai').hide();
-                }
+                // Inisialisasi CKEditor pada setiap modal edit data
+                @foreach ($data as $value)
+                    ClassicEditor
+                        .create(document.querySelector('#edit_soal_{{ $value->id }}'))
+                        .catch(error => {
+                            console.error(error);
+                        });
+                @endforeach
             });
-        });
+        </script>
+        <script>
+            $(document).ready(function() {
+                $('#jenis').on('change', function() {
+                    var jenis = $(this).val();
 
-        // jumlah jawaban
-        $('#jumlah-pilihan').on('change', function(){
-          let list = '';
-          let option = '<option value>-- Jawaban --</option>';
-          let jumlah = $(this).val();
-          
-          for (let id = 1; id <= jumlah; id++) {
-            let pilihan = String.fromCharCode(64 + id);
-            
-            list += `
+                    if (jenis === 'pilihan_ganda') {
+                        $('#form-pilgan').show();
+                        $('#form-essai').hide();
+                    } else if (jenis === 'essai') {
+                        $('#form-essai').show();
+                        $('#form-pilgan').hide();
+                    } else {
+                        $('#form-pilgan').hide();
+                        $('#form-essai').hide();
+                    }
+                });
+            });
+
+
+            $('#jumlah-pilihan').on('change', function() {
+                let list = '';
+                let option = '<option value>-- Jawaban --</option>';
+                let jumlah = $(this).val();
+
+                for (let id = 1; id <= jumlah; id++) {
+                    let pilihan = String.fromCharCode(64 + id);
+
+                    list += `
             <div class="mb-4" id="jawaban-${id}">
               <h4><b>Pilihan ${pilihan}</b></h4>
               <textarea name="jawaban[pilgan][${id}][jawaban]" id="jawaban-pilgan-${id}" cols="30" rows="10" class="form-control jawaban-pilgan"></textarea>
@@ -588,46 +620,33 @@
               <small class="form-text text-muted">File : MP3/MP4/3GP/AVI</small>
             </div>`;
 
-            // option jawaban
-            option += `<option value="${id}">${pilihan}</option>`;
-          }
-          $('#list-pg').html(list);
 
-          // Inisialisasi CKEditor hanya pada elemen yang baru ditambahkan
-          $('#list-pg .jawaban-pilgan:not(.initialized)').each(function() {
-            $(this).addClass('initialized'); // Tandai elemen yang sudah diinisialisasi
-            ClassicEditor
-              .create(document.querySelector('#' + $(this).attr('id')), {
-                height: '100px',
-                ckfinder: {
-                  uploadUrl: '/filemanager/upload?type=Images&_token='
+                    option += `<option value="${id}">${pilihan}</option>`;
                 }
-              })
-              .catch(error => {
-                console.error(error);
-              });
-          });
+                $('#list-pg').html(list);
 
 
-          // Update elemen select untuk jawaban benar
-          $('#jawaban-benar').html(option);
-        });
+                $('#list-pg .jawaban-pilgan:not(.initialized)').each(function() {
+                    $(this).addClass('initialized');
+                    ClassicEditor
+                        .create(document.querySelector('#' + $(this).attr('id')), {
+                            height: '100px',
+                            ckfinder: {
+                                uploadUrl: '/filemanager/upload?type=Images&_token='
+                            }
+                        })
+                        .catch(error => {
+                            console.error(error);
+                        });
+                });
 
-    //     // simpan
-    // $('#form-tambah').on('submit', function(e) {
-    //   e.preventDefault();
-    //   var data = new FormData(this)
-    //   // isi soal
-    //   data.append('soal', CKEDITOR.instances['soal'].getData())
-    //   var jumlah_pilihan = $('#jumlah-pilihan').val()
-    //   // console.log(jumlah_pilihan)
-    //   for (let i = 1; i <= jumlah_pilihan; i++) {
-    //     // console.log('jawaban ' + i)
-    //     data.append('jawaban[pilgan]['+i+'][jawaban]', CKEDITOR.instances['jawaban-pilgan-'+i].getData())
-    //   }
-      
-    // })
 
+
+                $('#jawaban-benar').html(option);
+            });
         </script>
     </div>
+    </div>
+
+
 @endsection
