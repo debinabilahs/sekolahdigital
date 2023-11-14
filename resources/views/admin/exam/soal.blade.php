@@ -53,10 +53,10 @@
                             </thead>
                             <tbody>
                                 <?php
-                  $no=1;
-                  foreach ($data as  $value) {
-                    # code...
-                  ?>
+$no = 1;
+foreach ($data as $value) {
+    # code...
+    ?>
                                 <tr>
                                     <td scope="row">{{ $no }}</td>
                                     <td>{{ $value->nama }} </td>
@@ -80,7 +80,7 @@
                                     </td>
                                 </tr>
 
-                                <?php $no++; } ?>
+                                <?php $no++;}?>
 
                             </tbody>
                         </table>
