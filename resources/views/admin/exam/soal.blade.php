@@ -6,7 +6,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"
         integrity="sha512-VEd+nq25CkR676O+pLBnDW09R7VQX9Mdiij052gVCp5yVH3jGtH70Ho/UUv4mJDsEdTvqRCFZg0NKGiojGnUCw=="
         crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-    <script src="https://cdn.ckeditor.com/ckeditor5/40.0.0/classic/ckeditor.js"></script>
+    <script src="https://cdn.ckeditor.com/ckeditor5/36.0.1/classic/ckeditor.js"></script>
     <style type="text/css">
         .ck-editor__editable_inline {
             height: 250px;
@@ -263,7 +263,7 @@ foreach ($data as $value) {
     @foreach ($data as $value)
         <div class="modal fade" id="detailsoal{{ $value->id }}" tabindex="-1" aria-labelledby="exampleModalLabel"
             aria-hidden="true">
-            <div class="modal-dialog modal-lg">
+            <div class="modal-dialog modal-xl">
                 <div class="modal-content">
                     <div class="modal-header">
                         <h5 class="modal-title" id="detailsoalModal">Detail Soal</h5>
@@ -304,12 +304,22 @@ foreach ($data as $value) {
                                         </tr>
                                         <tr>
                                             <th scope="col">Media Soal</th>
-                                            <td>{{ $value->media }} </td>
+                                            <td>{!! $value->media !!} </td>
                                         </tr>
 
                                         <tr>
                                             <th scope="col">Jawaban</th>
-                                            <td>{{ $value->jawaban }} </td>
+                                            <td>
+                                                @if ($value->jenis == 'essai')
+                                                    <!-- Tampilkan jawaban essai -->
+                                                    {{ $value->soal_jawaban->first()->jawaban }}
+                                                    @elseif ($value->jenis == 'pilihan_ganda')
+                                                    <!-- Tampilkan jawaban pilihan ganda -->
+                                                    @foreach ($value->soal_jawaban as $jawaban)
+                                                    {!! $jawaban->jawaban !!}
+                                                    @endforeach
+                                                @endif
+                                            </td>
                                         </tr>
                                     </table>
 
@@ -332,7 +342,7 @@ foreach ($data as $value) {
     @foreach ($data as $value)
         <div class="modal fade" id="editModal{{ $value->id }}" tabindex="-1" aria-labelledby="exampleModalLabel"
             aria-hidden="true">
-            <div class="modal-dialog modal-lg ">
+            <div class="modal-dialog modal-xl ">
                 <div class="modal-content">
                     <div class="modal-header">
                         <h1 class="modal-title fs-5" id="editModal">Edit soal</h1>
@@ -345,9 +355,10 @@ foreach ($data as $value) {
                             <div class="card">
                                 <div class="card-body">
                                     <h5 class="card-title"></h5>
-                                    <form method="POST" action="{{ route('editsoal') }}" class="row g-3"
+                                    <form method="POST" action="/updatesoal" class="row g-3"
                                         enctype="multipart/form-data">
                                         @csrf
+                                        @method('PUT')
                                         <div class="card">
                                             <div class="card-header">
                                                 <h4 class="card-title">Detail Soal</h4>
@@ -376,16 +387,12 @@ foreach ($data as $value) {
                                                         <div class="form-group">
                                                             <input type="hidden" class="form-control" id="id"
                                                                 name="id" value="{{ $value->id }}">
-                                                            <label for="id_kelas">Nama kelas</label>
-                                                            <select class="form-control" id="id_kelas" name="id_kelas">
-                                                                <option value="{{ $value->id_kelas }}">
-                                                                    {{ $value->kelas->nama_kelas }}
+                                                            <label for="form-jenis">Mapel</label>
+                                                            <select class="form-control" id="jenis" name="id_mapel">
+                                                                <option value="{{ $value->id_mapel }}">
+                                                                    {{ $value->mapel->nama_mapel }}
                                                                 </option>
-                                                                @foreach ($kelas as $items)
-                                                                    <option value="{{ $items->id }}">
-                                                                        {{ $items->nama_kelas }}
-                                                                    </option>
-                                                                @endforeach
+
                                                             </select>
                                                         </div>
                                                     </div>
@@ -414,27 +421,17 @@ foreach ($data as $value) {
                                                             <input type="hidden" class="form-control" id="id"
                                                                 name="id" value="{{ $value->id }}">
                                                             <label for="form-jenis">Jenis Soal</label>
-                                                            <select class="form-control" id="jenis" name="jenis">
+                                                            <select class="form-control" id="jenis" name="jenis" disabled>
                                                                 <option value="{{ $value->jenis }}">
-                                                                    {{ $value->jenis }}
+                                                                    {{ $value->jenis}}
                                                                 </option>
+                                                                {{-- <option value="pilihan_ganda">Pilihan Ganda</option>
+                                                                <option value="essai">Essai</option> --}}
 
                                                             </select>
                                                         </div>
                                                     </div>
-                                                    <div class="col-lg-3 col-md-6 col-sm-12">
-                                                        <div class="form-group">
-                                                            <input type="hidden" class="form-control" id="id"
-                                                                name="id" value="{{ $value->id }}">
-                                                            <label for="form-jenis">Mapel</label>
-                                                            <select class="form-control" id="jenis" name="id_mapel">
-                                                                <option value="{{ $value->id_mapel }}">
-                                                                    {{ $value->mapel->nama_mapel }}
-                                                                </option>
-
-                                                            </select>
-                                                        </div>
-                                                    </div>
+                                                    
                                                 </div>
                                             </div>
                                         </div>
@@ -453,9 +450,8 @@ foreach ($data as $value) {
                                                 <div class="form-group">
                                                     <label for="form-soal">Soal</label>
                                                     <textarea name="soal" class="form-control" id="edit_soal_{{ $value->id }}" cols="30" rows="10">
-                                             {{ $value->soal }}
-
-                                            </textarea>
+                                                        {{ $value->soal }}
+                                                    </textarea>
                                                 </div>
                                                 <div class="form-group">
                                                     <label for="media-soal">Media Soal (opsional)</label>
@@ -466,58 +462,50 @@ foreach ($data as $value) {
                                                 </div>
 
 
-                                                @if ('jenis' == 'essai')
-                                                    <div class="form-group" id="form-essai">
-                                                        <label for="form-jawaban">Jawaban Essai</label>
-                                                        <input type="text" name="jawaban[essai]"
-                                                            value="{{ $soal['soal_jawaban'][0]['jawaban'] }}"
-                                                            class="form-control" id="form-jawaban"
-                                                            placeholder="Masukkan jawaban essai (huruf kecil)">
-                                                    </div>
-                                                @elseif('jenis' == 'pilihan_ganda')
-                                                    <div id="form-pilgan">
-                                                        <div class="form-group">
-                                                            <label for="">Jawaban Pilihan Ganda</label>
-                                                            <div class="row mt-1">
-                                                                <div class="col-lg-9 order-lg-1 order-sm-2"
-                                                                    id="list-pg">
 
-                                                                    @foreach ($soal['soal_jawaban'] as $key => $value)
-                                                                        <div class="mb-4"
-                                                                            id="jawaban-{{ $key + 1 }}">
-                                                                            <h4><b>Pilihan {{ $key + 1 }}</b></h4>
-                                                                            <textarea name="jawaban[pilgan][{{ $value['id'] }}][jawaban]" id="jawaban-pilgan-{{ $key + 1 }}"
-                                                                                cols="30" rows="10" class="form-control jawaban-pilgan">
-                                                      {{ $value['jawaban'] }}
-                                                    </textarea>
-                                                                            <h5 class="mt-2">Media Jawaban (opsional)
-                                                                            </h5>
-                                                                            <input type="file"
-                                                                                name="jawaban[pilgan][{{ $value['id'] }}][media]"
-                                                                                id="media-jawaban-{{ $key + 1 }}"
-                                                                                class="form-control">
-                                                                            <small class="form-text text-muted">File :
-                                                                                MP3/MP4/3GP/AVI</small>
-                                                                        </div>
-                                                                    @endforeach
-                                                                </div>
-                                                                <div class="col-lg-3 order-lg-2 ordder-sm-1">
-                                                                    <div class="form-group">
-                                                                        <label for="jawaban-benar">Jawaban Benar</label>
-                                                                        <select name="jawaban[benar]" id="jawaban-benar"
-                                                                            class="form-control">
-                                                                            @foreach ($soal['soal_jawaban'] as $key => $value)
-                                                                                <option value="{{ $value['id'] }}"
-                                                                                    {{ $value['status'] == 1 ? 'selected' : '' }}>
-                                                                                    Pilihan {{ $key + 1 }}</option>
-                                                                            @endforeach
-                                                                        </select>
+                                                @if ($value->jenis == 'essai')
+                                                <div class="form-group" id="form-essai">
+                                                    <label for="form-jawaban">Jawaban Essai</label>
+                                                    <input type="text" name="jawaban[essai]" value="{{ $value->soal_jawaban[0]->jawaban }}"
+                                                        class="form-control" id="form-jawaban"
+                                                        placeholder="Masukkan jawaban essai (huruf kecil)">
+                                                </div>
+                                            @elseif($value->jenis == 'pilihan_ganda')
+                                                <div id="form-pilgan">
+                                                    <div class="form-group">
+                                                        <label for="">Jawaban Pilihan Ganda</label>
+                                                        <div class="row mt-1">
+                                                            <div class="col-lg-9 order-lg-1 order-sm-2" id="list-pg">
+                                                                @foreach ($value->soal_jawaban as $key => $jawaban)
+                                                                    <div class="mb-4" id="jawaban-{{ $key + 1 }}">
+                                                                        <h4><b>Pilihan {{ $key + 1 }}</b></h4>
+                                                                        <textarea name="jawaban[pilgan][{{ $jawaban->id }}][jawaban]" id="jawaban-pilgan-{{ $key + 1 }}"
+                                                                            cols="30" rows="10" class="form-control jawaban-pilgan">
+                                                                            {{ $jawaban->jawaban }}
+                                                                        </textarea>
+                                                                        <h5 class="mt-2">Media Jawaban (opsional)</h5>
+                                                                        <input type="file" name="jawaban[pilgan][{{ $jawaban->id }}][media]"
+                                                                            id="media-jawaban-{{ $key + 1 }}" class="form-control">
+                                                                        <small class="form-text text-muted">File : MP3/MP4/3GP/AVI</small>
                                                                     </div>
+                                                                @endforeach
+                                                            </div>
+                                                            <div class="col-lg-3 order-lg-2 order-sm-1">
+                                                                <div class="form-group">
+                                                                    <label for="jawaban-benar">Jawaban Benar</label>
+                                                                    <select name="jawaban[benar]" id="jawaban-benar" class="form-control">
+                                                                        @foreach ($value->soal_jawaban as $key => $jawaban)
+                                                                            <option value="{{ $jawaban->id }}"
+                                                                                {{ $jawaban['status'] == 1 ? 'selected' : '' }}>
+                                                                                Pilihan {{ $key + 1 }}</option>
+                                                                        @endforeach
+                                                                    </select>
                                                                 </div>
                                                             </div>
                                                         </div>
                                                     </div>
-                                                @endif
+                                                </div>
+                                            @endif
 
                                             </div>
 
@@ -581,9 +569,19 @@ foreach ($data as $value) {
                         .catch(error => {
                             console.error(error);
                         });
+
+                    // Inisialisasi CKEditor pada setiap jawaban edit data
+                    @foreach ($value->soal_jawaban as $key => $jawaban)
+                        ClassicEditor
+                            .create(document.querySelector('#jawaban-pilgan-{{ $key + 1 }}'))
+                            .catch(error => {
+                                console.error(error);
+                            });
+                    @endforeach
                 @endforeach
             });
         </script>
+
         <script>
             $(document).ready(function() {
                 $('#jenis').on('change', function() {
@@ -620,11 +618,9 @@ foreach ($data as $value) {
               <small class="form-text text-muted">File : MP3/MP4/3GP/AVI</small>
             </div>`;
 
-
                     option += `<option value="${id}">${pilihan}</option>`;
                 }
                 $('#list-pg').html(list);
-
 
                 $('#list-pg .jawaban-pilgan:not(.initialized)').each(function() {
                     $(this).addClass('initialized');
@@ -639,8 +635,6 @@ foreach ($data as $value) {
                             console.error(error);
                         });
                 });
-
-
 
                 $('#jawaban-benar').html(option);
             });

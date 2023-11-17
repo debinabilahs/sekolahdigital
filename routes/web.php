@@ -109,7 +109,7 @@ Route::middleware(['auth'])->group(function () {
     // soal
     Route::get('/soal', [SoalController::class, 'soal']);
     Route::post('/prosessoal', [SoalController::class, 'prosessoal']);
-    Route::post('/updatesoal', [SoalController::class, 'updatesoal'])->name('editsoal');
+    Route::post('/updatesoal', [SoalController::class, 'updatesoal']);
     Route::get('/lihatsoal/{id}', [SoalController::class, 'lihatsoal']);
     Route::get('/hapussoal/{id}', [SoalController::class, 'hapussoal']);
 

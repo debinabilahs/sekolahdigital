@@ -15,6 +15,6 @@ class SoalJawaban extends Model
     ];
 
     public function soal() {
-        return $this->belongsTo(Soal::class);
+        return $this->belongsTo(Soal::class, 'soal_id');
     }
 }
