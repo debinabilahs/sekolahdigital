@@ -121,45 +121,45 @@ foreach ($data as $value) {
                                     <div class="card-header">
                                         <h4 class="card-title">Detail Soal</h4>
                                     </div>
-
                                     <div class="card-body">
                                         <div class="row">
-                                            <div class="col-lg-3 col-md-6 col-sm-12">
-                                                <div class="form-group">
-                                                    <label for="id_kelas">Kelas</label>
-                                                    <select class="form-control" id="id_kelas" name="id_kelas">
-                                                        <option value="">Pilih Nama kelas</option>
-                                                        @foreach ($kelas as $items)
-                                                            <option value="{{ $items->id }}">{{ $items->nama_kelas }}
-                                                            </option>
-                                                        @endforeach
-                                                    </select>
-                                                </div>
-                                            </div>
-                                            <div class="col-lg-3 col-md-6 col-sm-12">
-                                                <div class="form-group">
-                                                    <label for="id_mapel">Mata Pelajaran</label>
-                                                    <select class="form-control" id="id_mapel" name="id_mapel">
-                                                        <option value="">Pilih Nama Mapel</option>
-                                                        @foreach ($mapel as $items)
-                                                            <option value="{{ $items->id }}">{{ $items->nama_mapel }}
-                                                            </option>
-                                                        @endforeach
-                                                    </select>
-                                                </div>
-                                            </div>
                                             <div class="col-lg-3 col-md-6 col-sm-12">
                                                 <div class="form-group">
                                                     <label for="paket_soal_id">Paket Soal</label>
                                                     <select class="form-control" id="paket_soal_id" name="paket_soal_id">
                                                         <option value="">Pilih Kode Paket</option>
                                                         @foreach ($paketsoal as $items)
-                                                            <option value="{{ $items->id }}">{{ $items->kode_paket }}
+                                                            <option value="{{ $items->id }}" data-mapelkelas="{{ json_encode(['mapel' => $items->mapel, 'kelas' => $items->kelas]) }}">{{ $items->kode_paket }}
                                                             </option>
                                                         @endforeach
                                                     </select>
                                                 </div>
                                             </div>
+
+                                            <div class="col-lg-3 col-md-6 col-sm-12">
+                                                <div class="form-group">
+                                                    <label for="id_mapel">Mata Pelajaran</label>
+                                                    <select class="form-control" id="id_mapel" name="id_mapel">
+                                                        <option value="">Pilih Mata Pelajaran</option>
+                                                            @foreach ($paketsoal as $items)
+                                                                <option value="{{ $items->mapel->id }}" data-paket="{{ $items->paket_soal_id}}">{{ $items->mapel->nama_mapel }}</option>                                                            
+                                                            @endforeach                                                                        
+                                                    </select>
+                                                </div>
+                                            </div>
+                                            
+                                            <div class="col-lg-3 col-md-6 col-sm-12">
+                                                <div class="form-group">
+                                                    <label for="id_kelas">Kelas</label>
+                                                    <select class="form-control" id="id_kelas" name="id_kelas">
+                                                        <option value="">Pilih Kelas</option>
+                                                            @foreach ($paketsoal as $items)
+                                                                <option value="{{ $items->kelas->id }}" data-paket="{{ $items->paket_soal_id}}">{{ $items->kelas->nama_kelas }}</option>
+                                                            @endforeach                                                        
+                                                    </select>
+                                                </div>
+                                            </div>
+                                            
                                             <div class="col-lg-3 col-md-6 col-sm-12">
                                                 <div class="form-group">
                                                     <label for="form-jenis">Jenis Soal</label>
@@ -387,8 +387,8 @@ foreach ($data as $value) {
                                                         <div class="form-group">
                                                             <input type="hidden" class="form-control" id="id"
                                                                 name="id" value="{{ $value->id }}">
-                                                            <label for="form-jenis">Mapel</label>
-                                                            <select class="form-control" id="jenis" name="id_mapel">
+                                                            <label for="form-control">Mapel</label>
+                                                            <select class="form-control" id="id_mapel" name="id_mapel">
                                                                 <option value="{{ $value->id_mapel }}">
                                                                     {{ $value->mapel->nama_mapel }}
                                                                 </option>
@@ -564,15 +564,7 @@ foreach ($data as $value) {
                 toastr.success("{{ Session::get('success') }}")
             @endif
         </script>
-        {{-- @if ($value->jenis == 'essai')
-            <!-- Tampilkan jawaban essai -->
-            {{ $value->soal_jawaban->first()->jawaban }}
-        @elseif ($value->jenis == 'pilihan_ganda')
-            <!-- Tampilkan jawaban pilihan ganda -->
-            @foreach ($value->soal_jawaban as $jawaban)
-                {!! $jawaban->jawaban !!}
-            @endforeach
-        @endif --}}
+
         <script>
             $(document).ready(function() {
                 // Inisialisasi CKEditor pada modal tambah data
@@ -606,7 +598,31 @@ foreach ($data as $value) {
                 });
             });
         </script>
+<script>
+    $(document).ready(function () {
+        // Ketika dropdown "Kode Paket" berubah
+        $("#paket_soal_id").change(function () {
+            // Ambil nilai yang dipilih
+            var selectedPaketId = $(this).val();
 
+            // Cari data terkait dengan paket yang dipilih
+            var selectedPaket = $(this).find(':selected').data('mapelkelas');
+
+            // Isi dropdown "Mata Pelajaran"
+            $("#id_mapel").empty(); // Hapus opsi yang sudah ada
+            $.each(selectedPaket.mapel, function (index, mapel) {
+                $("#id_mapel").append('<option value="' + mapel.id + '">' + mapel.nama_mapel + '</option>');
+            });
+
+            // Isi dropdown "Kelas"
+            $("#id_kelas").empty(); // Hapus opsi yang sudah ada
+            $.each(selectedPaket.kelas, function (index, kelas) {
+                $("#id_kelas").append('<option value="' + kelas.id + '">' + kelas.nama_kelas + '</option>');
+            });
+        });
+    });
+</script>
+        
         <script>
             $(document).ready(function() {
                 $('#jenis').on('change', function() {
@@ -664,6 +680,7 @@ foreach ($data as $value) {
                 $('#jawaban-benar').html(option);
             });
         </script>
+        
     </div>
     </div>
 

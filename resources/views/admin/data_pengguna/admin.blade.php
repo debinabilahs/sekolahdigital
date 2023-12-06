@@ -260,7 +260,7 @@
                                     <div class="row mb-3">
                                         <label for="inputTime" class="col-sm-2 col-form-label">No Telp</label>
                                         <div class="col-sm-10">
-                                            <input type="number" name="no_telp" value="{{ $value->no_telp }}"
+                                            <input type="text" name="no_telp" value="{{ $value->no_telp }}"
                                                 class="form-control">
                                         </div>
                                     </div>

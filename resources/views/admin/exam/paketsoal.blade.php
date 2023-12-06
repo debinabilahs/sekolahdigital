@@ -115,22 +115,22 @@
                                     </div>
 
                                     <div class="form-group">
-                                        <label for="id_mapel">Nama Mapel</label>
-                                        <select class="form-control" id="id_mapel" name="id_mapel">
-                                            <option value="">Pilih Nama Mapel</option>
-                                            @foreach ($mapel as $items)
-                                                <option value="{{ $items->id }}">{{ $items->nama_mapel }}
+                                        <label for="id_kelas">Nama Kelas</label>
+                                        <select class="form-control" id="id_kelas" name="id_kelas">
+                                            <option value="">Pilih Nama kelas</option>
+                                            @foreach ($kelas as $items)
+                                                <option value="{{ $items->id }}">{{ $items->nama_kelas }}
                                                 </option>
                                             @endforeach
                                         </select>
                                     </div>
 
                                     <div class="form-group">
-                                        <label for="id_kelas">Nama Kelas</label>
-                                        <select class="form-control" id="id_kelas" name="id_kelas">
-                                            <option value="">Pilih Nama kelas</option>
-                                            @foreach ($kelas as $items)
-                                                <option value="{{ $items->id }}">{{ $items->nama_kelas }}
+                                        <label for="id_mapel">Nama Mapel</label>
+                                        <select class="form-control" id="id_mapel" name="id_mapel">
+                                            <option value="" data-kelas="">Pilih Nama Mapel</option>
+                                            @foreach ($mapel as $items)
+                                                <option value="{{ $items->id }}" data-kelas="{{ $items->id_kelas}}">{{ $items->nama_mapel }}
                                                 </option>
                                             @endforeach
                                         </select>
@@ -340,8 +340,26 @@
             crossorigin="anonymous" referrerpolicy="no-referrer" />
         <Script>
             @if (Session::has('success'))
-                toastr.success("{{ Session::get('success') }}")
+                toastr.success("{{ Session::get('success') }}");
             @endif
+        </script>
+        <script>
+            $(document).ready(function () {
+                // Ketika dropdown "Kelas" berubah
+                $("#id_kelas").change(function () {
+                    // Ambil nilai yang dipilih
+                    var selectedKelas = $(this).val();
+
+                    // Sembunyikan semua opsi pada dropdown "Mata Pelajaran"
+                    $("#id_mapel option").hide();
+
+                    // Tampilkan hanya opsi yang sesuai dengan kelas yang dipilih
+                    $("#id_mapel option[data-kelas='" + selectedKelas + "']").show();
+                    
+                    // Pilih opsi pertama
+                    $("#id_mapel").val($("#id_mapel option[data-kelas='" + selectedKelas + "']:first").val());
+                });
+            });
         </script>
     </div>
 @endsection

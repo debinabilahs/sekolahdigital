@@ -4,42 +4,46 @@ namespace App\Http\Controllers;
 
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
 
 class UserController extends Controller
 {
     public function user()
     {
         $data = User::orderBy('id', 'ASC')->paginate(10);
-        return view('admin/user/user', compact('data'));
+        $user = User::all();
+        return view('admin.user.user', ['data' => $data, 'user' => $user]);
     }
+
     public function prosesuser(Request $request)
     {
         $request->validate([
             'username' => 'required',
-            'nama_lengkap' => 'required',
+            'name' => 'required',
             'email' => 'required',
             'no_hp' => 'required',
             'status' => 'required',
             'level' => 'required',
             'blokir' => 'required',
-            'password' => 'required',
+            'password' => 'required|min:8|regex:/^(?=.*[A-Za-z])(?=.*\d).+$/',
         ]);
 
-        $user = User::create([
+        // Hash password sebelum menyimpan ke dalam database
+        $hashedPassword = Hash::make($request->password);
 
+        $user = User::create([
             'username' => $request->username,
-            'nama_lengkap' => $request->nama_lengkap,
+            'name' => $request->name,
             'email' => $request->email,
             'no_hp' => $request->no_hp,
             'status' => $request->status,
             'level' => $request->level,
             'blokir' => $request->blokir,
-            'password' => $request->password,
-
+            'password' => $hashedPassword,
         ]);
 
         if ($user) {
-            return redirect('user')->with('success', 'User Berhasil Di Buat');
+            return redirect('user')->with('success', 'User Berhasil Dibuat');
         }
     }
 
@@ -47,30 +51,33 @@ class UserController extends Controller
     {
         $request->validate([
             'username' => 'required',
-            'nama_lengkap' => 'required',
+            'name' => 'required',
             'email' => 'required',
             'no_hp' => 'required',
             'status' => 'required',
             'level' => 'required',
             'blokir' => 'required',
-            'password' => 'required',
         ]);
+
+        // Hash password hanya jika ada input password baru
+        $hashedPassword = $request->filled('password') ? Hash::make($request->password) : null;
 
         $user = User::where('id', $request->id)->update([
             'username' => $request->username,
-            'nama_lengkap' => $request->nama_lengkap,
+            'name' => $request->name,
             'email' => $request->email,
             'no_hp' => $request->no_hp,
             'status' => $request->status,
             'level' => $request->level,
             'blokir' => $request->blokir,
-            'password' => $request->password,
+            'password' => $hashedPassword,
         ]);
 
         if ($user) {
             return redirect('user')->with('success', 'User Berhasil Di Update');
         }
     }
+
     public function hapususer(Request $request)
     {
         $del = User::where('id', $request->id)->delete();

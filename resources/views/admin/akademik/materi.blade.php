@@ -93,7 +93,7 @@
     <!-- Modal -->
     {{-- Tambah materi --}}
     <div class="modal fade" id="modalmateri" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <div class="modal-dialog ">
+        <div class="modal-dialog modal-lg">
             <div class="modal-content">
                 <div class="modal-header">
                     <h1 class="modal-title fs-5" id="exampleModalLabel">Form Input Materi </h1>
@@ -281,7 +281,7 @@
   ?>
     <div class="modal fade" id="editModal{{ $value->id }}" tabindex="-1" aria-labelledby="exampleModalLabel"
         aria-hidden="true">
-        <div class="modal-dialog ">
+        <div class="modal-dialog modal-lg">
             <div class="modal-content">
                 <div class="modal-header">
                     <h1 class="modal-title fs-5" id="exampleModalLabel">Edit materi</h1>
@@ -397,7 +397,7 @@
                 toastr.success("{{ Session::get('success') }}")
             @endif
         </script>
-        {{-- <script>
+        <script>
             ClassicEditor
                 .create( document.querySelector( '#isi' ),                
                 {
@@ -412,6 +412,6 @@
                 .catch( error => {
                     console.error( error );
                 } );
-        </script> --}}
+        </script>
     </div>
 @endsection

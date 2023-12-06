@@ -10,6 +10,7 @@ class UserControllerAPI extends Controller
     public function index()
     {
         $user = User::orderBy('id', 'ASC')->paginate(10);
+
         if ($user) {
             return response()->json(['user' => $user]);
         } else {

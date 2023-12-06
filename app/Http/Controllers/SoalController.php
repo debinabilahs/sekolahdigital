@@ -134,4 +134,13 @@ class SoalController extends Controller
         return view('admin.exam.soal', compact('soal', 'mapel', 'kelas', 'paketsoal'));
     }
 
+    public function getSubjectsAndClasses($paketSoalId)
+    {
+        
+        $subjects = Mapel::where('paket_soal_id', $paketSoalId)->get();
+        $classes = Kelas::where('paket_soal_id', $paketSoalId)->get();
+
+        return response()->json(['subjects' => $subjects, 'classes' => $classes]);
+    }
+
 }
