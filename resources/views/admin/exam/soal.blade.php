@@ -167,7 +167,7 @@ foreach ($data as $value) {
                                                     </select>
                                                 </div>
                                             </div>
-                                            {{-- jQuery kelas dan mapel terisi otomatis --}}
+                                            {{-- jQuery untuk mengambil data secara otomatis kelas dan mapel melalui kode paket --}}
                                             <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
                                             <script>
                                                 $(document).ready(function() {
@@ -183,7 +183,7 @@ foreach ($data as $value) {
                                             <div class="col-lg-3 col-md-6 col-sm-12">
                                                 <div class="form-group">
                                                     <label for="form-jenis">Jenis Soal</label>
-                                                    <select name="jenis" id="jenis" class="form-control">
+                                                    <select name="jenis" id="jenis" class="form-control" required>
                                                         <option value="">Pilih Jenis Soal</option>
                                                         <option value="pilihan_ganda">Pilihan Ganda</option>
                                                         <option value="essai">Essai</option>
@@ -676,7 +676,7 @@ foreach ($data as $value) {
                 $('#jawaban-benar').html(option);
             });
         </script>
-    </div>
+        v>
     </div>
 
 

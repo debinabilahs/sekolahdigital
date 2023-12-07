@@ -125,10 +125,10 @@
                                             <button class="btn btn-primary w-100" type="submit" name="login"
                                                 value="login">Login</button>
                                         </div>
-                                        <div class="col-12">
+                                        {{-- <div class="col-12">
                                             <p class="small mb-0">Don't have account? <a
                                                     href="">Create an account</a></p>
-                                        </div>
+                                        </div> --}}
                                     </form>
 
                                 </div>

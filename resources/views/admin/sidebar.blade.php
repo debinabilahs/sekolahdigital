@@ -297,7 +297,7 @@
                     </a>
                 </li>
                 <li>
-                    <a href="/bahan">
+                    <a href="/materi">
                         <i class="bi bi-circle"></i><span>Bahan Mata Pelajaran</span>
                     </a>
                 </li>
@@ -321,7 +321,12 @@
                     </a>
                 </li>
                 <li>
-                    <a href="#">
+                    <a href="/paketsoal">
+                        <i class="bi bi-circle"></i><span>Paket Soal</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="/soal">
                         <i class="bi bi-circle"></i><span>Soal Exam</span>
                     </a>
                 </li>

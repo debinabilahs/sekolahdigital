@@ -56,7 +56,7 @@
                                 <tr>
                                     <td scope="row">{{ $index + $data->firstItem() }}</td>
                                     <td>{{ $value->username }} </td>
-                                    <td>{{ $value->nama_lengkap }} </td>
+                                    <td>{{ $value->name }} </td>
                                     <td>{{ $value->email }} </td>
                                     <td>{{ $value->no_hp }} </td>
                                     <td>{{ $value->status }} </td>
@@ -113,8 +113,8 @@
                                     </div>
                                     <div class="col-md-12">
                                         <label for="validationDefault01" class="form-label">Nama Lengkap</label>
-                                        <input type="text" name="nama_lengkap" class="form-control"
-                                            id="validationDefault01" hint="nama_lengkap" placeholder="Masukkan Nama Lengkap" required>
+                                        <input type="text" name="name" class="form-control"
+                                            id="validationDefault01" hint="name" placeholder="Masukkan Nama Lengkap" required>
                                     </div>
                                     <div class="col-md-12">
                                         <label for="validationDefault01" class="form-label"> Email</label>
@@ -123,7 +123,7 @@
                                     </div>
                                     <div class="col-md-12">
                                         <label for="validationDefault01" class="form-label"> No Hp</label>
-                                        <input type="number" name="no_hp" class="form-control"
+                                        <input type="text" name="no_hp" class="form-control"
                                             id="validationDefault01" hint="no_hp" placeholder="Masukkan No HP" required>
                                     </div>
                                     <div class="col-md-12">
@@ -135,8 +135,9 @@
                                         <label for="validationDefault01" class="form-label"> Level</label>
                                         <select type="text" name="level" class="form-control">
                                             <option value="">Pilih Level</option>
-                                            <option value="admin">admin</option>
-                                            <option value="user">user</option>
+                                            <option value="1">admin</option>
+                                            <option value="2">guru</option>
+                                            <option value="3">siswa</option>
                                         </select>
                                     </div>
 
@@ -183,6 +184,8 @@
             </div>
         </div>
     </div>
+
+    
     <?php 
   $no=1;
   foreach ($data as  $value) {
@@ -217,7 +220,7 @@
                                     </div>
                                     <div class="col-md-12">
                                         <label for="validationDefault01" class="form-label">Nama Lengkap</label>
-                                        <input type="text" name="nama_lengkap" value="{{ $value->nama_lengkap }}"
+                                        <input type="text" name="name" value="{{ $value->name }}"
                                             class="form-control" id="validationDefault01" hint="Nama lengkap" required>
                                     </div>
                                     <div class="col-md-12">
@@ -227,7 +230,7 @@
                                     </div>
                                     <div class="col-md-12">
                                         <label for="validationDefault01" class="form-label"> No Hp</label>
-                                        <input type="number" name="no_hp" value="{{ $value->no_hp }}"
+                                        <input type="text" name="no_hp" value="{{ $value->no_hp }}"
                                             class="form-control" id="validationDefault01" hint="no_hp" required>
                                     </div>
                                     <div class="col-md-12">
@@ -237,26 +240,29 @@
                                     </div>
                                     <div class="col-md-12">
                                         <label for="validationDefault01" class="form-label"> Level</label>
-                                        <select type="text" name="level" class="form-control">
-                                            <option value="">Pilih Level</option>
-                                            <option value="admin">admin</option>
-                                            <option value="user">user</option>
+
+                                        <select class="form-control" id="level" name="level">
+                                            <option value="{{ $value->id_user }}">
+                                                {{ $value->level }}
+                                            </option>
+                                            @foreach ($user as $items)
+                                                <option value="{{ $items->id }}">{{ $items->level }}</option>
+                                            @endforeach
                                         </select>
+                                        
                                     </div>
 
                                     <fieldset class="row mb-3">
                                         <legend class="col-form-label col-sm-2 pt-0">Blokir</legend>
                                         <div class="col-sm-10">
                                             <div class="form-check">
-                                                <input class="form-check-input" type="radio" name="blokir"
-                                                    id="gridRadios1" value="Y" checked>
-                                                <label class="form-check-label" for="gridRadios1">
+                                                <input class="form-check-input" type="radio" name="blokir" id="gridRadios1" value="Y" {{ $value->blokir === 'Y' ? 'checked' : '' }}>
+                                                <label class="form-check-label" for="gridRadios2">
                                                     Y
                                                 </label>
                                             </div>
                                             <div class="form-check">
-                                                <input class="form-check-input" type="radio" name="blokir"
-                                                    id="gridRadios2" value="N">
+                                                <input class="form-check-input" type="radio" name="blokir" id="gridRadios2" value="N" {{ $value->blokir === 'N' ? 'checked' : '' }}>
                                                 <label class="form-check-label" for="gridRadios2">
                                                     N
                                                 </label>
@@ -264,11 +270,14 @@
                                         </div>
                                     </fieldset>
                                     <div class="col-md-12">
-                                        <label for="validationDefault01" class="form-label">Password</label>
-                                        <input type="password" name="password" value="{{ $value->password }}"
-                                            class="form-control" id="validationDefault01" hint="password" required>
+                                        
+                                            <label for="validationDefault01" class="form-label">Password</label>
+                                            <input type="text" name="password" value="" class="form-control" id="validationDefault01" placeholder="********" readonly>
+                                        
+                                        
                                     </div>
 
+                                    
 
                                     <!-- End Browser Default Validation -->
 

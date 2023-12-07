@@ -77,6 +77,12 @@ Route::middleware(['auth'])->group(function () {
     Route::post('/updatejadwal', [JadwalController::class, 'updatejadwal']);
     Route::get('/hapusjadwal/{id}', [JadwalController::class, 'hapusjadwal']);
 
+    //mapel
+    Route::get('/mapel', [MapelController::class, 'mapel']);
+    Route::post('/prosesMapel', [MapelController::class, 'prosesMapel']);
+    Route::post('/updateMapel', [MapelController::class, 'updateMapel']);
+    Route::get('/hapusMapel/{id}', [MapelController::class, 'hapusMapel']);
+    
     //bahan materi
     Route::get('/materi', [MateriController::class, 'materi']);
     Route::post('/upload', [MateriController::class, 'upload'])->name('ckeditor.upload');
@@ -112,6 +118,8 @@ Route::middleware(['auth'])->group(function () {
     Route::post('/updatesoal', [SoalController::class, 'updatesoal']);
     Route::get('/lihatsoal/{id}', [SoalController::class, 'lihatsoal']);
     Route::get('/hapussoal/{id}', [SoalController::class, 'hapussoal']);
+    Route::get('/get-subjects-and-classes/{paketSoal}', 'SoalController@getSubjectsAndClasses');
+
 
     //Paket soal
     Route::get('/paketsoal', [PaketController::class, 'paket']);
@@ -160,12 +168,6 @@ Route::middleware(['auth'])->group(function () {
         Route::post('/updateAgama', [AgamaController::class, 'updateAgama']);
         Route::post('/importagama', [AgamaController::class, 'importAgama']);
         Route::get('/hapusAgama/{id}', [AgamaController::class, 'hapusAgama']);
-
-        //mapel
-        Route::get('/mapel', [MapelController::class, 'mapel']);
-        Route::post('/prosesMapel', [MapelController::class, 'prosesMapel']);
-        Route::post('/updateMapel', [MapelController::class, 'updateMapel']);
-        Route::get('/hapusMapel/{id}', [MapelController::class, 'hapusMapel']);
 
         //ruang
         Route::get('/ruang', [RuangController::class, 'ruang']);
