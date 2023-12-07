@@ -11,15 +11,13 @@ use Illuminate\Http\Request;
 
 class SoalController extends Controller
 {
-    public function soal()
+    public function soal(Request $request)
     {
-        
+
         $data = Soal::with(['kelas', 'mapel', 'paketsoal', 'soal_jawaban'])->orderBy('id', 'ASC')->paginate(10);
         $mapel = Mapel::all();
         $kelas = Kelas::all();
         $paketsoal = PaketSoal::all();
-        
-
         return view('admin.exam.soal', compact('data', 'mapel', 'kelas', 'paketsoal'));
     }
 
@@ -95,13 +93,12 @@ class SoalController extends Controller
             'nama' => $request->nama,
             'id_mapel' => $request->id_mapel,
             'id_kelas' => $request->id_kelas,
-            'paket_soal_id' => $request->paket_soal_id, 
+            'paket_soal_id' => $request->paket_soal_id,
             'jenis' => $request->jenis,
             'soal' => $request->soal,
 
         ]);
 
-        
         if ($soal) {
             return redirect('soal')->with('success', 'Soal Berhasil Di Update');
         }

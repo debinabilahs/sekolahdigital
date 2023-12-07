@@ -126,40 +126,60 @@ foreach ($data as $value) {
                                         <div class="row">
                                             <div class="col-lg-3 col-md-6 col-sm-12">
                                                 <div class="form-group">
-                                                    <label for="id_kelas">Kelas</label>
-                                                    <select class="form-control" id="id_kelas" name="id_kelas">
-                                                        <option value="">Pilih Nama kelas</option>
-                                                        @foreach ($kelas as $items)
-                                                            <option value="{{ $items->id }}">{{ $items->nama_kelas }}
+                                                    <label for="paket_soal_id">Paket Soal</label>
+                                                    <select class="form-control" id="paket_soal_id" name="paket_soal_id">
+                                                        <option value="">Pilih Kode Paket</option>
+                                                        @foreach ($paketsoal as $paket)
+                                                            <option value="{{ $paket->id }}"
+                                                                data-kelas="{{ $paket->kelas->id }}"
+                                                                data-mapel="{{ $paket->mapel->id }}">
+                                                                {{ $paket->kode_paket }}
                                                             </option>
                                                         @endforeach
                                                     </select>
                                                 </div>
                                             </div>
+
+                                            <div class="col-lg-3 col-md-6 col-sm-12">
+                                                <div class="form-group">
+                                                    <label for="id_kelas">Kelas</label>
+                                                    <select class="form-control" id="id_kelas" name="id_kelas">
+                                                        <option value="">Pilih Nama Kelas</option>
+                                                        @foreach ($kelas as $kelasItem)
+                                                            <option value="{{ $kelasItem->id }}">
+                                                                {{ $kelasItem->nama_kelas }}
+                                                            </option>
+                                                        @endforeach
+                                                    </select>
+                                                </div>
+                                            </div>
+
                                             <div class="col-lg-3 col-md-6 col-sm-12">
                                                 <div class="form-group">
                                                     <label for="id_mapel">Mata Pelajaran</label>
                                                     <select class="form-control" id="id_mapel" name="id_mapel">
                                                         <option value="">Pilih Nama Mapel</option>
-                                                        @foreach ($mapel as $items)
-                                                            <option value="{{ $items->id }}">{{ $items->nama_mapel }}
+                                                        @foreach ($mapel as $mapelItem)
+                                                            <option value="{{ $mapelItem->id }}">
+                                                                {{ $mapelItem->nama_mapel }}
                                                             </option>
                                                         @endforeach
                                                     </select>
                                                 </div>
                                             </div>
-                                            <div class="col-lg-3 col-md-6 col-sm-12">
-                                                <div class="form-group">
-                                                    <label for="paket_soal_id">Paket Soal</label>
-                                                    <select class="form-control" id="paket_soal_id" name="paket_soal_id">
-                                                        <option value="">Pilih Kode Paket</option>
-                                                        @foreach ($paketsoal as $items)
-                                                            <option value="{{ $items->id }}">{{ $items->kode_paket }}
-                                                            </option>
-                                                        @endforeach
-                                                    </select>
-                                                </div>
-                                            </div>
+                                            {{-- jQuery kelas dan mapel terisi otomatis --}}
+                                            <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+                                            <script>
+                                                $(document).ready(function() {
+                                                    $('#paket_soal_id').change(function() {
+                                                        var selectedKelasId = $(this).find(':selected').data('kelas');
+                                                        var selectedMapelId = $(this).find(':selected').data('mapel');
+
+                                                        $('#id_kelas').val(selectedKelasId);
+                                                        $('#id_mapel').val(selectedMapelId);
+                                                    });
+                                                });
+                                            </script>
                                             <div class="col-lg-3 col-md-6 col-sm-12">
                                                 <div class="form-group">
                                                     <label for="form-jenis">Jenis Soal</label>
@@ -564,15 +584,7 @@ foreach ($data as $value) {
                 toastr.success("{{ Session::get('success') }}")
             @endif
         </script>
-        {{-- @if ($value->jenis == 'essai')
-            <!-- Tampilkan jawaban essai -->
-            {{ $value->soal_jawaban->first()->jawaban }}
-        @elseif ($value->jenis == 'pilihan_ganda')
-            <!-- Tampilkan jawaban pilihan ganda -->
-            @foreach ($value->soal_jawaban as $jawaban)
-                {!! $jawaban->jawaban !!}
-            @endforeach
-        @endif --}}
+
         <script>
             $(document).ready(function() {
                 // Inisialisasi CKEditor pada modal tambah data
