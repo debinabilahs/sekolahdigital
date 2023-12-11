@@ -6,12 +6,11 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"
         integrity="sha512-VEd+nq25CkR676O+pLBnDW09R7VQX9Mdiij052gVCp5yVH3jGtH70Ho/UUv4mJDsEdTvqRCFZg0NKGiojGnUCw=="
         crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-        <script src="https://cdn.ckeditor.com/ckeditor5/40.0.0/classic/ckeditor.js"></script>
+    <script src="https://cdn.ckeditor.com/ckeditor5/40.0.0/classic/ckeditor.js"></script>
     <style type="text/css">
-            .ck-editor__editable_inline
-            {
-                height: 250px;
-            }
+        .ck-editor__editable_inline {
+            height: 250px;
+        }
     </style>
     <section class="section">
         <div class="row">
@@ -51,7 +50,7 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                <?php 
+                                <?php
                   $no=1;
                   foreach ($data as  $value) {
                     # code...
@@ -63,7 +62,8 @@
                                     <td>{{ $value->kelas->nama_kelas }} </td>
 
                                     <td>
-                                        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#detailmateriModal{{ $value->id }}">
+                                        <button type="button" class="btn btn-primary" data-bs-toggle="modal"
+                                            data-bs-target="#detailmateriModal{{ $value->id }}">
                                             <i class="bi bi-eye"></i>
                                         </button>
                                         <button type="button" class="btn btn-info" data-bs-toggle="modal"
@@ -143,8 +143,9 @@
 
                                     <div class="form-group">
                                         <label>Isi</label>
-                                        <textarea name="isi" id="isi" class="form-control border-input" placeholder="Masukkan isi/deskripsi" required></textarea>
-                                        
+                                        <textarea name="isi" id="isi" class="form-control border-input" placeholder="Masukkan isi/deskripsi"
+                                            required></textarea>
+
                                     </div>
 
                                     <div class="col-md-12">
@@ -165,22 +166,23 @@
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary rounded-pill px-4 " style="font-size: 0.75rem"
                         data-bs-dismiss="modal">Close</button>
-                    <button type="submit" name="simpan" value="simpan" class="btn btn-primary rounded-pill px-4 "
-                        style="font-size: 0.75rem">Simpan </button>
+                    <button type="submit" id="simpanBtn" name="simpan" value="simpan"
+                        class="btn btn-primary rounded-pill px-4 " style="font-size: 0.75rem">Simpan </button>
                 </div>
-                
+
                 </form>
             </div>
         </div>
     </div>
 
     <!-- Modal Detail materi -->
-    <?php 
+    <?php
   $no=1;
   foreach ($data as  $value) {
     # code...
   ?>
-    <div class="modal fade" id="detailmateriModal{{ $value->id }}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal fade" id="detailmateriModal{{ $value->id }}" tabindex="-1"
+        aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
@@ -205,26 +207,26 @@
                                                 <th scope="col">Nama materi</th>
                                                 <th scope="col">Mata Pelajaran</th>
                                                 <th scope="col">Kelas</th>
-                                                
+
                                             </tr>
                                         </thead>
                                         <tbody>
-                                            
+
                                             <tr>
                                                 <td>{{ $value->nama_materi }} </td>
                                                 <td>{{ $value->mapel->nama_mapel }} </td>
                                                 <td>{{ $value->kelas->nama_kelas }} </td>
-            
-                                        
+
+
                                             </tr>
-            
+
                                         </tbody>
                                     </table>
                                     <table class="table table-hover">
                                         <thead>
                                             <tr>
                                                 <th scope="col">Isi</th>
-                                                
+
                                             </tr>
                                         </thead>
                                         <tbody>
@@ -232,26 +234,26 @@
                                                 <td>
                                                     {!! $value->isi !!}
                                                 </td>
-                                                
+
                                             </tr>
-            
+
                                         </tbody>
                                     </table>
                                     <table class="table table-hover">
                                         <thead>
                                             <tr>
-                                                
+
                                                 <th scope="col">File</th>
                                             </tr>
                                         </thead>
                                         <tbody>
                                             <tr>
-                                                
+
                                                 <td>
                                                     {!! $value->file !!}
                                                 </td>
                                             </tr>
-            
+
                                         </tbody>
                                     </table>
                                     <!-- End Browser Default Validation -->
@@ -274,103 +276,99 @@
 
 
     {{-- Edit materi --}}
-    <?php 
-  $no=1;
-  foreach ($data as  $value) {
-    # code...
-  ?>
-    <div class="modal fade" id="editModal{{ $value->id }}" tabindex="-1" aria-labelledby="exampleModalLabel"
-        aria-hidden="true">
-        <div class="modal-dialog modal-lg">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h1 class="modal-title fs-5" id="exampleModalLabel">Edit materi</h1>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body">
-                    <div class="col-lg-12">
+    @foreach ($data as $value)
+        <div class="modal fade" id="editModal{{ $value->id }}" tabindex="-1" aria-labelledby="exampleModalLabel"
+            aria-hidden="true">
+            <div class="modal-dialog modal-lg">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h1 class="modal-title fs-5" id="exampleModalLabel">Edit materi</h1>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="col-lg-12">
 
 
-                        <div class="card">
-                            <div class="card-body">
-                                <h5 class="card-title"></h5>
+                            <div class="card">
+                                <div class="card-body">
+                                    <h5 class="card-title"></h5>
 
-                                <!-- Browser Default Validation -->
+                                    <!-- Browser Default Validation -->
 
-                                <form method="POST" action="/updatemateri" class="row g-3">
-                                    @csrf
-                                    <input type="hidden" name="id" value="{{ $value->id }}">
-
-
-                                    <div class="col-md-12">
-                                        <label for="validationDefault01" class="form-label">Nama Materi</label>
-                                        <input type="text" name="nama_materi" value="{{ $value->nama_materi }}"
-                                            class="form-control" id="nama_materi" hint="nama_materi" required>
-                                    </div>
-
-                                    <div class="form-group">
-                                        <input type="hidden" class="form-control" id="id" name="id"
-                                            value="{{ $value->id }}">
-                                        <label for="id_mapel">Nama Mapel</label>
-                                        <select class="form-control" id="id_mapel" name="id_mapel">
-                                            <option value="{{ $value->id_mapel }}">
-                                                {{ $value->mapel->nama_mapel }}
-                                            </option>
-                                            @foreach ($mapel as $items)
-                                                <option value="{{ $items->id }}">{{ $items->nama_mapel }}
-                                                </option>
-                                            @endforeach
-                                        </select>
-                                    </div>
-
-                                    <div class="form-group">
-                                        <input type="hidden" class="form-control" id="id" name="id"
-                                            value="{{ $value->id }}">
-                                        <label for="id_kelas">Nama Kelas</label>
-                                        <select class="form-control" id="id_kelas" name="id_kelas">
-                                            <option value="{{ $value->id_kelas }}">
-                                                {{ $value->kelas->nama_kelas }}
-                                            </option>
-                                            @foreach ($kelas as $items)
-                                                <option value="{{ $items->id }}">{{ $items->nama_kelas }}
-                                                </option>
-                                            @endforeach
-                                        </select>
-                                    </div>
-
-                                    <div class="form-group">
-                                        <label>Isi</label>
-                                        <textarea name="isi" id="edit_isi_{{ $value->id }}" class="form-control border-input" required>{{ $value->isi }}</textarea>
-                                        
-                                    </div>
-
-                                    <div class="col-md-12">
-                                        <label for="file">File</label>
-                                        <div class="col-sm-12">
-                                            <input type="file" class="form-control" id="file" name="file" value="{{ $value->file }}">
+                                    <form method="POST" action="/updatemateri" class="row g-3"
+                                        enctype="multipart/form-data">
+                                        @csrf
+                                        <input type="hidden" name="id" value="{{ $value->id }}">
+                                        <div class="col-md-12">
+                                            <label for="validationDefault01" class="form-label">Nama Materi</label>
+                                            <input type="text" name="nama_materi" value="{{ $value->nama_materi }}"
+                                                class="form-control" id="nama_materi" hint="nama_materi" required>
                                         </div>
-                                    </div>
+
+                                        <div class="form-group">
+                                            <input type="hidden" class="form-control" id="id" name="id"
+                                                value="{{ $value->id }}">
+                                            <label for="id_mapel">Nama Mapel</label>
+                                            <select class="form-control" id="id_mapel" name="id_mapel">
+                                                <option value="{{ $value->id_mapel }}">
+                                                    {{ $value->mapel->nama_mapel }}
+                                                </option>
+                                                @foreach ($mapel as $items)
+                                                    <option value="{{ $items->id }}">{{ $items->nama_mapel }}
+                                                    </option>
+                                                @endforeach
+                                            </select>
+                                        </div>
+
+                                        <div class="form-group">
+                                            <input type="hidden" class="form-control" id="id" name="id"
+                                                value="{{ $value->id }}">
+                                            <label for="id_kelas">Nama Kelas</label>
+                                            <select class="form-control" id="id_kelas" name="id_kelas">
+                                                <option value="{{ $value->id_kelas }}">
+                                                    {{ $value->kelas->nama_kelas }}
+                                                </option>
+                                                @foreach ($kelas as $items)
+                                                    <option value="{{ $items->id }}">{{ $items->nama_kelas }}
+                                                    </option>
+                                                @endforeach
+                                            </select>
+                                        </div>
+
+                                        <div class="form-group">
+                                            <label>Isi</label>
+                                            <textarea name="isi" id="edit_isi_{{ $value->id }}" class="form-control border-input" required>{{ $value->isi }}</textarea>
+
+                                        </div>
+
+                                        <div class="col-md-12">
+                                            <label for="file">File</label>
+                                            <div class="col-sm-12">
+                                                <input type="file" class="form-control" id="file" name="file"
+                                                    value="{{ $value->file }}">
+                                            </div>
+                                        </div>
 
 
-                                    <!-- End Browser Default Validation -->
+                                        <!-- End Browser Default Validation -->
+
+                                </div>
 
                             </div>
 
                         </div>
-
                     </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary rounded-pill px-4 " style="font-size: 0.75rem"
+                            data-bs-dismiss="modal">Close</button>
+                        <button type="submit" name="update" class="btn btn-primary rounded-pill px-4 "
+                            style="font-size: 0.75rem">Update</button>
+                    </div>
+                    </form>
                 </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary rounded-pill px-4 " style="font-size: 0.75rem"
-                        data-bs-dismiss="modal">Close</button>
-                    <button type="submit" name="update" class="btn btn-primary rounded-pill px-4 "
-                        style="font-size: 0.75rem">Update</button>
-                </div>
-                </form>
             </div>
         </div>
-    </div>
-    <?php } ?>
+    @endforeach
 
 
     <div class="modal fade" id="modal2" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -418,6 +416,14 @@
 
             });
         </script>
-    
+        {{-- js submit button tambah --}}
+        <script>
+            $(document).ready(function() {
+                $('#simpanBtn').click(function() {
+                    $('form').submit();
+                });
+            });
+        </script>
+
     </div>
 @endsection

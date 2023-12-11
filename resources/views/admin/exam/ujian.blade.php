@@ -59,14 +59,14 @@ foreach ($data as $value) {
                                 <tr>
                                     <td scope="row">{{ $no }}</td>
                                     <td>{{ $value->nama }} </td>
-                                    <td>{{ $value->paketsoal->kode_paket }} </td>                                    
+                                    <td>{{ $value->paketsoal->kode_paket }} </td>
                                     <td>{{ $value->kelas->nama_kelas }} </td>
                                     <td>{{ $value->waktu_mulai }} </td>
                                     <td>{{ $value->waktu_ujian }} </td>
                                     <td>{{ $value->token }} </td>
 
                                     <td>
-                                    
+
                                         <a href="/hapusujian/{{ $value->id }}" button type="button"
                                             class="btn btn-danger"
                                             onClick="return confirm('Yakin akan menghapus data ini!')"><i
@@ -119,10 +119,10 @@ foreach ($data as $value) {
 
                                     <div class="form-group">
                                         <label for="id_kelas" class="form-label">Kelas</label>
-                                        <select class="form-control select-kelas" id="id_kelas">
+                                        <select class="form-control select-kelas" name="id_kelas" id="id_kelas">
                                             <option value="" selected disabled>Pilih Nama kelas</option>
                                             @foreach ($kelas as $items)
-                                                <option value="{{ $items->id }}">{{ $items->nama_kelas}}
+                                                <option value="{{ $items->id }}">{{ $items->nama_kelas }}
                                                 </option>
                                             @endforeach
                                         </select>
@@ -130,7 +130,7 @@ foreach ($data as $value) {
 
                                     <div class="form-group">
                                         <label for="id_mapel" class="form-label">Mata Pelajaran</label>
-                                        <select class="form-control select-mapel" id="id_mapel">
+                                        <select class="form-control select-mapel" id="id_mapel" name="id_mapel">
                                             <option value="" selected disabled>Pilih Nama Pelajaran</option>
                                             @foreach ($mapel as $items)
                                                 <option value="{{ $items->id }}">{{ $items->nama_mapel }}
@@ -141,29 +141,28 @@ foreach ($data as $value) {
 
                                     <div class="form-group">
                                         <label for="paket_soal_id" class="form-label">Paket Soal</label>
-                                        <select class="form-control select-paket" id="paket_soal_id">
+                                        <select class="form-control select-paket" name="paket_soal_id" id="paket_soal_id">
                                             <option value="" selected disabled>Pilih Paket Soal</option>
                                             @foreach ($paketsoal as $paket)
                                                 <option value="{{ $paket->id }}">{{ $paket->kode_paket }}</option>
                                             @endforeach
                                         </select>
-                                    </div>         
+                                    </div>
 
                                     <div class="col-md-12">
                                         <label for="waktu_mulai" class="form-label">Waktu Mulai</label>
-                                        <input type="text" name="waktu_mulai" class="form-control flatpickr" id="waktu_mulai"
-                                            placeholder="Masukkan Waktu Mulai Ujian" required>
+                                        <input type="text" name="waktu_mulai" class="form-control flatpickr"
+                                            id="waktu_mulai" placeholder="Masukkan Waktu Mulai Ujian" required>
                                     </div>
-                                    
+
                                     <script>
-                                        $(document).ready(function () {
+                                        $(document).ready(function() {
                                             flatpickr('.flatpickr', {
                                                 enableTime: true,
                                                 dateFormat: 'Y-m-d H:i:s',
                                                 placeholder: 'Pilih waktu',
                                             });
                                         });
-
                                     </script>
 
                                     <div class="col-md-12">
@@ -171,7 +170,7 @@ foreach ($data as $value) {
                                         <input type="number" name="waktu_ujian" class="form-control" id="waktu_ujian"
                                             placeholder="Masukkan Waktu Ujian" required>
                                     </div>
-                                    
+
 
                                     <!-- End Browser Default Validation -->
 
@@ -184,8 +183,8 @@ foreach ($data as $value) {
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary rounded-pill px-4 " style="font-size: 0.75rem"
                         data-bs-dismiss="modal">Close</button>
-                    <button type="submit" name="simpan" value="simpan" class="btn btn-primary rounded-pill px-4 "
-                        style="font-size: 0.75rem">Simpan</button>
+                    <button type="submit" id="simpanBtn" name="simpan" value="simpan"
+                        class="btn btn-primary rounded-pill px-4 " style="font-size: 0.75rem">Simpan</button>
                 </div>
                 </form>
             </div>
@@ -219,7 +218,7 @@ foreach ($data as $value) {
         </script>
 
         <script>
-            $(document).ready(function () {
+            $(document).ready(function() {
                 // cari kelas (select2)
                 $('.select-kelas').select2({
                     theme: 'bootstrap-5',
@@ -241,35 +240,44 @@ foreach ($data as $value) {
             });
         </script>
 
-<script>
-    document.getElementById('tambah-ujian').addEventListener('submit', function(e) {
-        e.preventDefault();
-        var formData = new FormData(this);
+        <script>
+            document.getElementById('tambah-ujian').addEventListener('submit', function(e) {
+                e.preventDefault();
+                var formData = new FormData(this);
 
-        // Kirim formulir menggunakan fetch API
-        fetch(this.action, {
-            method: 'POST',
-            body: formData,
-            headers: {
-                'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').getAttribute('content')
-            }
-        })
-        .then(response => response.json())
-        .then(data => {
-            // Tindakan yang perlu dilakukan setelah berhasil
-            alert('Berhasil: ' + data.message);
-            document.querySelector('.select-mapel').value = '';
-            document.querySelector('.select-kelas').value = '';
-            document.querySelector('.select-paket').value = '';
-            this.reset();
-            // Tambahkan logika lainnya yang diperlukan
-        })
-        .catch(error => {
-            // Tindakan yang perlu dilakukan jika terjadi kesalahan
-            alert('Gagal: ' + error.message);
-        });
-    });
-</script>
+                // Kirim formulir menggunakan fetch API
+                fetch(this.action, {
+                        method: 'POST',
+                        body: formData,
+                        headers: {
+                            'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').getAttribute(
+                                'content')
+                        }
+                    })
+                    .then(response => response.json())
+                    .then(data => {
+                        // Tindakan yang perlu dilakukan setelah berhasil
+                        alert('Berhasil: ' + data.message);
+                        document.querySelector('.select-mapel').value = '';
+                        document.querySelector('.select-kelas').value = '';
+                        document.querySelector('.select-paket').value = '';
+                        this.reset();
+                        // Tambahkan logika lainnya yang diperlukan
+                    })
+                    .catch(error => {
+                        // Tindakan yang perlu dilakukan jika terjadi kesalahan
+                        alert('Gagal: ' + error.message);
+                    });
+            });
+        </script>
 
+        {{-- js submit button tambah --}}
+        <script>
+            $(document).ready(function() {
+                $('#simpanBtn').click(function() {
+                    $('form').submit();
+                });
+            });
+        </script>
     </div>
 @endsection

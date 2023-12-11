@@ -2,9 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Materi;
 use App\Models\Kelas;
 use App\Models\Mapel;
+use App\Models\Materi;
 use Illuminate\Http\Request;
 
 class MateriController extends Controller
@@ -20,6 +20,7 @@ class MateriController extends Controller
 
     public function prosesMateri(Request $request)
     {
+
         $request->validate([
 
             'nama_materi' => 'required',
@@ -44,14 +45,14 @@ class MateriController extends Controller
 
     public function updateMateri(Request $request)
     {
-        $request->validate([
+        // $request->validate([
 
-            'nama_materi' => 'required',
-            'id_mapel' => 'required',
-            'id_kelas' => 'required',
-            'isi' => 'required',
-            'file' => 'required',
-        ]);
+        //     'nama_materi' => 'required',
+        //     'id_mapel' => 'required',
+        //     'id_kelas' => 'required',
+        //     'isi' => 'required',
+        //     'file' => 'required',
+        // ]);
 
         $materi = Materi::where('id', $request->id)->update([
 
@@ -60,7 +61,6 @@ class MateriController extends Controller
             'id_kelas' => $request->id_kelas,
             'isi' => $request->isi,
             'file' => $request->file,
-
 
         ]);
 
@@ -97,7 +97,7 @@ class MateriController extends Controller
 
     public function upload(Request $request)
     {
-        if ($request->hasFile('upload')){
+        if ($request->hasFile('upload')) {
 
             $originName = $request->file('upload')->getClientOriginalName();
             $fileName = pathinfo($originName, PATHINFO_FILENAME);

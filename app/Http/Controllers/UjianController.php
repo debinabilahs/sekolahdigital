@@ -2,28 +2,29 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Ujian;
 use App\Models\Kelas;
 use App\Models\Mapel;
 use App\Models\PaketSoal;
-
+use App\Models\Ujian;
 use Illuminate\Http\Request;
+use Illuminate\Support\Str;
 
 class UjianController extends Controller
 {
     public function ujian(Request $request)
     {
 
-        $data = Ujian::with(['kelas', 'mapel', 'paketsoal', ])->orderBy('id', 'ASC')->paginate(10);
+        $data = Ujian::with(['kelas', 'mapel', 'paketsoal'])->orderBy('id', 'ASC')->paginate(10);
         $mapel = Mapel::all();
         $kelas = Kelas::all();
         $paketsoal = PaketSoal::all();
         return view('admin.exam.ujian', compact('data', 'mapel', 'kelas', 'paketsoal'));
-        
+
     }
 
     public function prosesUjian(Request $request)
     {
+        // dd($request->all());
         $request->validate([
             'nama' => 'required',
             'id_kelas' => 'required',
@@ -35,7 +36,7 @@ class UjianController extends Controller
 
         $token = strtoupper(Str::random(8));
 
-        $ujian = Ujian::create([
+        Ujian::create([
             'nama' => $request->nama,
             'id_kelas' => $request->id_kelas,
             'id_mapel' => $request->id_mapel,

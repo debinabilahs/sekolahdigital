@@ -6,12 +6,11 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"
         integrity="sha512-VEd+nq25CkR676O+pLBnDW09R7VQX9Mdiij052gVCp5yVH3jGtH70Ho/UUv4mJDsEdTvqRCFZg0NKGiojGnUCw=="
         crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-        <script src="https://cdn.ckeditor.com/ckeditor5/40.0.0/classic/ckeditor.js"></script>
+    <script src="https://cdn.ckeditor.com/ckeditor5/40.0.0/classic/ckeditor.js"></script>
     <style type="text/css">
-            .ck-editor__editable_inline
-            {
-                height: 250px;
-            }
+        .ck-editor__editable_inline {
+            height: 250px;
+        }
     </style>
     <section class="section">
         <div class="row">
@@ -51,7 +50,7 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                <?php 
+                                <?php
                   $no=1;
                   foreach ($data as  $value) {
                     # code...
@@ -65,7 +64,8 @@
                                     <td>
                                         {{-- <a href="/lihattugas/{{ $value->id}}" button type="button"
                                             class="btn btn-success"><i class="bi bi-eye"></i></button></a> --}}
-                                        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#detailTugasModal{{ $value->id }}">
+                                        <button type="button" class="btn btn-primary" data-bs-toggle="modal"
+                                            data-bs-target="#detailTugasModal{{ $value->id }}">
                                             <i class="bi bi-eye"></i>
                                         </button>
                                         <button type="button" class="btn btn-info" data-bs-toggle="modal"
@@ -145,7 +145,8 @@
 
                                     <div class="form-group">
                                         <label>Deskripsi</label>
-                                        <textarea name="deskripsi" id="deskripsi" class="form-control border-input" placeholder="Masukkan isi/deskripsi" required></textarea>
+                                        <textarea name="deskripsi" id="tugas" class="form-control border-input" placeholder="Masukkan isi/deskripsi"
+                                            required></textarea>
                                     </div>
 
                                     <div class="col-md-12">
@@ -166,8 +167,8 @@
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary rounded-pill px-4 " style="font-size: 0.75rem"
                         data-bs-dismiss="modal">Close</button>
-                    <button type="submit" name="simpan" value="simpan" class="btn btn-primary rounded-pill px-4 "
-                        style="font-size: 0.75rem">Simpan</button>
+                    <button type="submit" id="simpanBtn" name="simpan" value="simpan"
+                        class="btn btn-primary rounded-pill px-4 " style="font-size: 0.75rem">Simpan</button>
                 </div>
                 </form>
             </div>
@@ -175,12 +176,13 @@
     </div>
 
     <!-- Modal Detail Tugas -->
-    <?php 
+    <?php
   $no=1;
   foreach ($data as  $value) {
     # code...
   ?>
-    <div class="modal fade" id="detailTugasModal{{ $value->id }}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal fade" id="detailTugasModal{{ $value->id }}" tabindex="-1" aria-labelledby="exampleModalLabel"
+        aria-hidden="true">
         <div class="modal-dialog modal-lg">
             <div class="modal-content">
                 <div class="modal-header">
@@ -205,26 +207,26 @@
                                                 <th scope="col">Nama Tugas</th>
                                                 <th scope="col">Mata Pelajaran</th>
                                                 <th scope="col">Kelas</th>
-                                                
+
                                             </tr>
                                         </thead>
                                         <tbody>
-                                            
+
                                             <tr>
                                                 <td>{{ $value->nama_tugas }} </td>
                                                 <td>{{ $value->mapel->nama_mapel }} </td>
                                                 <td>{{ $value->kelas->nama_kelas }} </td>
-            
-                                        
+
+
                                             </tr>
-            
+
                                         </tbody>
                                     </table>
                                     <table class="table table-hover">
                                         <thead>
                                             <tr>
                                                 <th scope="col">Deskripsi</th>
-                                                
+
                                             </tr>
                                         </thead>
                                         <tbody>
@@ -232,26 +234,26 @@
                                                 <td>
                                                     {!! $value->deskripsi !!}
                                                 </td>
-                                                
+
                                             </tr>
-            
+
                                         </tbody>
                                     </table>
                                     <table class="table table-hover">
                                         <thead>
                                             <tr>
-                                                
+
                                                 <th scope="col">File</th>
                                             </tr>
                                         </thead>
                                         <tbody>
                                             <tr>
-                                                
+
                                                 <td>
                                                     {!! $value->file !!}
                                                 </td>
                                             </tr>
-            
+
                                         </tbody>
                                     </table>
                                     {{-- <input type="hidden" name="id" value="{{ $value->id }}">
@@ -319,7 +321,7 @@
 
 
     {{-- Edit Tugas --}}
-    <?php 
+    <?php
   $no=1;
   foreach ($data as  $value) {
     # code...
@@ -385,14 +387,15 @@
 
                                     <div class="form-group">
                                         <label>Deskripsi</label>
-                                        <textarea name="deskripsi" id="deskripsi" class="form-control border-input" required>{{ $value->deskripsi }}</textarea>
-                                        
+                                        <textarea name="deskripsi" id="edit_tugas_{{ $value->id }}" class="form-control border-input" required>{{ $value->deskripsi }}</textarea>
+
                                     </div>
 
                                     <div class="col-md-12">
                                         <label for="file">File</label>
                                         <div class="col-sm-12">
-                                            <input type="file" class="form-control" id="file" name="file" value="{{ $value->file }}">
+                                            <input type="file" class="form-control" id="file" name="file"
+                                                value="{{ $value->file }}">
                                         </div>
                                     </div>
                                     <!-- End Browser Default Validation -->
@@ -442,19 +445,49 @@
         </script>
         <script>
             ClassicEditor
-                .create( document.querySelector( '#deskripsi' ),                
-                // {
-                //     ckfinder:
-                //     {
-                //         uploadUrl:"{{route('ckeditor.upload', ['_token'=>csrf_token()])}}",
-                //     }
+                .create(document.querySelector('#deskripsi'),
+                    // {
+                    //     ckfinder:
+                    //     {
+                    //         uploadUrl:"{{ route('ckeditor.upload', ['_token' => csrf_token()]) }}",
+                    //     }
 
-                // },
-                
+                    // },
+
                 )
-                .catch( error => {
-                    console.error( error );
-                } );
+                .catch(error => {
+                    console.error(error);
+                });
         </script>
+        <script>
+            $(document).ready(function() {
+                // Inisialisasi CKEditor pada modal tambah data
+                ClassicEditor
+                    .create(document.querySelector('#tugas'))
+                    .catch(error => {
+                        console.error(error);
+                    });
+
+                // Inisialisasi CKEditor pada setiap modal edit data
+                @foreach ($data as $value)
+                    ClassicEditor
+                        .create(document.querySelector('#edit_tugas_{{ $value->id }}'))
+                        .catch(error => {
+                            console.error(error);
+                        });
+                @endforeach
+
+
+            });
+        </script>
+        {{-- js submit button tambah --}}
+        <script>
+            $(document).ready(function() {
+                $('#simpanBtn').click(function() {
+                    $('form').submit();
+                });
+            });
+        </script>
+
     </div>
 @endsection
