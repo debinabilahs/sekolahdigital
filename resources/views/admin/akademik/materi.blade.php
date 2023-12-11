@@ -340,7 +340,7 @@
 
                                     <div class="form-group">
                                         <label>Isi</label>
-                                        <textarea name="isi" id="isi" class="form-control border-input" required>{{ $value->isi }}</textarea>
+                                        <textarea name="isi" id="edit_isi_{{ $value->id }}" class="form-control border-input" required>{{ $value->isi }}</textarea>
                                         
                                     </div>
 
@@ -398,20 +398,26 @@
             @endif
         </script>
         <script>
-            ClassicEditor
-                .create( document.querySelector( '#isi' ),                
-                {
-                    ckfinder:
-                    {
-                        uploadUrl:"{{route('ckeditor.upload', ['_token'=>csrf_token()])}}",
-                    }
+            $(document).ready(function() {
+                // Inisialisasi CKEditor pada modal tambah data
+                ClassicEditor
+                    .create(document.querySelector('#isi'))
+                    .catch(error => {
+                        console.error(error);
+                    });
 
-                },
-                
-                )
-                .catch( error => {
-                    console.error( error );
-                } );
+                // Inisialisasi CKEditor pada setiap modal edit data
+                @foreach ($data as $value)
+                    ClassicEditor
+                        .create(document.querySelector('#edit_isi_{{ $value->id }}'))
+                        .catch(error => {
+                            console.error(error);
+                        });
+                @endforeach
+
+
+            });
         </script>
+    
     </div>
 @endsection

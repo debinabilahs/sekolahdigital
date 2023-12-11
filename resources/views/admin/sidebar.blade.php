@@ -150,8 +150,8 @@
                     </a>
                 </li>
                 <li>
-                    <a href="#">
-                        <i class="bi bi-circle"></i><span>Hasil Exam</span>
+                    <a href="/ujian">
+                        <i class="bi bi-circle"></i><span>Exam</span>
                     </a>
                 </li>
             </ul>
@@ -331,8 +331,8 @@
                     </a>
                 </li>
                 <li>
-                    <a href="#">
-                        <i class="bi bi-circle"></i><span>Hasil Exam</span>
+                    <a href="/ujian">
+                        <i class="bi bi-circle"></i><span>Exam</span>
                     </a>
                 </li>
             </ul>

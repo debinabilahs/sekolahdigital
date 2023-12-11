@@ -23,10 +23,11 @@ use App\Http\Controllers\RekappangkalController;
 use App\Http\Controllers\RuangController;
 use App\Http\Controllers\SekolahController;
 use App\Http\Controllers\SiswaController;
-use App\Http\Controllers\SoalController;
 use App\Http\Controllers\TpController;
 use App\Http\Controllers\TugasController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\SoalController;
+use App\Http\Controllers\UjianController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -127,6 +128,11 @@ Route::middleware(['auth'])->group(function () {
     Route::post('/updatepaket', [PaketController::class, 'updatepaket']);
     Route::get('/lihatpaket/{id}', [PaketController::class, 'lihatpaket']);
     Route::get('/hapuspaket/{id}', [PaketController::class, 'hapuspaket']);
+
+    //Ujian
+    Route::get('/ujian', [UjianController::class, 'ujian']);
+    Route::post('/prosesujian', [UjianController::class, 'prosesujian']);
+    Route::get('/hapusujian/{id}', [UjianController::class, 'hapusujian']);
 
     // Grup rute untuk pengguna (Admin) yang telah login
     Route::group(['middleware' => ['cekUserLogin:1']], function () {

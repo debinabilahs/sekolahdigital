@@ -167,6 +167,7 @@ foreach ($data as $value) {
                                                     </select>
                                                 </div>
                                             </div>
+
                                             {{-- jQuery untuk mengambil data secara otomatis kelas dan mapel melalui kode paket --}}
                                             <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
                                             <script>
@@ -180,6 +181,7 @@ foreach ($data as $value) {
                                                     });
                                                 });
                                             </script>
+                                            
                                             <div class="col-lg-3 col-md-6 col-sm-12">
                                                 <div class="form-group">
                                                     <label for="form-jenis">Jenis Soal</label>
@@ -676,7 +678,6 @@ foreach ($data as $value) {
                 $('#jawaban-benar').html(option);
             });
         </script>
-        v>
     </div>
 
 
