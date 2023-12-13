@@ -131,14 +131,9 @@
         <li class="nav-item">
             <a class="nav-link @yield('dashboard') @yield('master-data') @yield('akademik') @yield('keuangan') @yield('transaksi-pembayaran') @yield('profile')"
                 data-bs-target="#ujian-nav" data-bs-toggle="collapse" href="#">
-                <i class="bi bi-book"></i><span>Exam</span><i class="bi bi-chevron-down ms-auto"></i>
+                <i class="bi bi-book"></i><span>Ujian</span><i class="bi bi-chevron-down ms-auto"></i>
             </a>
             <ul id="ujian-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
-                <li>
-                    <a href="/exam">
-                        <i class="bi bi-circle"></i><span>Jadwal Exam</span>
-                    </a>
-                </li>
                 <li>
                     <a href="/paketsoal">
                         <i class="bi bi-circle"></i><span>Paket Soal</span>
@@ -146,12 +141,17 @@
                 </li>
                 <li>
                     <a href="/soal">
-                        <i class="bi bi-circle"></i><span>Soal Exam</span>
+                        <i class="bi bi-circle"></i><span>Soal Ujian</span>
                     </a>
                 </li>
                 <li>
                     <a href="/ujian">
-                        <i class="bi bi-circle"></i><span>Exam</span>
+                        <i class="bi bi-circle"></i><span>Ujian</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="/ujianaktif">
+                        <i class="bi bi-circle"></i><span>Ujian Aktif</span>
                     </a>
                 </li>
             </ul>
@@ -312,14 +312,9 @@
         <li class="nav-item">
             <a class="nav-link @yield('dashboard') @yield('master-data') @yield('akademik') @yield('keuangan') @yield('transaksi-pembayaran') @yield('profile')"
                 data-bs-target="#ujian-nav" data-bs-toggle="collapse" href="#">
-                <i class="bi bi-book"></i><span>Exam</span><i class="bi bi-chevron-down ms-auto"></i>
+                <i class="bi bi-book"></i><span>Ujian</span><i class="bi bi-chevron-down ms-auto"></i>
             </a>
             <ul id="ujian-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
-                <li>
-                    <a href="/exam">
-                        <i class="bi bi-circle"></i><span>Jadwal Exam</span>
-                    </a>
-                </li>
                 <li>
                     <a href="/paketsoal">
                         <i class="bi bi-circle"></i><span>Paket Soal</span>
@@ -327,12 +322,17 @@
                 </li>
                 <li>
                     <a href="/soal">
-                        <i class="bi bi-circle"></i><span>Soal Exam</span>
+                        <i class="bi bi-circle"></i><span>Soal Ujian</span>
                     </a>
                 </li>
                 <li>
                     <a href="/ujian">
-                        <i class="bi bi-circle"></i><span>Exam</span>
+                        <i class="bi bi-circle"></i><span>Ujian</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="/ujianaktif">
+                        <i class="bi bi-circle"></i><span>Ujian Aktif</span>
                     </a>
                 </li>
             </ul>

@@ -2,10 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Siswa;
 use App\Models\Kelas;
 use App\Models\Mapel;
 use App\Models\PaketSoal;
 use App\Models\Ujian;
+use App\Models\UjianSiswa;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
 
@@ -18,6 +20,7 @@ class UjianController extends Controller
         $mapel = Mapel::all();
         $kelas = Kelas::all();
         $paketsoal = PaketSoal::all();
+        
         return view('admin.exam.ujian', compact('data', 'mapel', 'kelas', 'paketsoal'));
 
     }
@@ -56,6 +59,16 @@ class UjianController extends Controller
         if ($del) {
             return redirect('ujian')->with('success', 'Ujian Berhasil Dihapus.');
         }
+    }
+
+    public function ujianaktif() {
+        $data = UjianSiswa::select('id', 'id_siswa', 'id_ujian', 'waktu_mulai', 'waktu_selesai')
+                          ->with('siswa', 'ujian')->get();
+        $siswa = Siswa::all();
+        // return DataTables::of($data)
+        //                  ->AddIndexColumn()
+        //                  ->make(true);
+        return view('admin.exam.ujianaktif', compact('data', 'siswa'));
     }
 
 }

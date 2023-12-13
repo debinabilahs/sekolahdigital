@@ -8,11 +8,19 @@ use Illuminate\Support\Facades\Hash;
 
 class UserController extends Controller
 {
-    public function user()
+    public function user(Request $request)
     {
-        $data = User::orderBy('id', 'ASC')->paginate(10);
+        $data = User::orderBy('id', 'ASC');
+
+        if ($request->has('search') && !empty($request->get('search'))) {
+            $data = $data->where('name', 'LIKE', '%' . $request->get('search') . '%')
+            ->orWhere('email', 'LIKE', '%' . $request->get('search') . '%');
+        }
+    
+        $data = $data->paginate(10);
         $user = User::all();
-        return view('admin.user.user', ['data' => $data, 'user' => $user]);
+    
+        return view('admin.user.user', compact('data', 'user', 'request'));
     }
 
     public function prosesuser(Request $request)

@@ -26,8 +26,8 @@ class Ujian extends Model
 
     }
 
-    // public function ujian_siswa()
-    // {
-    //     return $this->hasMany(UjianSiswa::class);
-    // }
+    public function ujian_siswa()
+    {
+        return $this->hasMany(UjianSiswa::class);
+    }
 }

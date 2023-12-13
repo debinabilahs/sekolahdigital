@@ -27,8 +27,11 @@ class MateriController extends Controller
             'id_mapel' => 'required',
             'id_kelas' => 'required',
             'isi' => 'required',
-            'file' => 'required',
+            'file' => 'required|mimes:jpeg,png,pdf',
         ]);
+        $fileName = time() . '_' . $request->file('file')->getClientOriginalName();
+
+        $request->file->move(public_path('filemateri/'), $fileName);
 
         $materi = Materi::create([
             'nama_materi' => $request->nama_materi,
@@ -45,14 +48,13 @@ class MateriController extends Controller
 
     public function updateMateri(Request $request)
     {
-        // $request->validate([
 
-        //     'nama_materi' => 'required',
-        //     'id_mapel' => 'required',
-        //     'id_kelas' => 'required',
-        //     'isi' => 'required',
-        //     'file' => 'required',
-        // ]);
+        $fileName = $request->fileLama;
+        if ($request->hasFile('file')) {
+            $file = $request->file('file');
+            $fileName = time() . '_' . $request->file('file')->getClientOriginalName();
+            $file->move(public_path('filemateri/'), $fileName);
+        }
 
         $materi = Materi::where('id', $request->id)->update([
 
@@ -60,7 +62,7 @@ class MateriController extends Controller
             'id_mapel' => $request->id_mapel,
             'id_kelas' => $request->id_kelas,
             'isi' => $request->isi,
-            'file' => $request->file,
+            'file' => $fileName,
 
         ]);
 

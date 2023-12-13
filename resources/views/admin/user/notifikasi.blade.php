@@ -1,11 +1,19 @@
 @extends('admin.dashboard')
 @section('master-data', 'collapsed')
+@section('pageTitle', 'Notifikasi')
+@section('breadcrumb')
+    @include('partials.breadcrumbs', ['breadcrumbs' => ['Notifikasi']])
+@endsection
 @section('content')
     <script src="https://code.jquery.com/jquery-3.6.3.min.js"
         integrity="sha256-pvPw+upLPUjgMXY0G+8O0xUf+/Im1MZjXxxgOcBQBXU=" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"
         integrity="sha512-VEd+nq25CkR676O+pLBnDW09R7VQX9Mdiij052gVCp5yVH3jGtH70Ho/UUv4mJDsEdTvqRCFZg0NKGiojGnUCw=="
         crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    {{-- Data Tables --}}
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.3.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.13.7/css/dataTables.bootstrap5.min.css">
+
     <section class="section">
         <div class="row">
             <div class="col-lg-12">
@@ -17,23 +25,21 @@
                                 <h5 class="card-title inline-block">Data Notifikasi</h5>
                             </div>
                             <div>
-                                <button class="btn btn-danger rounded-pill px-4" style="font-size: 0.75rem"
-                                    data-bs-toggle="modal" data-bs-target="#modal2">Import Excel</button>
                                 <button class="btn btn-primary rounded-pill px-4" style="font-size: 0.9rem"
                                     data-bs-toggle="modal" data-bs-target="#modalnotif"> + Notifikasi</button>
                             </div>
                         </div>
                         <hr>
-                        <form class="search-form d-flex justify-content-end position-relative" method="POST"
+                        {{-- <form class="search-form d-flex justify-content-end position-relative" method="POST"
                             action="#">
                             <input type="text" name="query" placeholder="Search" title="Enter search keyword"
                                 class="outline-none rounded-pill border px-3 h-5" style="outline: none;">
                             <button type="submit" title="Search"
                                 class="bg-primary position-absolute top-0 right-0 text-white rounded- border-0 h-100 px-2"
                                 style="border-radius: 0 50% 50% 0;"><i class="bi bi-search"></i></button>
-                        </form>
+                        </form> --}}
                         <!-- Table with hoverable rows -->
-                        <table class="table table-hover">
+                        <table class="table table-hover" id="example">
                             <thead>
                                 <tr>
                                     <th scope="col">No</th>
@@ -239,4 +245,13 @@
             @endif
         </script>
     </div>
+
+    {{-- Data Tables --}}
+    <script src="https://code.jquery.com/jquery-3.7.0.js"></script>
+    <script src="https://cdn.datatables.net/1.13.7/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdn.datatables.net/1.13.7/js/dataTables.bootstrap5.min.js"></script>
+
+    <script>
+        new DataTable('#example');
+    </script>
 @endsection

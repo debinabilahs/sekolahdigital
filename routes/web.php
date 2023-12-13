@@ -62,10 +62,10 @@ Route::middleware(['auth'])->group(function () {
     Route::post('/importexcel', [SiswaController::class, 'importexcel']);
 
     //exam
-    Route::get('/exam', [ExamController::class, 'exam']);
-    Route::post('/prosesexam', [ExamController::class, 'prosesexam']);
-    Route::post('/updateexam', [ExamController::class, 'updateexam']);
-    Route::get('/hapusexam/{id}', [ExamController::class, 'hapusexam']);
+    // Route::get('/exam', [ExamController::class, 'exam']);
+    // Route::post('/prosesexam', [ExamController::class, 'prosesexam']);
+    // Route::post('/updateexam', [ExamController::class, 'updateexam']);
+    // Route::get('/hapusexam/{id}', [ExamController::class, 'hapusexam']);
 
     //Opsi
     Route::get('/opsi', [AdminController::class, 'opsi']);
@@ -99,20 +99,6 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/lihattugas/{id}', [TugasController::class, 'lihattugas']);
     Route::get('/hapustugas/{id}', [TugasController::class, 'hapustugas']);
 
-    //soal
-    // Route::get('/soal', [AdminController::class, 'soal']);
-    // Route::get('/rekapdsoal', [AdminController::class, 'rekapsoal']);
-    // Route::post('/prosessoal', [AdminController::class, 'prosessoal']);
-    // Route::get('/hapussoal/{id}', [AdminController::class, 'hapussoal']);
-    // Route::post('/soal/data', [SoalController::class])->name('soal.data');
-    // Route::resource('soal', SoalController::class);
-
-    //paketsoal
-    // Route::get('/paketsoal', [SoalController::class, 'index']);
-    // Route::post('/paket-soal/data', 'PaketController@dataPaketSoal')->name('paket-soal.data');
-    // Route::get('/paket-soal/select', 'PaketController@select')->name('paket-soal.select');
-    // Route::resource('paket-soal', 'PaketController');
-
     // soal
     Route::get('/soal', [SoalController::class, 'soal']);
     Route::post('/prosessoal', [SoalController::class, 'prosessoal']);
@@ -133,6 +119,8 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/ujian', [UjianController::class, 'ujian']);
     Route::post('/prosesujian', [UjianController::class, 'prosesujian']);
     Route::get('/hapusujian/{id}', [UjianController::class, 'hapusujian']);
+    Route::get('/ujianaktif', [UjianController::class, 'ujianaktif']);
+    Route::post('/ujianaktif', [UjianController::class, 'ujianaktif']);
 
     // Grup rute untuk pengguna (Admin) yang telah login
     Route::group(['middleware' => ['cekUserLogin:1']], function () {
@@ -150,7 +138,7 @@ Route::middleware(['auth'])->group(function () {
         Route::get('/hapusnotifikasi/{id}', [NotifikasiController::class, 'hapusnotifikasi']);
 
         //User
-        Route::get('/user', [UserController::class, 'user']);
+        Route::get('/user', [UserController::class, 'user'])->name('user');
         Route::post('/prosesuser', [UserController::class, 'prosesuser']);
         Route::post('/updateuser', [UserController::class, 'updateuser']);
         Route::get('/hapususer/{id}', [UserController::class, 'hapususer']);

@@ -1,5 +1,9 @@
 @extends('admin.dashboard')
 @section('dashboard', 'collapsed')
+@section('pageTitle', 'Dashboard')
+@section('breadcrumb')
+    @include('partials.breadcrumbs', ['breadcrumbs' => ['Dashboard']])
+@endsection
 @section('content')
     <section class="section dashboard">
         <!-- Left side columns -->
