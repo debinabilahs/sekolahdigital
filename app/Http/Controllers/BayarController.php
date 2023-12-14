@@ -12,7 +12,7 @@ class BayarController extends Controller
 {
     public function bayar()
     {
-        $data = Bayar::orderBy('id', 'ASC')->paginate(10);
+        $data = Bayar::orderBy('id', 'ASC')->paginate(1000);
         $siswa = Siswa::all();
         $detpangkal = Detpangkal::all();
         $users = User::all();

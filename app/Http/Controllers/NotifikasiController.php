@@ -10,7 +10,7 @@ class NotifikasiController extends Controller
 {
     public function notifikasi()
     {
-        $data = Notifikasi::orderBy('id', 'ASC')->paginate(10);
+        $data = Notifikasi::orderBy('id', 'ASC')->paginate(1000);
         $guru = Guru::all();
 
         return view('admin/user/notifikasi', compact('data', 'guru'));

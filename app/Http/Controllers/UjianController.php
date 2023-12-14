@@ -16,7 +16,7 @@ class UjianController extends Controller
     public function ujian(Request $request)
     {
 
-        $data = Ujian::with(['kelas', 'mapel', 'paketsoal'])->orderBy('id', 'ASC')->paginate(10);
+        $data = Ujian::with(['kelas', 'mapel', 'paketsoal'])->orderBy('id', 'ASC')->paginate(1000);
         $mapel = Mapel::all();
         $kelas = Kelas::all();
         $paketsoal = PaketSoal::all();

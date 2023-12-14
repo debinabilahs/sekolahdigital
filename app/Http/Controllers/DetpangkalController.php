@@ -11,7 +11,7 @@ class DetpangkalController extends Controller
 {
     public function detpangkal()
     {
-        $data = Detpangkal::orderBy('id', 'ASC')->paginate(10);
+        $data = Detpangkal::orderBy('id', 'ASC')->paginate(1000);
         $tp = Tp::all();
         $jurusan = Jurusan::all();
 

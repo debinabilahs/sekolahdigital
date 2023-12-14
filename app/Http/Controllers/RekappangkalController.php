@@ -11,7 +11,7 @@ class RekappangkalController extends Controller
 {
     public function rekappangkal()
     {
-        $data = Rekappangkal::orderBy('id', 'ASC')->paginate(10);
+        $data = Rekappangkal::orderBy('id', 'ASC')->paginate(1000);
         $jurusan = Jurusan::all();
         $tp = Tp::all();
 

@@ -157,7 +157,7 @@
             </ul>
         </li>
 
-        <li class="nav-item">
+        {{-- <li class="nav-item">
             <a class="nav-link @yield('dashboard') @yield('master-data') @yield('akademik') @yield('keuangan') @yield('transaksi-pembayaran') @yield('profile')"
                 data-bs-target="#nilai-nav" data-bs-toggle="collapse" href="#">
                 <i class="bi bi-card-list"></i><span>Nilai Siswa</span><i class="bi bi-chevron-down ms-auto"></i>
@@ -179,7 +179,7 @@
                     </a>
                 </li>
             </ul>
-        </li>
+        </li> --}}
 
         <li class="nav-item">
             <a class="nav-link @yield('dashboard') @yield('master-data') @yield('akademik') @yield('exam') @yield('transaksi-pembayaran') @yield('profile')"
@@ -338,7 +338,7 @@
             </ul>
         </li>
 
-        <li class="nav-item">
+        {{-- <li class="nav-item">
             <a class="nav-link @yield('dashboard') @yield('master-data') @yield('akademik') @yield('keuangan') @yield('transaksi-pembayaran') @yield('profile')"
                 data-bs-target="#nilai-nav" data-bs-toggle="collapse" href="#">
                 <i class="bi bi-card-list"></i><span>Nilai Siswa</span><i class="bi bi-chevron-down ms-auto"></i>
@@ -360,7 +360,7 @@
                     </a>
                 </li>
             </ul>
-        </li>
+        </li> --}}
 
         {{-- <li class="nav-item">
             <a class="nav-link @yield('dashboard') @yield('master-data') @yield('akademik') @yield('exam') @yield('transaksi-pembayaran') @yield('profile')"

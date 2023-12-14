@@ -9,7 +9,7 @@ class BayarsiswaController extends Controller
 {
     public function bayarsiswa()
     {
-        $data = Bayarsiswa::orderBy('id', 'ASC')->paginate(10);
+        $data = Bayarsiswa::orderBy('id', 'ASC')->paginate(1000);
         return view('admin/transaksi_pembayaran/bayarsiswa', compact('data',));
     }
     public function prosesbayarsiswa(Request $request)

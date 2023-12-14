@@ -10,7 +10,7 @@ class AgamaController extends Controller
 {
     public function agama()
     {
-        $data = Agama::orderBy('id', 'ASC')->paginate(10);
+        $data = Agama::orderBy('id', 'ASC')->paginate(1000);
         return view('admin/mod_master/agama', compact('data'));
     }
     public function prosesagama(Request $request)

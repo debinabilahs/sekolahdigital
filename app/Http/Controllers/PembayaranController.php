@@ -12,7 +12,7 @@ class PembayaranController extends Controller
 {
     public function pembayaran()
     {
-        $data = Pembayaran::orderBy('id', 'ASC')->paginate(10);
+        $data = Pembayaran::orderBy('id', 'ASC')->paginate(1000);
         $siswa = Siswa::all();
         $detpangkal = Detpangkal::all();
         $users = User::all();

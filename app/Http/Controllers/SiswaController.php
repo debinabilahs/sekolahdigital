@@ -17,7 +17,7 @@ class SiswaController extends Controller
 {
     public function siswa()
     {
-        $data = Siswa::orderBy('id', 'ASC')->paginate(10);
+        $data = Siswa::orderBy('id', 'ASC')->paginate(1000);
         $level = Level::all();
         $kelas = Kelas::all();
         $jurusan = Jurusan::all();

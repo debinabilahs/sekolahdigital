@@ -14,7 +14,7 @@ class SoalController extends Controller
     public function soal(Request $request)
     {
 
-        $data = Soal::with(['kelas', 'mapel', 'paketsoal', 'soal_jawaban'])->orderBy('id', 'ASC')->paginate(10);
+        $data = Soal::with(['kelas', 'mapel', 'paketsoal', 'soal_jawaban'])->orderBy('id', 'ASC')->paginate(1000);
         $mapel = Mapel::all();
         $kelas = Kelas::all();
         $paketsoal = PaketSoal::all();

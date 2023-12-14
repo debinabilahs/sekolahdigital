@@ -10,7 +10,7 @@ class KelasController extends Controller
 {
     public function kelas()
     {
-        $data = Kelas::orderBy('id', 'ASC')->paginate(10);
+        $data = Kelas::orderBy('id', 'ASC')->paginate(1000);
         $jurusan = Jurusan::all();
 
         return view('admin/mod_master/kelas', compact('data', 'jurusan'));

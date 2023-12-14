@@ -9,7 +9,7 @@ class TpController extends Controller
 {
     public function tp()
     {
-        $data = Tp::orderBy('id', 'ASC')->paginate(10);
+        $data = Tp::orderBy('id', 'ASC')->paginate(1000);
         return view('admin/mod_master/tp', compact('data'));
     }
     public function prosestp(Request $request)

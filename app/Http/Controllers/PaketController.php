@@ -12,7 +12,7 @@ class PaketController extends Controller
 {
     public function paket()
     {
-        $data = PaketSoal::orderBy('id', 'ASC')->paginate(10);
+        $data = PaketSoal::orderBy('id', 'ASC')->paginate(1000);
         $mapel = Mapel::all();
         $kelas = Kelas::all();
         $data = PaketSoal::with(['kelas', 'mapel'])->get();

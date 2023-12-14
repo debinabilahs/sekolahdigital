@@ -12,7 +12,7 @@ class JadwalController extends Controller
 {
     public function jadwal()
     {
-        $data = Jadwal::orderBy('id', 'ASC')->paginate(10);
+        $data = Jadwal::orderBy('id', 'ASC')->paginate(1000);
         $mapel = Mapel::all();
         $kelas = Kelas::all();
         $guru = Guru::all();

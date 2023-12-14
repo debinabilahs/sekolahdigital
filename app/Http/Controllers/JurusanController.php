@@ -10,7 +10,7 @@ class JurusanController extends Controller
 {
     public function jurusan(Request $request)
     {
-        $data = Jurusan::orderBy('id', 'ASC')->paginate(10);
+        $data = Jurusan::orderBy('id', 'ASC')->paginate(1000);
         return view('admin/mod_master/jurusan', compact('data'));
     }
     public function search(Request $request)

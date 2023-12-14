@@ -9,7 +9,7 @@ class AdminController extends Controller
 {
     public function admin()
     {
-        $data = Admin::orderBy('id', 'ASC')->paginate(10);
+        $data = Admin::orderBy('id', 'ASC')->paginate(1000);
         return view('admin/data_pengguna/admin', compact('data'));
     }
     public function prosesadmin(Request $request)

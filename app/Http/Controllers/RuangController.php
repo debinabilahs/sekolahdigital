@@ -9,7 +9,7 @@ class RuangController extends Controller
 {
     public function ruang()
     {
-        $data = Ruang::orderBy('id', 'ASC')->paginate(10);
+        $data = Ruang::orderBy('id', 'ASC')->paginate(1000);
         return view('admin/mod_master/ruang', compact('data'));
     }
     public function prosesruang(Request $request)

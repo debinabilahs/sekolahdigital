@@ -10,7 +10,7 @@ class MapelController extends Controller
 {
     public function mapel()
     {
-        $data = Mapel::orderBy('id', 'ASC')->paginate(5);
+        $data = Mapel::orderBy('id', 'ASC')->paginate(1000);
         $kelas = Kelas::all();
         return view('admin/akademik/mapel', compact('data', 'kelas'));
     }

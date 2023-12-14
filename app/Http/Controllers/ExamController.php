@@ -11,7 +11,7 @@ class ExamController extends Controller
 {
     public function exam()
     {
-        $data = Exam::orderBy('id', 'ASC')->paginate(10);
+        $data = Exam::orderBy('id', 'ASC')->paginate(1000);
         $mapel = Mapel::all();
         $guru = Guru::all();
 

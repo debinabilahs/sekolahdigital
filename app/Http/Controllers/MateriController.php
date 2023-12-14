@@ -11,7 +11,7 @@ class MateriController extends Controller
 {
     public function materi()
     {
-        $data = Materi::orderBy('id', 'ASC')->paginate(10);
+        $data = Materi::orderBy('id', 'ASC')->paginate(1000);
         $mapel = Mapel::all();
         $kelas = Kelas::all();
 

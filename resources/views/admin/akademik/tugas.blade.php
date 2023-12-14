@@ -117,7 +117,7 @@
 
                                 <!-- Browser Default Validation -->
 
-                                <form method="POST" action="/prosestugas" class="row g-3">
+                                <form method="POST" action="/prosestugas" class="row g-3" enctype="multipart/form-data">
                                     @csrf
 
 

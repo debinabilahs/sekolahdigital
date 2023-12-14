@@ -11,7 +11,7 @@ class TugasController extends Controller
 {
     public function tugas()
     {
-        $data = Tugas::orderBy('id', 'ASC')->paginate(10);
+        $data = Tugas::orderBy('id', 'ASC')->paginate(1000);
         $mapel = Mapel::all();
         $kelas = Kelas::all();
 
@@ -26,9 +26,14 @@ class TugasController extends Controller
             'id_mapel' => 'required',
             'id_kelas' => 'required',
             'deskripsi' => 'required',
-            'file' => 'required',
+            'file' => 'required|mimes:jpeg,png,pdf',
         ]);
         // dd($request);
+
+        $fileName = time() . '_' . $request->file('file')->getClientOriginalName();
+
+        $request->file->move(public_path('filetugas/'), $fileName);
+
         $tugas = Tugas::create([
             'nama_tugas' => $request->nama_tugas,
             'id_mapel' => $request->id_mapel,
@@ -52,6 +57,13 @@ class TugasController extends Controller
             'deskripsi' => 'required',
             'file' => 'required',
         ]);
+
+        $fileName = $request->fileLama;
+        if ($request->hasFile('file')) {
+            $file = $request->file('file');
+            $fileName = time() . '_' . $request->file('file')->getClientOriginalName();
+            $file->move(public_path('filetugas/'), $fileName);
+        }
 
         $tugas = Tugas::where('id', $request->id)->update([
 

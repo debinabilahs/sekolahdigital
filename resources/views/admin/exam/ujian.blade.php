@@ -10,9 +10,10 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"
         integrity="sha512-VEd+nq25CkR676O+pLBnDW09R7VQX9Mdiij052gVCp5yVH3jGtH70Ho/UUv4mJDsEdTvqRCFZg0NKGiojGnUCw=="
         crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-    {{-- Data Tables --}}
+    
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.3.0/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://cdn.datatables.net/1.13.7/css/dataTables.bootstrap5.min.css">
+    
     <!-- library Flatpickr -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
     <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
@@ -42,7 +43,7 @@
                                 style="border-radius: 0 50% 50% 0;"><i class="bi bi-search"></i></button>
                         </form> --}}
                         <!-- Table with hoverable rows -->
-                        <table class="table table-hover" id="example">
+                        <table id="example" class="table table-striped">
                             <thead>
                                 <tr>
                                     <th scope="col">No</th>
@@ -175,7 +176,7 @@ foreach ($data as $value) {
 
                                 <!-- Browser Default Validation -->
 
-                                <form method="POST" id="tambah-ujian" action="/prosesujian" class="row g-3">
+                                <form method="POST" id="tambah-ujian" action="/prosesujian" class="row g-3" enctype="multipart/form-data">
                                     @csrf
 
 
@@ -186,36 +187,56 @@ foreach ($data as $value) {
                                     </div>
 
                                     <div class="form-group">
-                                        <label for="id_kelas" class="form-label">Kelas</label>
-                                        <select class="form-control select-kelas" name="id_kelas" id="id_kelas">
-                                            <option value="" selected disabled>Pilih Nama kelas</option>
-                                            @foreach ($kelas as $items)
-                                                <option value="{{ $items->id }}">{{ $items->nama_kelas }}
-                                                </option>
-                                            @endforeach
-                                        </select>
-                                    </div>
-
-                                    <div class="form-group">
-                                        <label for="id_mapel" class="form-label">Mata Pelajaran</label>
-                                        <select class="form-control select-mapel" id="id_mapel" name="id_mapel">
-                                            <option value="" selected disabled>Pilih Nama Pelajaran</option>
-                                            @foreach ($mapel as $items)
-                                                <option value="{{ $items->id }}">{{ $items->nama_mapel }}
-                                                </option>
-                                            @endforeach
-                                        </select>
-                                    </div>
-
-                                    <div class="form-group">
-                                        <label for="paket_soal_id" class="form-label">Paket Soal</label>
-                                        <select class="form-control select-paket" name="paket_soal_id" id="paket_soal_id">
-                                            <option value="" selected disabled>Pilih Paket Soal</option>
+                                        <label for="paket_soal_id">Paket Soal</label>
+                                        <select class="form-control" id="paket_soal_id" name="paket_soal_id">
+                                            <option value="">Pilih Kode Paket</option>
                                             @foreach ($paketsoal as $paket)
-                                                <option value="{{ $paket->id }}">{{ $paket->kode_paket }}</option>
+                                                <option value="{{ $paket->id }}"
+                                                    data-kelas="{{ $paket->kelas->id }}"
+                                                    data-mapel="{{ $paket->mapel->id }}">
+                                                    {{ $paket->kode_paket }}
+                                                </option>
                                             @endforeach
                                         </select>
                                     </div>
+
+                                    <div class="form-group">
+                                        <label for="id_kelas">Kelas</label>
+                                        <select class="form-control" id="id_kelas" name="id_kelas">
+                                            <option value="">Pilih Nama Kelas</option>
+                                            @foreach ($kelas as $kelasItem)
+                                                <option value="{{ $kelasItem->id }}">
+                                                    {{ $kelasItem->nama_kelas }}
+                                                </option>
+                                            @endforeach
+                                        </select>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label for="id_mapel">Mata Pelajaran</label>
+                                        <select class="form-control" id="id_mapel" name="id_mapel">
+                                            <option value="">Pilih Nama Mapel</option>
+                                            @foreach ($mapel as $mapelItem)
+                                                <option value="{{ $mapelItem->id }}">
+                                                    {{ $mapelItem->nama_mapel }}
+                                                </option>
+                                            @endforeach
+                                        </select>
+                                    </div>
+
+                                    {{-- jQuery untuk mengambil data secara otomatis kelas dan mapel melalui kode paket --}}
+                                    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+                                    <script>
+                                        $(document).ready(function() {
+                                            $('#paket_soal_id').change(function() {
+                                                var selectedKelasId = $(this).find(':selected').data('kelas');
+                                                var selectedMapelId = $(this).find(':selected').data('mapel');
+
+                                                $('#id_kelas').val(selectedKelasId);
+                                                $('#id_mapel').val(selectedMapelId);
+                                            });
+                                        });
+                                    </script>
 
                                     <div class="col-md-12">
                                         <label for="waktu_mulai" class="form-label">Waktu Mulai</label>
@@ -349,7 +370,7 @@ foreach ($data as $value) {
         </script>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
-    {{-- Data Tables --}}
+
     <script src="https://code.jquery.com/jquery-3.7.0.js"></script>
     <script src="https://cdn.datatables.net/1.13.7/js/jquery.dataTables.min.js"></script>
     <script src="https://cdn.datatables.net/1.13.7/js/dataTables.bootstrap5.min.js"></script>
