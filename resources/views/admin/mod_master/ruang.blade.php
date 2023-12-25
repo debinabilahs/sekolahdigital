@@ -25,7 +25,7 @@
                             </div>
                             <div>
                                 <button class="btn btn-primary rounded-pill px-4" style="font-size: 0.9rem"
-                                    data-bs-toggle="modal" data-bs-target="#modalruang"> + ruang</button>
+                                    data-bs-toggle="modal" data-bs-target="#modalruang"> + Ruangan</button>
                             </div>
                         </div>
                         <hr>
@@ -42,7 +42,7 @@
                             <thead>
                                 <tr>
                                     <th scope="col">No</th>
-                                    <th scope="col">Nama Ruang</th>
+                                    <th scope="col">Nama Ruangan</th>
                                     <th scope="col">Aksi</th>
                                 </tr>
                             </thead>
@@ -85,7 +85,7 @@
         <div class="modal-dialog ">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h1 class="modal-title fs-5" id="exampleModalLabel">Form Input ruang </h1>
+                    <h1 class="modal-title fs-5" id="exampleModalLabel">Form Input Ruangan </h1>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
@@ -101,7 +101,7 @@
                                 <form method="POST" action="/prosesRuang" class="row g-3">
                                     @csrf
                                     <div class="col-md-12">
-                                        <label for="validationDefault01" class="form-label">Nama ruang</label>
+                                        <label for="validationDefault01" class="form-label">Nama Ruangan</label>
                                         <input type="text" name="nama_ruang" class="form-control"
                                             id="validationDefault01" hint="Nama ruang" placeholder="Masukkan Nama Ruangan" required>
                                     </div>
@@ -134,7 +134,7 @@
         <div class="modal-dialog ">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h1 class="modal-title fs-5" id="exampleModalLabel">Edit ruang Sekolah</h1>
+                    <h1 class="modal-title fs-5" id="exampleModalLabel">Edit Ruangan Sekolah</h1>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
@@ -151,7 +151,7 @@
                                     @csrf
                                     <input type="hidden" name="id" value="{{ $value->id }}">
                                     <div class="col-md-12">
-                                        <label for="validationDefault01" class="form-label">Nama ruang</label>
+                                        <label for="validationDefault01" class="form-label">Nama Ruangan</label>
                                         <input type="text" name="nama_ruang" value="{{ $value->nama_ruang }}"
                                             class="form-control" id="validationDefault01" hint="Nama ruang" required>
                                     </div>

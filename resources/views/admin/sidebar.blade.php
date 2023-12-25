@@ -298,7 +298,7 @@
                 </li>
                 <li>
                     <a href="/materi">
-                        <i class="bi bi-circle"></i><span>Bahan Mata Pelajaran</span>
+                        <i class="bi bi-circle"></i><span>Materi Mata Pelajaran</span>
                     </a>
                 </li>
                 <li>

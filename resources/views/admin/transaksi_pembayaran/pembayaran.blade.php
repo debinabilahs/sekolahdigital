@@ -25,7 +25,7 @@
                             </div>
                             <div>
                                 <button class="btn btn-danger rounded-pill px-4" style="font-size: 0.75rem"
-                                    data-bs-toggle="modal" data-bs-target="#modal2">Import Excel</button>
+                                    data-bs-toggle="modal" data-bs-target="#modal2">Export Excel</button>
                                 <button class="btn btn-primary rounded-pill px-4" style="font-size: 0.9rem"
                                     data-bs-toggle="modal" data-bs-target="#modalpembayaran"> + pembayaran</button>
                             </div>
@@ -66,7 +66,7 @@
                                         <td>{{ $value->siswa->nama_siswa }} </td>
                                         <td>{{ $value->detpangkal->deskripsi }} </td>
                                         <td>{{ $value->jumlah }} </td>
-                                        <td>{{ $value->users->nama_lengkap }} </td>
+                                        <td>{{ $value->users->name }} </td>
                                         <td>{{ $value->tgl_bayar }} </td>
 
                                         <td>
@@ -137,7 +137,7 @@
 
                                     <div class="col-md-12">
                                         <label for="validationDefault01" class="form-label">Jumlah</label>
-                                        <input type="number" name="jumlah" class="form-control" id="validationDefault01"
+                                        <input type="text" name="jumlah" class="form-control" id="validationDefault01"
                                             hint="jumlah" required>
                                     </div>
 
@@ -146,7 +146,7 @@
                                         <select class="form-control" id="id_users" name="id_users">
                                             <option value="">Pilih Nama User</option>
                                             @foreach ($users as $items)
-                                                <option value="{{ $items->id }}">{{ $items->nama_lengkap }}
+                                                <option value="{{ $items->id }}">{{ $items->name }}
                                                 </option>
                                             @endforeach
                                         </select>
@@ -232,7 +232,7 @@
                                     </div>
                                     <div class="col-md-12">
                                         <label for="validationDefault01" class="form-label">Jumlah</label>
-                                        <input type="number" name="jumlah" value="{{ $value->jumlah }}"
+                                        <input type="text" name="jumlah" value="{{ $value->jumlah }}"
                                             class="form-control" id="validationDefault01" hint="jumlah" required>
                                     </div>
 
@@ -242,10 +242,10 @@
                                         <label for="id_users">Nama User</label>
                                         <select class="form-control" id="id_users" name="id_users">
                                             <option value="{{ $value->id_users }}">
-                                                {{ $value->users->nama_lengkap }}
+                                                {{ $value->users->name }}
                                             </option>
                                             @foreach ($users as $items)
-                                                <option value="{{ $items->id }}">{{ $items->nama_lengkap }}
+                                                <option value="{{ $items->id }}">{{ $items->name }}
                                                 </option>
                                             @endforeach
                                         </select>

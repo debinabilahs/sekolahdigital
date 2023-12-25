@@ -25,7 +25,7 @@
                             </div>
                             <div>
                                 <button class="btn btn-primary rounded-pill px-4" style="font-size: 0.9rem"
-                                    data-bs-toggle="modal" data-bs-target="#modaltp"> + tp</button>
+                                    data-bs-toggle="modal" data-bs-target="#modaltp"> + Tahun Pelajaran</button>
                             </div>
                         </div>
                         <hr>
@@ -150,7 +150,7 @@
                                     @csrf
                                     <input type="hidden" name="id" value="{{ $value->id }}">
                                     <div class="col-md-12">
-                                        <label for="validationDefault01" class="form-label">Nama tp</label>
+                                        <label for="validationDefault01" class="form-label">Nama Tahun Pelajaran</label>
                                         <input type="text" name="tahun_pelajaran"
                                             value="{{ $value->tahun_pelajaran }}" class="form-control"
                                             id="validationDefault01" hint="Nama tp" required>

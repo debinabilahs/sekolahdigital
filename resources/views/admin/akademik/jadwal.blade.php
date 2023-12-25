@@ -44,8 +44,8 @@
                                 <tr>
                                     <th scope="col">No</th>
                                     <th scope="col">Hari</th>
-                                    <th scope="col">JamMulai</th>
-                                    <th scope="col">JamSelesai</th>
+                                    <th scope="col">Jam Mulai</th>
+                                    <th scope="col">Jam Selesai</th>
                                     <th scope="col">Mapel</th>
                                     <th scope="col">Kelas</th>
                                     <th scope="col">Guru</th>
@@ -119,12 +119,12 @@
                                             hint="hari" placeholder="Masukkan Nama Hari" required>
                                     </div>
                                     <div class="col-md-12">
-                                        <label for="jam_mulai" class="form-label">JamMulai</label>
+                                        <label for="jam_mulai" class="form-label">Jam Mulai</label>
                                         <input type="time" name="jam_mulai" class="form-control" id="jam_mulai"
                                             hint="jam_mulai" required>
                                     </div>
                                     <div class="col-md-12">
-                                        <label for="jam_selesai" class="form-label">JamSelesai</label>
+                                        <label for="jam_selesai" class="form-label">Jam Selesai</label>
                                         <input type="time" name="jam_selesai" class="form-control" id="jam_selesai"
                                             hint="jam_selesai" required>
                                     </div>
@@ -141,9 +141,9 @@
                                     </div>
 
                                     <div class="form-group">
-                                        <label for="id_kelas">Nama kelas</label>
+                                        <label for="id_kelas">Nama Kelas</label>
                                         <select class="form-control" id="id_kelas" name="id_kelas">
-                                            <option value="">Pilih Nama kelas</option>
+                                            <option value="">Pilih Nama Kelas</option>
                                             @foreach ($kelas as $items)
                                                 <option value="{{ $items->id }}">{{ $items->nama_kelas }}
                                                 </option>
@@ -152,9 +152,9 @@
                                     </div>
 
                                     <div class="form-group">
-                                        <label for="id_guru">Nama guru</label>
+                                        <label for="id_guru">Nama Guru</label>
                                         <select class="form-control" id="id_guru" name="id_guru">
-                                            <option value="">Pilih Nama guru</option>
+                                            <option value="">Pilih Nama Guru</option>
                                             @foreach ($guru as $items)
                                                 <option value="{{ $items->id }}">{{ $items->nama_guru }}
                                                 </option>
@@ -222,14 +222,14 @@
 
 
                                     <div class="col-md-12">
-                                        <label for="validationDefault01" class="form-label">JamMulai</label>
+                                        <label for="validationDefault01" class="form-label">Jam Mulai</label>
                                         <input type="time" name="jam_mulai" value="{{ $value->jam_mulai }}"
                                             class="form-control" id="jam_mulai" hint="jam_mulai" required>
                                     </div>
 
 
                                     <div class="col-md-12">
-                                        <label for="validationDefault01" class="form-label">JamSelesai</label>
+                                        <label for="validationDefault01" class="form-label">Jam Selesai</label>
                                         <input type="time" name="jam_selesai" value="{{ $value->jam_selesai }}"
                                             class="form-control" id="jam_selesai" hint="jam_selesai" required>
                                     </div>
@@ -237,7 +237,7 @@
                                     <div class="form-group">
                                         <input type="hidden" class="form-control" id="id" name="id"
                                             value="{{ $value->id }}">
-                                        <label for="id_mapel">Nama mapel</label>
+                                        <label for="id_mapel">Nama Mapel</label>
                                         <select class="form-control" id="id_mapel" name="id_mapel">
                                             <option value="{{ $value->id_mapel }}">
                                                 {{ $value->mapel->nama_mapel }}
@@ -252,7 +252,7 @@
                                     <div class="form-group">
                                         <input type="hidden" class="form-control" id="id" name="id"
                                             value="{{ $value->id }}">
-                                        <label for="id_kelas">Nama kelas</label>
+                                        <label for="id_kelas">Nama Kelas</label>
                                         <select class="form-control" id="id_kelas" name="id_kelas">
                                             <option value="{{ $value->id_kelas }}">
                                                 {{ $value->kelas->nama_kelas }}
@@ -267,7 +267,7 @@
                                     <div class="form-group">
                                         <input type="hidden" class="form-control" id="id" name="id"
                                             value="{{ $value->id }}">
-                                        <label for="id_guru">Nama guru</label>
+                                        <label for="id_guru">Nama Guru</label>
                                         <select class="form-control" id="id_guru" name="id_guru">
                                             <option value="{{ $value->id_guru }}">
                                                 {{ $value->guru->nama_guru }}

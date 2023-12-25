@@ -25,7 +25,7 @@
                             </div>
                             <div>
                                 <button class="btn btn-primary rounded-pill px-4" style="font-size: 0.9rem"
-                                    data-bs-toggle="modal" data-bs-target="#modalsiswa"> + siswa</button>
+                                    data-bs-toggle="modal" data-bs-target="#modalsiswa"> + Siswa</button>
                             </div>
                         </div>
                         <hr>
@@ -45,7 +45,7 @@
                                         <th scope="col">No</th>
                                         <th scope="col">NIS</th>
                                         <th scope="col">NISN</th>
-                                        <th scope="col">NamaSiswa</th>
+                                        <th scope="col">Nama Siswa</th>
                                         <th scope="col">Username</th>
                                         <th scope="col">Password</th>
                                         <th scope="col">Email</th>
@@ -54,9 +54,9 @@
                                         <th scope="col">Level</th>
                                         <th scope="col">Kelas</th>
                                         <th scope="col">Jurusan</th>
-                                        <th scope="col">Ruang</th>
+                                        <th scope="col">Ruangan</th>
                                         <th scope="col">Agama</th>
-                                        <th scope="col">Tp</th>
+                                        <th scope="col">TP</th>
                                         <th scope="col">Aksi</th>
                                     </tr>
                                 </thead>
@@ -113,7 +113,7 @@
         <div class="modal-dialog modal-lg ">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h1 class="modal-title fs-5" id="exampleModalLabel">Form Input siswa </h1>
+                    <h1 class="modal-title fs-5" id="exampleModalLabel">Form Input Siswa </h1>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
@@ -129,7 +129,7 @@
                                 <form method="POST" action="/prosesSiswa" class="row g-3" enctype="multipart/form-data">
                                     @csrf
                                     <div class="row mb-3">
-                                        <label for="inputText" class="col-sm-2 col-form-label">NIS </label>
+                                        <label for="inputText" class="col-sm-2 col-form-label">NIS</label>
                                         <div class="col-sm-10">
                                             <input type="text" name="nis" class="form-control" placeholder="Masukkan NIS">
                                         </div>
@@ -299,7 +299,7 @@
         <div class="modal-dialog modal-lg ">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h1 class="modal-title fs-5" id="exampleModalLabel">Edit siswa Sekolah</h1>
+                    <h1 class="modal-title fs-5" id="exampleModalLabel">Edit Siswa Sekolah</h1>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
@@ -437,7 +437,7 @@
                                     <div class="form-group">
                                         <input type="hidden" class="form-control" id="id" name="id"
                                             value="{{ $value->id }}">
-                                        <label for="id_ruang">Nama Ruang</label>
+                                        <label for="id_ruang">Nama Ruangan</label>
                                         <select class="form-control" id="id_ruang" name="id_ruang">
                                             <option value="{{ $value->id_ruang }}">
                                                 {{ $value->ruang->nama_ruang }}

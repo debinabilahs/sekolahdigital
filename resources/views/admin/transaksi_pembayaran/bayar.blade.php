@@ -24,8 +24,8 @@
                                 <h5 class="card-title inline-block">Data Bayar</h5>
                             </div>
                             <div>
-                                <button class="btn btn-danger rounded-pill px-4" style="font-size: 0.75rem"
-                                    data-bs-toggle="modal" data-bs-target="#modal2">Import Excel</button>
+                                {{-- <button class="btn btn-danger rounded-pill px-4" style="font-size: 0.75rem"
+                                    data-bs-toggle="modal" data-bs-target="#modal2">Import Excel</button> --}}
                                 <button class="btn btn-primary rounded-pill px-4" style="font-size: 0.9rem"
                                     data-bs-toggle="modal" data-bs-target="#modalbayar"> + bayar</button>
                             </div>
@@ -144,7 +144,7 @@
                                         <select class="form-control" id="id_users" name="id_users">
                                             <option value="">Pilih Nama User</option>
                                             @foreach ($users as $items)
-                                                <option value="{{ $items->id }}">{{ $items->nama_lengkap }}
+                                                <option value="{{ $items->id }}">{{ $items->name }}
                                                 </option>
                                             @endforeach
                                         </select>
@@ -235,10 +235,10 @@
                                         <label for="id_users">Nama User</label>
                                         <select class="form-control" id="id_users" name="id_users">
                                             <option value="{{ $value->id_users }}">
-                                                {{ $value->users->nama_lengkap }}
+                                                {{ $value->users->name }}
                                             </option>
                                             @foreach ($users as $items)
-                                                <option value="{{ $items->id }}">{{ $items->nama_lengkap }}
+                                                <option value="{{ $items->id }}">{{ $items->name }}
                                                 </option>
                                             @endforeach
                                         </select>

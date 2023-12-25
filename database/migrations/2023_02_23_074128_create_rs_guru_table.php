@@ -24,7 +24,6 @@ class CreateRsGuruTable extends Migration
             $table->string('username');
             $table->string('password');
             $table->string('foto');
-            $table->string('ttd');
             $table->enum('aktif_guru',['Y','N']);
           
         });

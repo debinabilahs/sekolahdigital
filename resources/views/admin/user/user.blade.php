@@ -44,9 +44,9 @@
                                 <tr>
                                     <th scope="col">No</th>
                                     <th scope="col">Username</th>
-                                    <th scope="col">Namalengkap</th>
+                                    <th scope="col">Nama Lengkap</th>
                                     <th scope="col">Email</th>
-                                    <th scope="col">NoHp</th>
+                                    <th scope="col">No Hp</th>
                                     <th scope="col">Status</th>
                                     <th scope="col">Level</th>
                                     <th scope="col">Blokir</th>
@@ -111,7 +111,7 @@
 
                                 <!-- Browser Default Validation -->
 
-                                <form method="POST" action="/prosesuser" class="row g-3">
+                                <form method="POST" action="/prosesuser" class="row g-3" id="userForm">
                                     @csrf
                                     <div class="col-md-12">
                                         <label for="validationDefault01" class="form-label"> Username</label>
@@ -203,7 +203,7 @@
         <div class="modal-dialog ">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h1 class="modal-title fs-5" id="exampleModalLabel">Edit User Sekolah</h1>
+                    <h1 class="modal-title fs-5" id="exampleModalLabel">Edit User</h1>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
@@ -334,7 +334,7 @@
             crossorigin="anonymous" referrerpolicy="no-referrer" />
         <Script>
             @if (Session::has('success'))
-                toastr.success("{{ Session::get('success') }}")
+                toastr.success("{{ Session::get('success') }}");
             @endif
         </script>
     </div>
@@ -343,7 +343,7 @@
     <script src="https://code.jquery.com/jquery-3.7.0.js"></script>
     <script src="https://cdn.datatables.net/1.13.7/js/jquery.dataTables.min.js"></script>
     <script src="https://cdn.datatables.net/1.13.7/js/dataTables.bootstrap5.min.js"></script>
-
+ 
     <script>
         new DataTable('#example');
     </script>

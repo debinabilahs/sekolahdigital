@@ -25,7 +25,7 @@
                             </div>
                             <div>
                                 <button class="btn btn-primary rounded-pill px-4" style="font-size: 0.9rem"
-                                    data-bs-toggle="modal" data-bs-target="#modalagama"> + agama</button>
+                                    data-bs-toggle="modal" data-bs-target="#modalagama"> + Agama</button>
                             </div>
                         </div>
                         <hr>
@@ -85,7 +85,7 @@
         <div class="modal-dialog ">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h1 class="modal-title fs-5" id="exampleModalLabel">Form Input agama </h1>
+                    <h1 class="modal-title fs-5" id="exampleModalLabel">Form Input Agama </h1>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
@@ -101,7 +101,7 @@
                                 <form method="POST" action="/prosesAgama" class="row g-3">
                                     @csrf
                                     <div class="col-md-12">
-                                        <label for="validationDefault01" class="form-label">Nama agama</label>
+                                        <label for="validationDefault01" class="form-label">Nama Agama</label>
                                         <input type="text" name="nama_agama" class="form-control"
                                             id="validationDefault01" hint="Nama agama" placeholder="Masukkan Nama Agama" required>
                                     </div>
@@ -134,7 +134,7 @@
         <div class="modal-dialog ">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h1 class="modal-title fs-5" id="exampleModalLabel">Edit agama Sekolah</h1>
+                    <h1 class="modal-title fs-5" id="exampleModalLabel">Edit Agama Sekolah</h1>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
@@ -151,7 +151,7 @@
                                     @csrf
                                     <input type="hidden" name="id" value="{{ $value->id }}">
                                     <div class="col-md-12">
-                                        <label for="validationDefault01" class="form-label">Nama agama</label>
+                                        <label for="validationDefault01" class="form-label">Nama Agama</label>
                                         <input type="text" name="nama_agama" value="{{ $value->nama_agama }}"
                                             class="form-control" id="validationDefault01" hint="Nama agama" required>
                                     </div>

@@ -43,16 +43,16 @@
 
                                     <tr>
                                         <th scope="col">No</th>
-                                        <th scope="col">Npsn</th>
-                                        <th scope="col">NamaSekolah</th>
+                                        <th scope="col">NPSN</th>
+                                        <th scope="col">Nama Sekolah</th>
                                         <th scope="col">Alamat</th>
-                                        <th scope="col">NoTelepon</th>
+                                        <th scope="col">No Telepon</th>
                                         <th scope="col">Email</th>
                                         <th scope="col">Maps</th>
-                                        <th scope="col">NamaKepsek</th>
-                                        <th scope="col">NipKepsek</th>
-                                        <th scope="col">LogoKepsek</th>
-                                        <th scope="col">AktifSekolah</th>
+                                        <th scope="col">Nama Kepsek</th>
+                                        <th scope="col">NIP Kepsek</th>
+                                        <th scope="col">Foto Kepsek</th>
+                                        <th scope="col">Aktif Sekolah</th>
                                         <th scope="col">Aksi</th>
                                     </tr>
                                 </thead>
@@ -73,7 +73,7 @@
                                         <td>{{ $value->nama_kepalasekolah }} </td>
                                         <td>{{ $value->nip_kepsek }} </td>
 
-                                        <td><img src=" {{ asset('logokepsek/' . $value->logo_kepsek) }}" alt=""
+                                        <td><img src=" {{ asset('fotokepsek/' . $value->logo_kepsek) }}" alt=""
                                                 width="40px" height="40px" class="rounded-circle">
                                             <style>
                                                 tr td img {
@@ -110,7 +110,7 @@
         <div class="modal-dialog modal-lg ">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h1 class="modal-title fs-5" id="exampleModalLabel">Form Input sekolah </h1>
+                    <h1 class="modal-title fs-5" id="exampleModalLabel">Form Input Sekolah </h1>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
@@ -126,7 +126,7 @@
                                 <form method="POST" action="/prosesSekolah" class="row g-3" enctype="multipart/form-data">
                                     @csrf
                                     <div class="row mb-3">
-                                        <label for="inputText" class="col-sm-2 col-form-label">Npsn</label>
+                                        <label for="inputText" class="col-sm-2 col-form-label">NPSN</label>
                                         <div class="col-sm-10">
                                             <input type="text" name="npsn" class="form-control" placeholder="Masukkan NPSN">
                                         </div>
@@ -175,7 +175,7 @@
                                         </div>
                                     </div>
                                     <div class="row mb-3">
-                                        <label for="logo_kepsek" class="col-sm-2 col-form-label">Logo Kepsek</label>
+                                        <label for="logo_kepsek" class="col-sm-2 col-form-label">Foto Kepsek</label>
                                         <div class="col-sm-10">
                                             <input type="file" class="form-control" id="logo_kepsek"
                                                 name="logo_kepsek">

@@ -24,7 +24,6 @@ class GuruController extends Controller
             'username' => 'required',
             'password' => 'required',
             'aktif_guru' => 'required',
-            'ttd' => 'required',
             'foto' => 'required|image|mimes:jpeg,png,jpg,gif,svg,webp',
 
         ]);
@@ -44,7 +43,6 @@ class GuruController extends Controller
             'username' => $request->username,
             'password' => $request->password,
             'aktif_guru' => $request->aktif_guru,
-            'ttd' => $request->ttd,
             'foto' => $imageName,
 
         ]);
@@ -76,7 +74,6 @@ class GuruController extends Controller
             'username' => $request->username,
             'password' => $request->password,
             'aktif_guru' => $request->aktif_guru,
-            'ttd' => $request->ttd,
             'foto' => $imageName,
 
         ]);
@@ -93,6 +90,7 @@ class GuruController extends Controller
             return redirect('guru')->with('success', 'Guru Berhasil Dihapus.');
         }
     }
+    
     //    public function guru()
     //  {
     //      $data = DB::select('select * From rs_guru');

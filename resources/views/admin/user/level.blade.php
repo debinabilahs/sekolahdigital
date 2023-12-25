@@ -26,7 +26,7 @@
                             </div>
                             <div>
                                 <button class="btn btn-primary rounded-pill px-4" style="font-size: 0.9rem"
-                                    data-bs-toggle="modal" data-bs-target="#modallevel"> + level</button>
+                                    data-bs-toggle="modal" data-bs-target="#modallevel"> + Level</button>
                             </div>
                         </div>
                         <hr>
@@ -86,7 +86,7 @@
         <div class="modal-dialog ">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h1 class="modal-title fs-5" id="exampleModalLabel">Form Input level </h1>
+                    <h1 class="modal-title fs-5" id="exampleModalLabel">Form Input Level </h1>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
@@ -102,7 +102,7 @@
                                 <form method="POST" action="/prosesLevel" class="row g-3">
                                     @csrf
                                     <div class="col-md-12">
-                                        <label for="validationDefault01" class="form-label">Nama level</label>
+                                        <label for="validationDefault01" class="form-label">Nama Level</label>
                                         <input type="text" name="nama_level" class="form-control"
                                             id="validationDefault01" hint="Nama level" placeholder="Masukkan Nama Level" required>
                                     </div>
@@ -135,7 +135,7 @@
         <div class="modal-dialog ">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h1 class="modal-title fs-5" id="exampleModalLabel">Edit level Sekolah</h1>
+                    <h1 class="modal-title fs-5" id="exampleModalLabel">Edit Level Sekolah</h1>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
@@ -152,7 +152,7 @@
                                     @csrf
                                     <input type="hidden" name="id" value="{{ $value->id }}">
                                     <div class="col-md-12">
-                                        <label for="validationDefault01" class="form-label">Nama level</label>
+                                        <label for="validationDefault01" class="form-label">Nama Level</label>
                                         <input type="text" name="nama_level" value="{{ $value->nama_level }}"
                                             class="form-control" id="validationDefault01" hint="Nama level" required>
                                     </div>

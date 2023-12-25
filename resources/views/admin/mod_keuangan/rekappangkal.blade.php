@@ -25,7 +25,7 @@
                             </div>
                             <div>
                                 <button class="btn btn-danger rounded-pill px-4" style="font-size: 0.75rem"
-                                    data-bs-toggle="modal" data-bs-target="#modal2">Import Excel</button>
+                                    data-bs-toggle="modal" data-bs-target="#modal2">Export Excel</button>
                                 <button class="btn btn-primary rounded-pill px-4" style="font-size: 0.9rem"
                                     data-bs-toggle="modal" data-bs-target="#modalrekappangkal"> + rekappangkal</button>
                             </div>

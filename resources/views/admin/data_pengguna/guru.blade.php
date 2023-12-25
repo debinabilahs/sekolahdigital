@@ -24,7 +24,7 @@
                             </div>
                             <div>
                                 <button class="btn btn-primary rounded-pill px-4" style="font-size: 0.9rem"
-                                    data-bs-toggle="modal" data-bs-target="#modalguru"> + guru</button>
+                                    data-bs-toggle="modal" data-bs-target="#modalguru"> + Guru</button>
                             </div>
                         </div>
                         <hr>
@@ -43,13 +43,12 @@
                                     <tr>
                                         <th scope="col">No</th>
                                         <th scope="col">NIK</th>
-                                        <th scope="col">NamaGuru</th>
+                                        <th scope="col">Nama Guru</th>
                                         <th scope="col">Telp</th>
                                         <th scope="col">Email</th>
-                                        <th scope="col">TempatLahir</th>
-                                        <th scope="col">TanggalLahir</th>
+                                        <th scope="col">Tempat Lahir</th>
+                                        <th scope="col">Tanggal Lahir</th>
                                         <th scope="col">Foto</th>
-                                        <th scope="col">Ttd</th>
                                         <th scope="col">Status</th>
                                         <th scope="col">Aksi</th>
                                     </tr>
@@ -70,7 +69,8 @@
                                         <td>{{ $value->tgl_lahir }} </td>
                                         <td><img src=" {{ asset('fotoguru/' . $value->foto) }}" alt=""
                                                 width="40px" height="40px" class="rounded-circle"></td>
-                                        <td>{{ $value->ttd }} </td>
+                                        
+
                                         <td>{{ $value->aktif_guru }} </td>
                                         <td>
                                             <button type="button" class="btn btn-info" data-bs-toggle="modal"
@@ -137,7 +137,7 @@
                                         </div>
                                     </div>
                                     <div class="row mb-3">
-                                        <label for="inputTime" class="col-sm-2 col-form-label">Tempat lahir</label>
+                                        <label for="inputTime" class="col-sm-2 col-form-label">Tempat Lahir</label>
                                         <div class="col-sm-10">
                                             <input type="text" name="tmp_lahir" class="form-control" placeholder="Masukkan Tempat Lahir">
                                         </div>
@@ -152,7 +152,7 @@
                                     <div class="row mb-3">
                                         <label for="inputNumber" class="col-sm-2 col-form-label">Telp</label>
                                         <div class="col-sm-10">
-                                            <input type="number" name="no_hp" class="form-control" placeholder="Masukkan No Telp">
+                                            <input type="text" name="no_hp" class="form-control" placeholder="Masukkan No Telp">
                                         </div>
                                     </div>
                                     <div class="row mb-3">
@@ -168,17 +168,9 @@
                                         </div>
                                     </div>
                                     <div class="row mb-3">
-                                        <label for="foto" class="col-sm-2 col-form-label">Foto guru</label>
+                                        <label for="foto" class="col-sm-2 col-form-label">Foto Guru</label>
                                         <div class="col-sm-10">
                                             <input type="file" class="form-control" id="foto" name="foto">
-                                        </div>
-                                    </div>
-
-
-                                    <div class="row mb-3">
-                                        <label for="inputUsername" class="col-sm-2 col-form-label">Ttd</label>
-                                        <div class="col-sm-10">
-                                            <input type="text" name="ttd" class="form-control">
                                         </div>
                                     </div>
 
@@ -234,7 +226,7 @@
         <div class="modal-dialog modal-lg ">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h1 class="modal-title fs-5" id="exampleModalLabel">Edit guru Sekolah</h1>
+                    <h1 class="modal-title fs-5" id="exampleModalLabel">Edit Guru Sekolah</h1>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
@@ -313,15 +305,6 @@
                                         <input class=" form-control" type="hidden" name="gambarLama"
                                             value="{{ $value->foto }}">
                                     </div>
-
-                                    <div class="row mb-3">
-                                        <label for="inputNumber" class="col-sm-2 col-form-label">Ttd</label>
-                                        <div class="col-sm-10">
-                                            <input class="form-control" type="text" name="ttd" id="formFile"
-                                                value="{{ $value->ttd }}">
-                                        </div>
-                                    </div>
-
 
                                     <fieldset class="row mb-3">
                                         <legend class="col-form-label col-sm-2 pt-0">Aktif</legend>

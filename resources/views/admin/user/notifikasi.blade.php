@@ -44,7 +44,7 @@
                                 <tr>
                                     <th scope="col">No</th>
                                     <th scope="col">Guru</th>
-                                    <th scope="col">kode notif</th>
+                                    <th scope="col">Kode Notif</th>
                                     <th scope="col">Aksi</th>
                                 </tr>
                             </thead>
@@ -121,7 +121,7 @@
                                     <div class="col-md-12">
                                         <label for="kode_notif" class="form-label">Kode Notif</label>
                                         <input type="text" name="kode_notif" class="form-control" id="kode_notif"
-                                            hint="kode notif" required>
+                                            hint="kode notif" placeholder="Masukkan Kode Notif" required>
                                     </div>
 
 

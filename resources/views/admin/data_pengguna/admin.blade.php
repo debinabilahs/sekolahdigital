@@ -44,15 +44,15 @@
 
                                     <tr>
                                         <th scope="col">No</th>
-                                        <th scope="col">Nik</th>
-                                        <th scope="col">NamaAdmin</th>
+                                        <th scope="col">NIK</th>
+                                        <th scope="col">Nama Admin</th>
                                         <th scope="col">Alamat</th>
-                                        <th scope="col">NoTelepon</th>
+                                        <th scope="col">No Telepon</th>
                                         <th scope="col">Email</th>
                                         <th scope="col">Username</th>
                                         <th scope="col">Password</th>
                                         <th scope="col">Foto</th>
-                                        <th scope="col">AktifAdmin</th>
+                                        <th scope="col">Aktif Admin</th>
                                         <th scope="col">Aksi</th>
                                     </tr>
                                 </thead>
@@ -163,7 +163,7 @@
                                     <div class="row mb-3">
                                         <label for="inputPassword" class="col-sm-2 col-form-label">Password</label>
                                         <div class="col-sm-10">
-                                            <input type="number" name="password" class="form-control" placeholder="Masukkan Password">
+                                            <input type="password" name="password" class="form-control" placeholder="Masukkan Password">
                                         </div>
                                     </div>
                                     <div class="row mb-3">
@@ -287,7 +287,7 @@
                                     <div class="row mb-3">
                                         <label for="inputPassword" class="col-sm-2 col-form-label">Password</label>
                                         <div class="col-sm-10">
-                                            <input type="number" name="password" class="form-control"
+                                            <input type="password" name="password" class="form-control"
                                                 value="{{ $value->password }}">
                                         </div>
                                     </div>

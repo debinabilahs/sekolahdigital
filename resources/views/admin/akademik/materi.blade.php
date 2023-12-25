@@ -121,7 +121,7 @@
 
 
                                     <div class="col-md-12">
-                                        <label for="nama_materi" class="form-label">Nama materi</label>
+                                        <label for="nama_materi" class="form-label">Nama Materi</label>
                                         <input type="text" name="nama_materi" class="form-control" id="nama_materi"
                                             hint="nama_materi" placeholder="Masukkan Nama Materi" required>
                                     </div>
@@ -211,7 +211,7 @@
                                     <table class="table table-hover">
                                         <thead>
                                             <tr>
-                                                <th scope="col">Nama materi</th>
+                                                <th scope="col">Nama Materi</th>
                                                 <th scope="col">Mata Pelajaran</th>
                                                 <th scope="col">Kelas</th>
 
@@ -257,9 +257,11 @@
                                             <tr>
 
                                                 <td>
-                                                    {!! $value->file !!}
-                                                </td>
+                                                    <iframe src="{{ asset('filemateri/' . $value->file) }}" width="400px" height="300px"></iframe>
+                                                </td>                                                
+    
                                             </tr>
+
 
                                         </tbody>
                                     </table>
@@ -289,7 +291,7 @@
             <div class="modal-dialog modal-lg">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h1 class="modal-title fs-5" id="exampleModalLabel">Edit materi</h1>
+                        <h1 class="modal-title fs-5" id="exampleModalLabel">Edit Materi</h1>
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
                     <div class="modal-body">

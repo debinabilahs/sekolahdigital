@@ -27,6 +27,8 @@
             </div>
         </div>
         
+        {{-- Hak Akses --}}
+        @if(Auth::user()->level == 1)
         <div class="row">
             <!-- Revenue Card -->
             <div class=" col-3">
@@ -346,4 +348,9 @@
             }
         });
     </script>
+
+@elseif(Auth::user()->level == 2)
+
+@endif
+
 @endsection

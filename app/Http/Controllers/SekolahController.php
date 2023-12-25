@@ -30,7 +30,7 @@ class SekolahController extends Controller
 
         $imageName = time() . '_' . $request->file('logo_kepsek')->getClientOriginalName();
 
-        $request->logo_kepsek->move(public_path('logokepsek/'), $imageName);
+        $request->logo_kepsek->move(public_path('fotokepsek/'), $imageName);
 
         $sekolah = Sekolah::create([
 
@@ -60,7 +60,7 @@ class SekolahController extends Controller
         if ($request->hasFile('logo_kepsek')) {
             $image = $request->file('logo_kepsek');
             $imageName = time() . '_' . $request->file('logo_kepsek')->getClientOriginalName();
-            $image->move(public_path('logokepsek/'), $imageName);
+            $image->move(public_path('fotokepsek/'), $imageName);
         }
         $sekolah = Sekolah::where('id', $request->id)->update([
 

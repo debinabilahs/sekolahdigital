@@ -94,6 +94,9 @@ class MateriController extends Controller
         $mapel = Mapel::find($materi->id_mapel);
         $kelas = Kelas::find($materi->id_kelas);
 
+        $path = public_path('filemateri/' . $materi->file);
+
+        return response()->file($path);
         // return view('admin.akademik.lihatmateri', compact('materi', 'mapel', 'kelas'));
     }
 

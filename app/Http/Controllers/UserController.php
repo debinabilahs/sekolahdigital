@@ -12,48 +12,55 @@ class UserController extends Controller
     {
         $data = User::orderBy('id', 'ASC');
 
-        if ($request->has('search') && !empty($request->get('search'))) {
-            $data = $data->where('name', 'LIKE', '%' . $request->get('search') . '%')
-            ->orWhere('email', 'LIKE', '%' . $request->get('search') . '%');
-        }
+        // if ($request->has('search') && !empty($request->get('search'))) {
+        //     $data = $data->where('name', 'LIKE', '%' . $request->get('search') . '%')
+        //     ->orWhere('email', 'LIKE', '%' . $request->get('search') . '%');
+        // }
     
-        $data = $data->paginate(10);
+        $data = $data->paginate(1000);
         $user = User::all();
     
         return view('admin.user.user', compact('data', 'user', 'request'));
     }
 
     public function prosesuser(Request $request)
-    {
-        $request->validate([
-            'username' => 'required',
-            'name' => 'required',
-            'email' => 'required',
-            'no_hp' => 'required',
-            'status' => 'required',
-            'level' => 'required',
-            'blokir' => 'required',
-            'password' => 'required|min:8|regex:/^(?=.*[A-Za-z])(?=.*\d).+$/',
-        ]);
+{
+    $request->validate([
+        'username' => 'required',
+        'name' => 'required',
+        'email' => 'required',
+        'no_hp' => 'required',
+        'status' => 'required',
+        'level' => 'required',
+        'blokir' => 'required',
+        'password' => 'required|min:8|regex:/^(?=.*[A-Za-z])(?=.*\d).+$/', // password memiliki setidaknya 8 karakter, setidaknya satu karakter huruf, dan setidaknya satu karakter angka.
+    ]);
 
-        // Hash password sebelum menyimpan ke dalam database
-        $hashedPassword = Hash::make($request->password);
+    // Check if the password meets the criteria
+    $passwordIsValid = preg_match('/^(?=.*[A-Za-z])(?=.*\d).+$/', $request->password);
 
-        $user = User::create([
-            'username' => $request->username,
-            'name' => $request->name,
-            'email' => $request->email,
-            'no_hp' => $request->no_hp,
-            'status' => $request->status,
-            'level' => $request->level,
-            'blokir' => $request->blokir,
-            'password' => $hashedPassword,
-        ]);
+    // Hash password sebelum menyimpan ke dalam database
+    $hashedPassword = Hash::make($request->password);
 
-        if ($user) {
-            return redirect('user')->with('success', 'User Berhasil Dibuat');
-        }
+    $user = User::create([
+        'username' => $request->username,
+        'name' => $request->name,
+        'email' => $request->email,
+        'no_hp' => $request->no_hp,
+        'status' => $request->status,
+        'level' => $request->level,
+        'blokir' => $request->blokir,
+        'password' => $hashedPassword,
+    ]);
+
+    if (!$passwordIsValid) {
+        return redirect('user')->with('error', 'Password harus memiliki setidaknya 8 karakter, setidaknya satu karakter huruf, dan setidaknya satu karakter angka.');
+    } elseif ($user) {
+        return redirect('user')->with('success', 'User Berhasil Dibuat');
     }
+    
+}
+
 
     public function updateuser(Request $request)
     {
@@ -94,4 +101,5 @@ class UserController extends Controller
             return redirect('user')->with('success', 'User Berhasil Dihapus.');
         }
     }
+
 }

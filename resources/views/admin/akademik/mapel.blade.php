@@ -26,7 +26,7 @@
                             </div>
                             <div>
                                 <button class="btn btn-primary rounded-pill px-4" style="font-size: 0.9rem"
-                                    data-bs-toggle="modal" data-bs-target="#modalmapel"> + mapel</button>
+                                    data-bs-toggle="modal" data-bs-target="#modalmapel"> + Mapel</button>
                             </div>
                         </div>
                         <hr>
@@ -46,7 +46,7 @@
                                     <th scope="col">Nama Mapel</th>
                                     <th scope="col">Icon Mapel</th>
                                     <th scope="col">Kelas</th>
-                                    <th scope="col">Kkm</th>
+                                    <th scope="col">KKM</th>
                                     <th scope="col">Aksi</th>
                                 </tr>
 
@@ -100,7 +100,7 @@
         <div class="modal-dialog ">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h1 class="modal-title fs-5" id="exampleModalLabel">Form Input mapel </h1>
+                    <h1 class="modal-title fs-5" id="exampleModalLabel">Form Input Mapel </h1>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
@@ -128,9 +128,9 @@
                                     </div>
 
                                     <div class="form-group">
-                                        <label for="id_kelas">Nama kelas</label>
+                                        <label for="id_kelas">Nama Kelas</label>
                                         <select class="form-control" id="id_kelas" name="id_kelas">
-                                            <option value="">Pilih Nama kelas</option>
+                                            <option value="">Pilih Nama Kelas</option>
                                             @foreach ($kelas as $items)
                                                 <option value="{{ $items->id }}">{{ $items->nama_kelas }}
                                                 </option>
@@ -174,7 +174,7 @@
         <div class="modal-dialog ">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h1 class="modal-title fs-5" id="exampleModalLabel">Edit mapel Sekolah</h1>
+                    <h1 class="modal-title fs-5" id="exampleModalLabel">Edit Mapel Sekolah</h1>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
@@ -198,7 +198,7 @@
                                     </div>
 
                                     <div class="form-group">
-                                        <label for="foto">Icon mapel</label>
+                                        <label for="foto">Icon Mapel</label>
                                         <input type="file" class="form-control" id="foto" name="icon_mapel">
                                         <input class=" form-control" type="hidden" name="gambarLama"
                                             value="{{ $value->icon_mapel }}">
@@ -222,7 +222,7 @@
                                     </div>
 
                                     <div class="col-md-12">
-                                        <label for="validationDefault01" class="form-label">Kkm</label>
+                                        <label for="validationDefault01" class="form-label">KKM</label>
                                         <input type="text" name="kkm" value="{{ $value->kkm }}"
                                             class="form-control" id="validationDefault01" hint="kkm" required>
                                     </div>
