@@ -65,7 +65,7 @@
                                         <td>{{ $value->siswa->nama_siswa }} </td>
                                         <td>{{ $value->detpangkal->deskripsi }} </td>
                                         <td>{{ $value->jml_bayar }} </td>
-                                        <td>{{ $value->users->nama_lengkap }} </td>
+                                        <td>{{ $value->users->name }} </td>
 
                                         <td>
                                             <button type="button" class="btn btn-info" data-bs-toggle="modal"
