@@ -106,6 +106,7 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/lihatsoal/{id}', [SoalController::class, 'lihatsoal']);
     Route::get('/hapussoal/{id}', [SoalController::class, 'hapussoal']);
     Route::get('/get-subjects-and-classes/{paketSoal}', 'SoalController@getSubjectsAndClasses');
+    Route::post('/soalimportexcel', [SoalController::class, 'soalimportexcel'])->name('soalimportexcel');
 
 
     //Paket soal
@@ -113,7 +114,7 @@ Route::middleware(['auth'])->group(function () {
     Route::post('/prosespaket', [PaketController::class, 'prosespaket']);
     Route::post('/updatepaket', [PaketController::class, 'updatepaket']);
     Route::get('/lihatpaket/{id}', [PaketController::class, 'lihatpaket']);
-    Route::get('/hapuspaket/{id}', [PaketController::class, 'hapuspaket']);
+    Route::get('/hapuspaket/{id}', [PaketController::class, 'hapuspaket']);    
 
     //Ujian
     Route::get('/ujian', [UjianController::class, 'ujian']);
@@ -204,12 +205,14 @@ Route::middleware(['auth'])->group(function () {
         Route::post('/prosesrekapPangkal', [RekappangkalController::class, 'prosesrekapPangkal']);
         Route::post('/updaterekapPangkal', [RekappangkalController::class, 'updaterekapPangkal']);
         Route::get('/hapusrekapPangkal/{id}', [RekappangkalController::class, 'hapusrekapPangkal']);
+        Route::get('/pangkalexport', [RekappangkalController::class, 'pangkalexport'])->name('pangkalexport');
 
         //bayar siswa
         Route::get('/bayarsiswa', [BayarSiswaController::class, 'bayarsiswa']);
         Route::post('/prosesbayarsiswa', [BayarsiswaController::class, 'prosesbayarsiswa']);
         Route::post('/updatebayarsiswa', [BayarsiswaController::class, 'updatebayarsiswa']);
         Route::get('/hapus/{id}', [BayarsiswaController::class, 'hapus']);
+        Route::post('/bayarsiswaimportexcel', [BayarSiswaController::class, 'bayarsiswaimportexcel'])->name('bayarsiswaimportexcel');
 
         //Bayar
         Route::get('/bayar', [BayarController::class, 'bayar']);
@@ -222,6 +225,7 @@ Route::middleware(['auth'])->group(function () {
         Route::post('/prosespembayaran', [PembayaranController::class, 'prosespembayaran']);
         Route::post('/updatepembayaran', [PembayaranController::class, 'updatepembayaran']);
         Route::get('/hapuspembayaran/{id}', [PembayaranController::class, 'hapuspembayaran']);
+        Route::get('/pembayaranexport', [PembayaranController::class, 'pembayaranexport'])->name('pembayaranexport');
 
     });
 

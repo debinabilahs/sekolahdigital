@@ -2,6 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Exports\PangkalExport;
+use Maatwebsite\Excel\Facades\Excel;
+
 use App\Models\Jurusan;
 use App\Models\Rekappangkal;
 use App\Models\Tp;
@@ -70,5 +73,9 @@ class RekappangkalController extends Controller
         if ($del) {
             return redirect('rekappangkal')->with('success', 'Rekappangkal Berhasil Dihapus.');
         }
+    }
+
+    public function pangkalexport() {
+        return Excel::download(new PangkalExport, 'rekappangkal.xlsx');
     }
 }

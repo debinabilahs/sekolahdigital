@@ -197,17 +197,29 @@
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h1 class="modal-title fs-5" id="exampleModalLabel">Modal title</h1>
+                    <h1 class="modal-title fs-5" id="modal2">Import Data</h1>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    <span aria-hidden="true">&times;</span>
                 </div>
-                <div class="modal-body">
-                    ...
+                <form action="" method="post" enctype="multipart/form-data">
+                    <div class="modal-body">
+                        <div class="form-group">
+
+                            {{ csrf_field() }}
+
+                            <div class="form-group">
+                                <input type="file" name="file" required="required">
+                            </div>
+
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                        <button type="button" class="btn btn-primary">Import</button>
+                    </div>
                 </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                    <button type="button" class="btn btn-primary">Save changes</button>
-                </div>
-            </div>
+                </form>
+                
         </div>
     </div>
 

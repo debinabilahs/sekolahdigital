@@ -2,6 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Imports\BayarSiswaImport;
+use Maatwebsite\Excel\Facades\Excel;
+
 use App\Models\Bayarsiswa;
 use Illuminate\Http\Request;
 
@@ -73,5 +76,16 @@ class BayarsiswaController extends Controller
         if ($del) {
             return redirect('bayarsiswa')->with('success', 'Bayarsiswa Berhasil Dihapus.');
         }
+    }
+
+    public function bayarsiswaimportexcel(Request $request)
+    {
+        $file = $request->file('file');
+        $nameFile = $file->getClientOriginalName();
+        $file->move('DataBayarSiswa', $namaFile);
+
+        Excel::import(new SoalImport, public_path('/DataBayarSiswa'.$namaFile));
+
+        return redirect('/bayarsiswa');
     }
 }

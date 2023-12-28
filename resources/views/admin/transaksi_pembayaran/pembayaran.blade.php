@@ -24,8 +24,8 @@
                                 <h5 class="card-title inline-block">Data Pembayaran</h5>
                             </div>
                             <div>
-                                <button class="btn btn-danger rounded-pill px-4" style="font-size: 0.75rem"
-                                    data-bs-toggle="modal" data-bs-target="#modal2">Export Excel</button>
+                                <a href="{{ route('pembayaranexport') }}" class="btn btn-danger rounded-pill px-4" style="font-size: 0.75rem" >Export Excel</a>
+
                                 <button class="btn btn-primary rounded-pill px-4" style="font-size: 0.9rem"
                                     data-bs-toggle="modal" data-bs-target="#modalpembayaran"> + pembayaran</button>
                             </div>

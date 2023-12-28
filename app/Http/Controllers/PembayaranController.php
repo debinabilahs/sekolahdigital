@@ -2,6 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Exports\PembayaranExport;
+use Maatwebsite\Excel\Facades\Excel;
+
 use App\Models\Detpangkal;
 use App\Models\Pembayaran;
 use App\Models\Siswa;
@@ -76,5 +79,9 @@ class PembayaranController extends Controller
         if ($del) {
             return redirect('pembayaran')->with('success', 'Pembayaran Berhasil Dihapus.');
         }
+    }
+
+    public function pembayaranexport() {
+        return Excel::download(new PembayaranExport, 'pembayaran.xlsx');
     }
 }

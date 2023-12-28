@@ -2,6 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Imports\SoalImport;
+use Maatwebsite\Excel\Facades\Excel;
+
 use App\Models\Kelas;
 use App\Models\Mapel;
 use App\Models\PaketSoal;
@@ -140,4 +143,14 @@ class SoalController extends Controller
         return response()->json(['subjects' => $subjects, 'classes' => $classes]);
     }
 
+    public function soalimportexcel(Request $request)
+    {
+        $file = $request->file('file');
+        $nameFile = $file->getClientOriginalName();
+        $file->move('DataSoal', $namaFile);
+
+        Excel::import(new SoalImport, public_path('/DataSoal'.$namaFile));
+
+        return redirect('/soal');
+    }
 }
